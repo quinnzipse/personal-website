@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="keyboards" content="Quinn, Zipse, Quinn Zipse, QuinnZipse, SlippedMars9866">
+        <meta name="description" content="Just a look into a programmers life online.">
 
         <title>Quinn Zipse</title>
 
@@ -12,10 +14,23 @@
 
     </head>
     <body>
-        <div class="container">
-            <h1>Welcome to my website!</h1>
-            <div class="divider"></div>
-            <p>Made by: Quinn Zipse <small>(I mean duh, look at the domain name)</small></p>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="" class="brand-logo"><img src=""></a>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="">About Me</a></li>
+                <li><a href="">Login</a></li>
+            </ul>
         </div>
+    </nav>
+    <main>
+        <div class="main-contain"></div>
+        <footer class="page-footer">
+            <div class="footer-copyright">
+                <p class="white-text" style="margin-left: 10px">  © 2018 Quinn Zipse</p>
+            </div>
+        </footer>
+    </main>
     </body>
+
 </html>
