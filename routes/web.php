@@ -20,3 +20,6 @@ Route::get('/about', function (){
 Route::get('/login', function () {
     return view( 'login');
 })->name('login');
+Route::get('/1', function () {
+    return view('welcome1');
+})->name('1');
