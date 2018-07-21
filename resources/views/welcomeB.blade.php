@@ -22,9 +22,7 @@
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a href="{{route('home')}}" class="navbar-brand">quinnzipse.me
-        <small class="font-weight-light" style="font-size: 60%"> (bootstrap edition)</small>
-    </a>
+    <a href="{{route('home')}}" class="navbar-brand">quinnzipse.me</a>
     <div class="collapse navbar-collapse" id="navbarNav"></div>
     <ul class="navbar-nav">
         <a href="{{route('home')}}" class="nav-link">Materialize Edition</a>
