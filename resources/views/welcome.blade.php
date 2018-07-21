@@ -20,6 +20,7 @@
             <li><a href="#">quinnzipse.me<small class="hide-on-large-only" style="font-size: 7px"> Beta</small></a></li>
         </ul>
         <ul class="right">
+            <li><a href="{{route('boot')}}">Bootstrap Edition</a></li>
             <li><a href="{{route('about')}}">About Me</a></li>
             <li><a href="#">Login</a></li>
         </ul>

@@ -23,3 +23,6 @@ Route::get('/login', function () {
 Route::get('/1', function () {
     return view('welcome1');
 })->name('1');
+Route::get('/boot', function () {
+    return view('welcomeB');
+})->name('boot');
