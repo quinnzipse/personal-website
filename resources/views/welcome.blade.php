@@ -18,7 +18,7 @@
             integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
             crossorigin="anonymous"></script>
 </head>
-<body style="height: 100%" class="bg-primary">
+<body class="">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
     <a href="{{route('home')}}" class="navbar-brand text-white">quinnzipse.me</a>
     <div class="collapse navbar-collapse" id="navbarNav"></div>
@@ -27,29 +27,36 @@
         <a href="#" class="nav-link text-white">Login</a>
     </ul>
 </nav>
-<main class="bg-primary">
-    <div class="welcome-section">
-        <div class="container" style="margin-top: 18%">
-            <br>
-        </div>
-        <div class="container" style="height: 50%">
-            <br>
+<main class="h-100">
+    <div class="h-100 bg-primary shadow-lg">
+        <div class="container" style="padding-top: 25%">
+            <div class="h-20"></div>
             <h1 class="text-white font-weight-light" style="font-size:3.7em;">Hello, I am Quinn Zipse</h1>
             <h4 class="text-white font-weight-light" style="font-size:2em;">Programming is what I do.</h4>
-            <br>
             <br>
             <a href="{{route('about')}}" class="text-white font-weight-light" style="font-size: 1.2em">Learn More >></a>
         </div>
     </div>
+    {{--<div class="main-divider">--}}
+
+    {{--</div>--}}
+    <div class="h-100">
+        <div class="container" style="padding-top: 3%">
+            <br>
+            <h1 class="text-primary font-weight-light">About Me</h1>
+            <div class="dropdown-divider"></div>
+        </div>
+    </div>
 </main>
-<footer class="footer-welcome">
-    <span class="text-white text-left" style="margin-left: 1%"> © 2018 Quinn Zipse </span>
-    <a href="https://www.facebook.com/quinnzipse" class="text-white" style="margin-left: 80%"><i
-                class="fab fa-facebook text-white"></i> Facebook </a>
-    <span> </span>
-    <a href="https://www.twitter.com/quinn_zipse" class="text-white text-right" style="margin-left: 1%"><i
-                class="fab fa-twitter text-white"></i> Twitter</a>
-</footer>
+{{--<footer class="footer-welcome">--}}
+    {{--<span class="text-white text-left" style="margin-left: 1%"> © 2018 Quinn Zipse </span>--}}
+    {{--<a href="https://www.facebook.com/quinnzipse" class="text-white" style="margin-left: 80%"><i--}}
+                {{--class="fab fa-facebook text-white"></i> Facebook </a>--}}
+    {{--<span> </span>--}}
+    {{--<a href="https://www.twitter.com/quinn_zipse" class="text-white text-right" style="margin-left: 1%"><i--}}
+                {{--class="fab fa-twitter text-white"></i> Twitter</a>--}}
+{{--</footer>--}}
+
 </body>
 
 </html>
