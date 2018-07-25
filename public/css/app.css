@@ -3,6 +3,10 @@
     height: 60px;
     line-height: 60px;
     background-color: #0072F3;
+    color: white;
+}
+.footer-welcome a{
+    color: white;
 }
 .main-divider{
     height: 10%;
@@ -16,6 +20,7 @@ html, body{
     padding: 0;
     width: 100% !important;
     height: 100% !important;
+    scroll-behavior: smooth;
 }/*!
  * Bootstrap v4.1.2 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors

@@ -14,49 +14,77 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
           integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js"
-            integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em"
-            crossorigin="anonymous"></script>
+    <style href="{{'js/all.js'}}" type="text/js"></style>
+    <style type="text/css">
+        body{
+            position: relative;
+        }
+    </style>
 </head>
-<body class="">
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
-    <a href="{{route('home')}}" class="navbar-brand text-white">quinnzipse.me</a>
-    <div class="collapse navbar-collapse" id="navbarNav"></div>
-    <ul class="navbar-nav">
-        <a href="{{route('about')}}" class="nav-link text-white">About Me</a>
-        <a href="#" class="nav-link text-white">Login</a>
+<body data-spy="scroll" data-target="#navbar" data-offset="10">
+<nav class="navbar navbar-expand-lg navbar-light bg-primary" id="navbar" style="position:fixed;top:0;left:0;right:0;">
+    <a href="#main" class="navbar-brand text-white">quinnzipse.me</a>
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbar1" aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars text-white" style="font-size: .9em"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar1">
+    <ul class="navbar-nav ml-auto">
+        <li class="nav-item"><a href="#aboutme" class="nav-link text-white">About Me</a></li>
+        <li class="nav-item"><a href="{{"login"}}" class="nav-link text-white">Login</a></li>
     </ul>
+    </div>
 </nav>
 <main class="h-100">
-    <div class="h-100 bg-primary shadow-lg">
+    <div class="h-100 bg-primary shadow-lg" id="main">
         <div class="container" style="padding-top: 25%">
             <div class="h-20"></div>
             <h1 class="text-white font-weight-light" style="font-size:3.7em;">Hello, I am Quinn Zipse</h1>
             <h4 class="text-white font-weight-light" style="font-size:2em;">Programming is what I do.</h4>
             <br>
-            <a href="{{route('about')}}" class="text-white font-weight-light" style="font-size: 1.2em">Learn More >></a>
+            <a href="#aboutme" class="text-white font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn More >></a>
+            <div class='mt-5'>
+                <br>
+                <br>
+                <br>
+                <br>
+            </div>
+            <div id="aboutme">
+                <br>
+            </div>
         </div>
     </div>
-    {{--<div class="main-divider">--}}
-
-    {{--</div>--}}
-    <div class="h-100">
+    <div class="h-75">
         <div class="container" style="padding-top: 3%">
             <br>
             <h1 class="text-primary font-weight-light">About Me</h1>
             <div class="dropdown-divider"></div>
+            <br>
+            <h5>General Info</h5>
+            <p class="grey-text text-lighten-4">I am currently a PSEO student from Kasson-Mantorville.
+                                In my
+                                free time, I enjoy developing different software for personal or open use, and playing
+                                video
+                                games.
+                                I plan on studying computer science after I graduate in 2019.</p>
+            <p class="grey-text text-lighten-4">I am currently employed at Target. I joined right after
+                                I turned
+                                16 and have worked there ever since.</p>
+            <p class="grey-text text-lighten-4">I have many projects I am currently working on including
+                                this
+                                site, my robotics team website, and a controller for my smart home devices.</p>
         </div>
     </div>
-</main>
-{{--<footer class="footer-welcome">--}}
-    {{--<span class="text-white text-left" style="margin-left: 1%"> © 2018 Quinn Zipse </span>--}}
-    {{--<a href="https://www.facebook.com/quinnzipse" class="text-white" style="margin-left: 80%"><i--}}
-                {{--class="fab fa-facebook text-white"></i> Facebook </a>--}}
-    {{--<span> </span>--}}
-    {{--<a href="https://www.twitter.com/quinn_zipse" class="text-white text-right" style="margin-left: 1%"><i--}}
-                {{--class="fab fa-twitter text-white"></i> Twitter</a>--}}
-{{--</footer>--}}
+    <div class="bg-primary shadow-lg" style="height: 3%">
 
+    </div>
+    <footer class="footer-welcome">
+        <span style="margin-left: 1%">© 2018 Quinn Zipse</span>
+        <a href="https://www.facebook.com/quinnzipse" style="margin-left: 81%"><i
+            class="fab fa-facebook text-white"></i> Facebook </a>
+        <a href="https://www.twitter.com/quinn_zipse" style="margin-left: 1%"><i
+            class="fab fa-twitter text-white"></i> Twitter</a>
+    </footer>
+</main>
 </body>
 
 </html>
