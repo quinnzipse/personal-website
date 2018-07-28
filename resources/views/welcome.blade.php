@@ -36,13 +36,21 @@
 </nav>
 <main class="h-100">
     <div class="h-100 bg-primary shadow-lg" id="main">
-        <div class="container" style="padding-top: 25%">
+        <div class="jumbotron-fluid" style="padding-top: 25%">
             <div class="h-20"></div>
-            <h1 class="text-white font-weight-light" style="font-size:3.7em;">Hello, I am Quinn Zipse</h1>
+            <div class="container d-none d-lg-block">
+                <h1 class="text-white font-weight-light" style="font-size:3.7em;">Hello, I am Quinn Zipse</h1>
             <h4 class="text-white font-weight-light" style="font-size:2em;">Programming is what I do.</h4>
             <br>
             <a href="#aboutme" class="text-white font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn More >></a>
-            <div class='mt-5'>
+            </div>
+            <div class="container d-none d-sm-block d-md-none">
+                <h1 class="text-white font-weight-light">Hello, I am Quinn Zipse</h1>
+                <h4 class="text-white font-weight-light">Programming is what I do.</h4>
+                <br>
+                <a href="#aboutme" class="text-white font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn More >></a>
+            </div>
+                <div class='mt-5'>
                 <br>
                 <br>
                 <br>
@@ -79,9 +87,9 @@
     </div>
     <footer class="footer-welcome">
         <span style="margin-left: 1%">© 2018 Quinn Zipse</span>
-        <a href="https://www.facebook.com/quinnzipse" style="margin-left: 81%"><i
+        <a href="https://www.facebook.com/quinnzipse" class="hidden-md-down" style="margin-left: 81%"><i
             class="fab fa-facebook text-white"></i> Facebook </a>
-        <a href="https://www.twitter.com/quinn_zipse" style="margin-left: 1%"><i
+        <a href="https://www.twitter.com/quinn_zipse" class="hidden-md-down" style="margin-left: 1%"><i
             class="fab fa-twitter text-white"></i> Twitter</a>
     </footer>
 </main>

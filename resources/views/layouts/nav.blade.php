@@ -4,4 +4,5 @@
     <ul class="navbar-nav">
         <a href="" class="nav-link text-white">Login</a>
     </ul>
+    @if(User::get())
 </nav>

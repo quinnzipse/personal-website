@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keyboards"
           content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, SlippedMars9866">
-    <meta name="description" content="Just a look into a programmers life online.">
+    <meta name="description" content="quinnzipse.me is a personal site made for nothing more than me, Quinn Zipse, to upload things to a live server and to give you a brief look at my life.">
 
     <title>Quinn Zipse</title>
 
