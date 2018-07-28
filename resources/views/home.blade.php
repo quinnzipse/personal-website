@@ -9,22 +9,21 @@
                     <div class="card-body">
                         <ul class="list-group list-group-flush align-content-center">
                             <li class="list-group-item">
-                                <a href="" class="text-muted">Dashboard</a>
+                                <a href="{{route('home')}}" class="text-muted">Dashboard</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="" class="text-muted">Calendar</a>
+                                <a href="{{route('calendar')}}" class="text-muted">Calendar</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="" class="text-muted">Hue Light Control</a>
+                                <a href="{{route('lightControl')}}" class="text-muted">Hue Light Control</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="" class="text-muted">Spotify Control</a>
+                                <a href="{{route('musicControl')}}" class="text-muted">Spotify Control</a>
                             </li>
                             <li class="list-group-item">
-                                <a href="" class="text-muted">Smart Dashboard</a>
+                                <a href="{{route('smartDashboard')}}" class="text-muted">Smart Dashboard</a>
                             </li>
                         </ul>
-
                     </div>
                 </div>
             </div>
