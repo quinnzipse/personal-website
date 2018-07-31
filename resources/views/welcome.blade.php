@@ -54,6 +54,8 @@
                 <br>
                 <br>
                 <br>
+                <br>
+                <br>
                 <h1 class="text-white font-weight-light" style="font-size: 2rem">Hello, I am Quinn Zipse</h1>
                 <h5 class="text-white font-weight-light">Programming is what I do.</h5>
                 <br>
