@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Event extends Model
 {
+    public $table = "event";
+
     protected $fillable = [
-        'name', 'time', 'date', 'type'
+        'name', 'dateTime', 'type'
     ];
 
     protected $hidden = [
-        'id'
+        'event_id', 'user_id'
     ];
 }

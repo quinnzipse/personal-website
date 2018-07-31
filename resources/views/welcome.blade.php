@@ -86,7 +86,7 @@
                                 16 and have worked there ever since.</p>
             <p class="grey-text text-lighten-4">I have many projects I am currently working on including
                                 this
-                                site, my robotics team website, and a controller for my smart home devices.</p>
+                                site, my robotics team- website, and a controller for my smart home devices.</p>
         </div>
     </div>
     <div class="bg-primary shadow-lg" style="height: 3%">

@@ -21,8 +21,12 @@ Route::get('/login', function () {
 Auth::routes();
 
 //dashboard routes
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/calendar', 'DashboardController@calendar')->name('calendar');
-Route::get('/hue/controller', 'HueController@control')->name('lightControl');
-Route::get('/spotify/controller', 'SpotifyController@control')->name('musicControl');
-Route::get('/smartdashboard', 'DashboardController@smartDash')->name('smartDashboard');
+Route::get('/underdevelopment', 'HomeController@dev')->middleware('auth')->name('development');
+Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
+Route::get('/hue/controller', 'HueController@control')->middleware('auth')->name('lightControl');
+Route::get('/spotify/controller', 'SpotifyController@control')->middleware('auth')->name('musicControl');
+Route::get('/smartdashboard', 'DashboardController@smartDash')->middleware('auth')->name('smartDashboard');
+
+//Calendar Routes
+Route::get('/calendar', 'DashboardController@calendar')->middleware('auth')->name('calendar');
+Route::get('/addEvent', 'DashboardController@addEvent')->middleware('auth')->name('addEvent');
