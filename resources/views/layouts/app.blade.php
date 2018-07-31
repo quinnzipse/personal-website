@@ -5,6 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <link rel="icon" href="{{'img/favicon.ico'}}">
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -16,6 +18,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
+          integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -69,8 +73,48 @@
             </div>
         </nav>
 
+        {{--main--}}
         <main class="py-4">
-            @yield('content')
+
+            <div class="container">
+                @yield('page_header')
+            <div class="row justify-content-center">
+                <div class="col-md-3 sm">
+                    <div class="card">
+                        <div class="card-header">Things To Do:</div>
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush align-content-center">
+                                <li class="list-group-item">
+                                    <a href="{{route('home')}}" class="text-muted">Dashboard</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{route('calendar')}}" class="text-muted">Calendar</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{route('lightControl')}}" class="text-muted">Hue Light Control</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{route('musicControl')}}" class="text-muted">Spotify Control</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <a href="{{route('smartDashboard')}}" class="text-muted">Smart Dashboard</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-9">
+                    <div class="card">
+                        <div class="card-header">
+                            @yield('title')
+                        </div>
+                        <div class="card-body">
+                            @yield('content')
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
         </main>
     </div>
 </body>
