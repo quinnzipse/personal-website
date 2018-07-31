@@ -40,19 +40,28 @@
             <div class="h-20"></div>
             <div class="container d-none d-lg-block">
                 <h1 class="text-white font-weight-light" style="font-size:3.7em;">Hello, I am Quinn Zipse</h1>
-            {{--<h4 class="text-white font-weight-light" style="font-size:2em;">Programming is what I do.</h4>--}}
+            <h4 class="text-white font-weight-light" style="font-size:2em;">Programming is what I do.</h4>
             <br>
             <a href="#aboutme" class="text-white font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn More >></a>
             </div>
             <div class="d-sm-none container">
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
                 <h1 class="text-white font-weight-light" style="font-size: 2rem">Hello, I am Quinn Zipse</h1>
-                {{--<h5 class="text-white font-weight-light">Programming is what I do.</h5>--}}
+                <h5 class="text-white font-weight-light">Programming is what I do.</h5>
                 <br>
                 <a href="#aboutme" class="text-white font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn More >></a>
             </div>
             <div class="container d-none d-sm-block d-lg-none">
                 <h1 class="text-white font-weight-light">Hello, I am Quinn Zipse</h1>
-                {{--<h4 class="text-white font-weight-light">Programming is what I do.</h4>--}}
+                <h4 class="text-white font-weight-light">Programming is what I do.</h4>
                 <br>
                 <a href="#aboutme" class="text-white font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn More >></a>
             </div>

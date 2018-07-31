@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Http\Requests\AddEvent;
 use App\User;
 use Illuminate\Foundation\Console\EventMakeCommand;
 use Illuminate\Http\Request;
@@ -19,8 +20,14 @@ class DashboardController extends Controller
     }
 
     function processAddEvent(AddEvent $request){
+        $user_id = 1;
+
         $event = new Event();
         $event->name = $request->get('name');
+        $event->type = $request->get('type');
+        $event->date = $request->get('date');
+        $event->time = $request->get('time');
+        $event->user_id = $user_id;
         return redirect()->route('dashboard.calendar')->with('message', 'Event added successfully');
     }
 
