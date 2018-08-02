@@ -88,7 +88,7 @@
                                     <a href="{{route('home')}}" class="text-muted">Dashboard</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="{{route('calendar')}}" class="text-muted">Calendar</a>
+                                    <a href="{{route('calendar.view')}}" class="text-muted">Calendar</a>
                                 </li>
                                 <li class="list-group-item">
                                     <a href="{{route('lightControl')}}" class="text-muted">Hue Light Control</a>

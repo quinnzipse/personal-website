@@ -28,5 +28,8 @@ Route::get('/spotify/controller', 'SpotifyController@control')->middleware('auth
 Route::get('/smartdashboard', 'DashboardController@smartDash')->middleware('auth')->name('smartDashboard');
 
 //Calendar Routes
-Route::get('/calendar', 'DashboardController@calendar')->middleware('auth')->name('calendar');
-Route::get('/addEvent', 'DashboardController@addEvent')->middleware('auth')->name('addEvent');
+Route::get('/calendar', 'DashboardController@calendar')->middleware('auth')->name('calendar.view');
+Route::get('/addEvent', 'DashboardController@addEvent')->middleware('auth')->name('calendar.addEvent');
+Route::post('/processAddEvent', 'DashboardController@processAddEvent')->middleware('auth')->name('calendar.process.addEvent');
+Route::get('/editEvent', 'DashboardController@editEvent')->middleware('auth')->name('calendar.editEvent');
+Route::post('/processEditEvent', 'DashboardController@processEditEvent')->middleware('auth')->name('calendar.process.editEvent');

@@ -28,11 +28,17 @@ class DashboardController extends Controller
         $event->date = $request->get('date');
         $event->time = $request->get('time');
         $event->user_id = $user_id;
-        return redirect()->route('dashboard.calendar')->with('message', 'Event added successfully');
+
+        $event->save();
+        return redirect()->route('calendar.view');
     }
 
     function addEvent(){
         return view('dashboard/addEvent');
+    }
+
+    function editEvent(){
+        return view('dashboard/editEvent');
     }
 
     function smartDash(){
