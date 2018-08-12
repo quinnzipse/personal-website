@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEventTable extends Migration
+class CreateTableSpotifySettings extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateEventTable extends Migration
      */
     public function up()
     {
-        Schema::create('event', function (Blueprint $table) {
+        Schema::create('spotifySettings', function($table) {
             $table->increments('id');
+            $table->string('spotUsername')->notNullable();
+            $table->boolean('uadd')->default(false);
+            $table->boolean('ulisten')->default(false);
+            $table->boolean('padd')->default(false);
+            $table->boolean('plisten')->default(false);
             $table->timestamps();
-            $table->string('user_id');
-            $table->date('date');
-            $table->time('time');
-            $table->string('name');
-            $table->string('type');
         });
     }
 
@@ -31,6 +31,6 @@ class CreateEventTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event');
+        Schema::dropIfExists('spotifySettings');
     }
 }

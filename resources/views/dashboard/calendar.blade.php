@@ -15,19 +15,25 @@ Calendar
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <a href="{{route('calendar.addEvent')}}" class="float-right btn {{count($event) == 0 ? 'btn-dark ' : 'btn-secondary'}}">Add event</a>
+                <div class="container">
+                <h3 class="float-left mb-0">Your Events</h3>
+                <a href="{{route('calendar.addEvent')}}" class="float-right mt-1"  data-toggle="tooltip" data-placement="bottom" title="Add Event" style="font-size: 1.4em"><i class="far fa-calendar-plus"></i></a>
+                </div>
             </div>
         </div>
         <div class="row">
             <div class="col-12">
-                <h3>Your Events</h3>
                 <div class="dropdown-divider"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 @foreach($event as $e)
                     <br>
                     <div class="card">
                         <div class="card-header">
                             {{$e->type}}
-                            <a class="float-right" href="{{route('calendar.editEvent')}}"><i class="fa fa-edit"></i></a>
+                            <a class="float-right" data-toggle="tooltip" data-placement="bottom" title="Edit Event" onclick="editEvent({{$e->id}})" ><i class="fa fa-edit text-muted"></i></a>
                         </div>
                         <div class="card-body">
                             <h5>{{$e->name}}</h5>
@@ -40,4 +46,12 @@ Calendar
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer')
+<script type="text/javascript">
+    function editEvent(eventID){
+        window.location = "/editEvent/" + eventID
+    }
+</script>
 @endsection
