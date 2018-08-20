@@ -27,7 +27,7 @@ class SpotifyController extends Controller
     {
         //Don't make scopes null
         $scopes = 'user-read-private user-read-email user-read-currently-playing user-read-playback-state';
-        $redirectURI = 'https://quinnzipse.me/spotify/auth';
+        $redirectURI = route('spotify.auth');
         return redirect('https://accounts.spotify.com/authorize?response_type=code&client_id=' . env('SpotClientID') . '&scope=' . URLEncode($scopes) . '&redirect_uri=' . URLEncode($redirectURI));
     }
 
