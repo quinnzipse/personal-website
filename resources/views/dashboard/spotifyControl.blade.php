@@ -20,7 +20,7 @@
         <form action="{{route('spotify.process.settings')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="mt-4 row">
-                <div class="col-6">
+                <div class="col-lg-6 col-12">
                     <div class="card-body form-group">
                         <h4 class="font-weight-normal">Allow the <strong>public</strong> to...</h4>
                         <div class="dropdown-divider"></div>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-lg-6 col-12">
                     <div class="card-body form-group">
                         <h4 class="font-weight-normal">Allow the <strong>users</strong> to...</h4>
                         <div class="dropdown-divider"></div>
