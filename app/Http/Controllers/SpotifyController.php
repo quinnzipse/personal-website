@@ -62,6 +62,7 @@ class SpotifyController extends Controller
         }
 
         try {
+            $currentuser = Auth::user();
             $res = $client->request('GET', 'https://api.spotify.com/v1/me',
                 ["headers" => [
                     "Authorization" => 'Bearer ' . $currentuser->authToken
