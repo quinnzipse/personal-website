@@ -74,14 +74,19 @@ class SpotifyController extends Controller
             $currentuser->spotUsername = $spotifyUsername;
             $currentuser->save();
         } catch (GuzzleException $e) {
+            var_dump($e);
         }
 
-        $set = SpotifySettings::where('spotUsername', '=', Auth::user()->spotUsername)->get();
-        if (count($set) == 0) {
-            $settings = new SpotifySettings();
-            $settings->spotUsername = Auth::user()->spotUsername;
-            $settings->save();
-        } else $settings = $set[0];
+        try {
+            $set = SpotifySettings::where('spotUsername', '=', Auth::user()->spotUsername)->get();
+            if (count($set) == 0) {
+                $settings = new SpotifySettings();
+                $settings->spotUsername = Auth::user()->spotUsername;
+                $settings->save();
+            } else $settings = $set[0];
+        }catch (\mysqli_sql_exception $e){
+
+        }
 
         return redirect(route('spotify.musicControl', ['settings' => $settings]));
     }
