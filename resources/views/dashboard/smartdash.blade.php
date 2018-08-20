@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="mb-5">
-        <h2 class="float-left text-dark">Integration Dashboard</h2>
+        <h3 class="float-left text-dark mt-1">Integration Dashboard</h3>
         <div class="float-right mt-3">
             <a href="{{route('spotify.musicControl')}}"><i
                         class="fab fa-spotify {{$loggedInSpotify == true ? 'text-spotify' : 'text-faint'}}"
@@ -32,7 +32,7 @@
                     location.reload();
                 }, {{$timeout}});
             </script>
-            <div class="col-5">
+            <div class="col-lg-5 col-12 col-sm-12">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="font-weight-normal mb-0">Currently Playing:</h5>
