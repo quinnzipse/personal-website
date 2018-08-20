@@ -21,6 +21,33 @@ html, body{
     width: 100% !important;
     height: 100% !important;
     scroll-behavior: smooth;
+}
+.text-spotify{
+    color: #2ebd59;
+}
+
+.text-hue{
+    color: #C229F5;
+}
+
+.text-faint{
+    color: #cdcdcd;
+}
+
+#spotify_connected:hover{
+    color: #2ebd59;
+}
+
+#hue_connected:hover{
+    color: #C229F5;
+}
+
+.truncate{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
 }/*!
  * Bootstrap v4.1.2 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors

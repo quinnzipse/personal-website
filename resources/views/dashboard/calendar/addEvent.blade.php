@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-        <form action="{{route()}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('calendar.process.addEvent')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row mt-x3">
                 <div class="col-md-8 form-group">
@@ -32,6 +32,13 @@
                     <div class="invalid-feedback">{{ $errors->first('date') }}</div>
                 @endif
             </div>
+                <div class="col-md-6 form-group">
+                    <label for="time">Time</label>
+                    <input type="time" name="time" id="time" value="{{time()}}" class="{{ $errors->has('time') ? 'is-invalid' : '' }} form-control" />
+                    @if($errors->has('time'))
+                        <div class="invalid-feedback">{{ $errors->first('time') }}</div>
+                    @endif
+                </div>
                 <div class="col-md-6 form-group">
                     <button class="btn btn-primary float-right mt-4">
                         Add

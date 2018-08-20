@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class AddEvent extends FormRequest
+class EditEvent extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,10 +28,8 @@ class AddEvent extends FormRequest
         return [
             'name' => 'required|between:0,50',
             'date' => 'required',
-            'time' => 'required',
         ];
     }
-
     public function messages()
     {
         return [
