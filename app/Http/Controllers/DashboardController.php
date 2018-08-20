@@ -18,7 +18,7 @@ class DashboardController extends Controller
 
     function calendar(){
         $user_id = Auth::user()->id;
-        return view('dashboard/calendar', ['event' => Event::where('user_id', '=', $user_id)->get()]);
+        return view('dashboard/calendar/calendar', ['event' => Event::where('user_id', '=', $user_id)->get()]);
     }
 
     function processAddEvent(AddEvent $request){
@@ -34,11 +34,11 @@ class DashboardController extends Controller
     }
 
     function addEvent(){
-        return view('dashboard/addEvent');
+        return view('dashboard/calendar/addEvent');
     }
 
     function editEvent(Event $event){
-        return view('dashboard/editEvent', ['event' => $event]);
+        return view('dashboard/calendar/editEvent', ['event' => $event]);
     }
 
     function processEditEvent(EditEvent $request, Event $event){

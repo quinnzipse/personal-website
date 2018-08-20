@@ -160,4 +160,20 @@ class SpotifyController extends Controller
         return redirect(route('spotify.musicControl'));
     }
 
+    function next(){
+
+        return redirect(route('smartDashboard'));
+    }
+    function prev(){
+
+        return redirect(route('smartDashboard'));
+    }
+    function pause(){
+
+        return redirect(route('smartDashboard'));
+    }
+    function play(){
+
+        return redirect(route('smartDashboard'));
+}
 }

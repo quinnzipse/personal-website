@@ -24,6 +24,8 @@ Auth::routes();
 //dashboard routes
 Route::get('/underdevelopment', 'HomeController@dev')->middleware('auth')->name('development');
 Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
+
+//Phillips Hue Routes
 Route::get('/hue/controller', 'HueController@control')->middleware('auth')->name('lightControl');
 
 //Calendar Routes
@@ -37,9 +39,14 @@ Route::post('/processEditEvent/{event}', 'DashboardController@processEditEvent')
 Route::get('/spotify/auth', 'SpotifyController@incomingAuth')->middleware('auth')->name('spotify.auth');
 Route::get('spotify/reauth', 'SpotifyController@refreshToken')->middleware('auth')->name('spotify.reauth');
 Route::get('/spotify/try', 'SpotifyController@spotifyAuth')->middleware('auth')->name('spotify.login');
-Route::get('/spotify/controller', 'SpotifyController@control')->middleware('auth')->name('spotify.musicControl');
 Route::get('/spotify/logout', 'SpotifyController@logout')->middleware('auth')->name('spotify.logout');
 Route::post('/spotify/settings/', 'SpotifyController@editSettings')->middleware('auth')->name('spotify.process.settings');
+Route::get('/spotify/controller', 'SpotifyController@control')->middleware('auth')->name('spotify.musicControl');
+//Stuff for smartdash
+Route::get('spotify/prev', 'SpotifyController@prev')->middleware('auth')->name('spotify.musicControl.prev');
+Route::get('spotify/next', 'SpotifyController@next')->middleware('auth')->name('spotify.musicControl.next');
+Route::get('spotify/pause', 'SpotifyController@pause')->middleware('auth')->name('spotify.musicControl.pause');
+Route::get('spotify/play', 'SpotifyController@play')->middleware('auth')->name('spotify.musicControl.play');
 
 //Smartdashboard Routes
 Route::get('/smartdashboard', 'SmartDashboardController@start')->middleware('auth')->name('smartDashboard');
