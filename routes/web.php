@@ -11,6 +11,7 @@
 |
 */
 
+//Basic routes
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
@@ -18,6 +19,7 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view( 'login');
 })->name('login');
+Route::get('/mystory', 'HomeController@story')->name('myStory');
 
 Auth::routes();
 
