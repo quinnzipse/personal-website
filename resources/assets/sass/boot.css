@@ -15,6 +15,20 @@
 .main-divider{
     height: 5%;
 }
+
+.about-link{
+    text-decoration: none;
+    color: #252525;
+}
+
+.about-link:hover{
+    text-decoration: none;
+    color: #252525;
+}
+
+.edu-text{
+}
+
 html, body{
     margin:0;
     padding: 0;
