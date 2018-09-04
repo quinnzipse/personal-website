@@ -22,7 +22,7 @@
 </head>
 <body data-spy="scroll" data-target="#navbar" data-offset="10">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary" id="navbar" style="position:fixed;top:0;left:0;right:0;">
-    <a href="{{route('welcome')}}" class="navbar-brand text-white">quinnzipse.me</a>
+    <a href="" class="navbar-brand text-white">quinnzipse.me</a>
     <button class="navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse"
             aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars text-white" style="font-size: .9em"></i>
