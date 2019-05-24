@@ -30,8 +30,30 @@
     </button>
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="#about-me" class="nav-link text-white">About Me</a></li>
+            @guest
             <li class="nav-item"><a href="{{"login"}}" class="nav-link text-white">Login</a></li>
+            @else
+                <li class="nav-item dropdown">
+                    <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        Hello, {{ Auth::user()->name }}! <span class="caret"></span>
+                    </a>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{{route('home')}}">
+                            Dashboard
+                        </a>
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </li>
+            @endguest
         </ul>
     </div>
 </nav>
@@ -41,7 +63,7 @@
             <div class="h-20"></div>
             <div class="container d-none d-lg-block">
                 <h1 class="text-white font-weight-light" style="font-size:3.7em;">Hello, I am Quinn Zipse</h1>
-                <h4 class="text-white font-weight-light" style="font-size:2em;">Programming is what I do.</h4>
+                <h4 class="text-white font-weight-light" style="font-size:2em;">Just your average computer guy.</h4>
                 <br>
                 <a href="#about-me" class="text-white font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn
                     More >></a>
@@ -59,7 +81,7 @@
                 <br>
                 <br>
                 <h1 class="text-white font-weight-light" style="font-size: 2rem">Hello, I am Quinn Zipse</h1>
-                <h5 class="text-white font-weight-light">Programming is what I do.</h5>
+                <h5 class="text-white font-weight-light">Just your average computer guy.</h5>
                 <br>
                 <a href="#about-me" class="text-white font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn
                     More >></a>
@@ -109,7 +131,8 @@
                                         through PSEO</p>
                                     <p class="float-right">2017-Present</p>
                                     <br>
-                                    <p class="text-muted mt-0">Working on Computer Science credits for transfer</p>
+                                    <br>
+                                    <p class="float-left">Accepted to UW-La Crosse for Computer Science</p>
                                 </div>
                             </div>
                         </div>
@@ -182,11 +205,11 @@
                         <div class="card-body">
                             <p class="float-left edu-text">Senior at Kasson-Mantorville High School</p>
                             <br>
-                            <br>
                             <p class="float-left mb-0 edu-text">Enrolled at <span class="font-weight-normal">Rochester Community and Technical College</span>
                                 through PSEO</p>
                             <br>
                             <p class="text-muted mt-0 edu-text">Working on Computer Science credits for transfer</p>
+                            <p class="float-left">Accepted to UW-La Crosse for Fall 2019</p>
                         </div>
                     </div>
                 </div>

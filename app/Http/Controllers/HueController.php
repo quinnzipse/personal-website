@@ -11,6 +11,6 @@ class HueController extends Controller
     }
 
     function control(){
-        return view('dashboard/developing');
+        return view('dashboard/hue/dashboard');
     }
 }
