@@ -31,10 +31,11 @@
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav ml-auto">
             @guest
-            <li class="nav-item"><a href="{{"login"}}" class="nav-link text-white">Login</a></li>
+                <li class="nav-item"><a href="{{"login"}}" class="nav-link text-white">Login</a></li>
             @else
                 <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    <a id="navbarDropdown" class="nav-link text-white dropdown-toggle" href="#" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         Hello, {{ Auth::user()->name }}! <span class="caret"></span>
                     </a>
 
@@ -150,7 +151,8 @@
                                     <ul>
                                         <li>PHP</li>
                                         <ul>
-                                            <li><a href="https://laravel.com/" class="about-link">Laravel Framework</a></li>
+                                            <li><a href="https://laravel.com/" class="about-link">Laravel Framework</a>
+                                            </li>
                                         </ul>
                                         <li>Java</li>
                                         <li>JavaScript</li>
@@ -163,7 +165,8 @@
                                         <li>Front-end Styling</li>
                                         <ul>
                                             <li>CSS & SCSS</li>
-                                            <li><a href="https://getbootstrap.com/" class="about-link">Bootstrap</a> & <a
+                                            <li><a href="https://getbootstrap.com/" class="about-link">Bootstrap</a> &
+                                                <a
                                                         href="https://materializecss.com/" class="about-link">Materialize</a>
                                             </li>
                                         </ul>
@@ -184,7 +187,9 @@
                                     <h6><i class="fas fa-bowling-ball"></i> Bowling</h6>
                                     <p>I am currently in my high school's bowling team for the 2018-2019 season.</p>
                                     <h6><i class="fas fa-robot"></i> FIRST Robotics</h6>
-                                    <p>I have been in robotics since 2017 and this will be my last year. I helped develop our team's <a href="https://team6758.com">website</a>  and write code to operate our robot autonomously and with joystick controls.</p>
+                                    <p>I have been in robotics since 2017 and this will be my last year. I helped
+                                        develop our team's <a href="https://team6758.com">website</a> and write code to
+                                        operate our robot autonomously and with joystick controls.</p>
                                 </div>
                             </div>
                         </div>
@@ -194,75 +199,78 @@
 
             <!--Desktop version of about-me-->
             <div class="d-none d-md-block">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <a  class="about-link">
-                        <div class="card-header">
-                            <h5><i class="fas fa-school "> </i> Education</h5>
-                        </div>
-                        </a>
-                        <div class="card-body">
-                            <p class="float-left edu-text">Senior at Kasson-Mantorville High School</p>
-                            <br>
-                            <p class="float-left mb-0 edu-text">Enrolled at <span class="font-weight-normal">Rochester Community and Technical College</span>
-                                through PSEO</p>
-                            <br>
-                            <p class="text-muted mt-0 edu-text">Working on Computer Science credits for transfer</p>
-                            <p class="float-left">Accepted to UW-La Crosse for Fall 2019</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <a  class="about-link">
-                        <div class="card-header">
-                            <h5><i class="fas fa-award"></i> Skills</h5>
-                        </div>
-                        </a>
-                        <div class="card-body">
-                            <p>Languages I know include:</p>
-                            <ul>
-                                <li>PHP</li>
-                                <ul>
-                                    <li><a href="https://laravel.com/" class="about-link">Laravel Framework</a></li>
-                                </ul>
-                                <li>Java</li>
-                                <li>JavaScript</li>
-                                <ul>
-                                    <li>
-                                        <a href="https://nodejs.org/en/" class="about-link">Node.js</a> & <a
-                                                href="https://reactjs.org/" class="about-link">React</a>
-                                    </li>
-                                </ul>
-                                <li>Front-end Styling</li>
-                                <ul>
-                                    <li>CSS & SCSS</li>
-                                    <li><a href="https://getbootstrap.com/" class="about-link">Bootstrap</a> & <a
-                                                href="https://materializecss.com/" class="about-link">Materialize</a>
-                                    </li>
-                                </ul>
-                            </ul>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <a class="about-link">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-school "> </i> Education</h5>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <p class="float-left edu-text">Class of 2019 Kasson-Mantorville High School</p>
+                                <br>
+                                <p class="float-left mb-0 edu-text">Went to <span class="font-weight-normal">Rochester Community and Technical College</span>
+                                    through PSEO</p>
+                                <br>
+                                <p class="text-muted mt-0 edu-text">2017-2019</p>
+                                <p class="float-left">UW-La Crosse Class of 2023</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <a class="about-link">
-                        <div class="card-header">
-                            <h5><i class="fas fa-users"></i> Clubs & Activities</h5>
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <a class="about-link">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-award"></i> Skills</h5>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <p>Languages I know include:</p>
+                                <ul>
+                                    <li>PHP</li>
+                                    <ul>
+                                        <li><a href="https://laravel.com/" class="about-link">Laravel Framework</a></li>
+                                    </ul>
+                                    <li>Java</li>
+                                    <li>JavaScript</li>
+                                    <ul>
+                                        <li>
+                                            <a href="https://nodejs.org/en/" class="about-link">Node.js</a> & <a
+                                                    href="https://reactjs.org/" class="about-link">React</a>
+                                        </li>
+                                    </ul>
+                                    <li>Front-end Styling</li>
+                                    <ul>
+                                        <li>CSS & SCSS</li>
+                                        <li><a href="https://getbootstrap.com/" class="about-link">Bootstrap</a> & <a
+                                                    href="https://materializecss.com/"
+                                                    class="about-link">Materialize</a>
+                                        </li>
+                                    </ul>
+                                </ul>
+                            </div>
                         </div>
-                        </a>
-                        <div class="card-body">
-                            <h6><i class="fas fa-bowling-ball"></i> Bowling</h6>
-                            <p>I am currently in my high school's bowling team for the 2018-2019 season.</p>
-                            <h6><i class="fas fa-robot"></i> FIRST Robotics</h6>
-                            <p>I have been in robotics since 2017 and this will be my last year. I helped develop our team's <a href="https://team6758.com">website</a>  and write code to operate our robot autonomously and with joystick controls.</p>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card">
+                            <a class="about-link">
+                                <div class="card-header">
+                                    <h5><i class="fas fa-users"></i> Clubs & Activities</h5>
+                                </div>
+                            </a>
+                            <div class="card-body">
+                                <h6><i class="fas fa-bowling-ball"></i> Bowling</h6>
+                                <p>I am currently in my high school's bowling team for the 2018-2019 season.</p>
+                                <h6><i class="fas fa-robot"></i> FIRST Robotics</h6>
+                                <p>I have been in robotics since 2017 and just completed my last year. I helped develop
+                                    our team's <a href="https://team6758.com">website</a> and write code to operate our
+                                    robot autonomously and with joystick controls.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
         </div>
