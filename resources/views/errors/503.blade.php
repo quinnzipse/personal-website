@@ -55,7 +55,8 @@
 Thank you for visiting quinnzipse.me, currently we are in maintenance mode.
 </div>
     <div class="subtitle">
-        I am working hard to fix the site and will be online shortly, please check back soon.
+        I am working hard to fix the site and will be online shortly, please check back soon. <br>
+        HTTP 503
     </div>
 </div>
 </div>
