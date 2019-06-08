@@ -28,7 +28,8 @@ Route::get('/underdevelopment', 'HomeController@dev')->middleware('auth')->name(
 Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
 
 //Phillips Hue Routes
-Route::get('/hue/controller', 'HueController@control')->middleware('auth')->name('lightControl');
+Route::get('/hue/controller', 'HueController@control')->middleware('auth')->name('hue.lightControl');
+Route::get('/hue/controller/connect', 'HueController@connect')->middleware('auth')->name('hue.connect');
 
 //Calendar Routes
 Route::get('/calendar', 'DashboardController@calendar')->middleware('auth')->name('calendar.view');

@@ -44,6 +44,21 @@ html, body{
     color: #C229F5;
 }
 
+.text-hue-faint{
+    color: rgba(129, 41, 180, 0.83);
+}
+
+.btn-outline-hue{
+    color: rgba(129, 41, 180, 0.83);
+    border: 1px solid rgba(129, 41, 180, 0.83) !important;
+}
+
+.btn-outline-hue:hover{
+    color: white;
+    background-color:  rgba(129, 41, 180, 0.83);
+    border-color: rgba(129, 41, 180, 0.83);
+}
+
 .text-faint{
     color: #cdcdcd;
 }

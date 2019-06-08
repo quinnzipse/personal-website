@@ -93,7 +93,7 @@
                                     <a href="{{route('calendar.view')}}" class="text-muted">Calendar</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="{{route('lightControl')}}" class="text-muted">Hue Light Control</a>
+                                    <a href="{{route('hue.lightControl')}}" class="text-muted">Hue Light Control</a>
                                 </li>
                                 <li class="list-group-item">
                                     <a href="{{route('spotify.musicControl')}}" class="text-muted">Spotify Control</a>

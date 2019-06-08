@@ -11,6 +11,10 @@ class HueController extends Controller
     }
 
     function control(){
-        return view('dashboard/hue/dashboard');
+        return view('dashboard/hue/hueDash');
+    }
+
+    function connect(){
+        return view('dashboard/hue/connect');
     }
 }
