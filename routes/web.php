@@ -54,5 +54,8 @@ Route::get('spotify/play', 'SpotifyController@play')->middleware('auth')->name('
 //Smartdashboard Routes
 Route::get('/smartdashboard', 'SmartDashboardController@start')->middleware('auth')->name('smartDashboard');
 
+//Info page for SmartBudgeting
+Route::get('/smartbudgeting', "HomeController@smartBudgeting")->name('smartBudgeting');
+
 //Test Routes NOT FOR PROD
 Route::get('/test', 'SmartDashboardController@getInfo')->middleware('auth')->name('test');

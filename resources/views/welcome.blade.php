@@ -64,7 +64,7 @@
             <div class="h-20"></div>
             <div class="container d-none d-lg-block">
                 <h1 class="text-white font-weight-light" style="font-size:3.7em;">Hello, I am Quinn Zipse</h1>
-                <h4 class="text-white font-weight-light" style="font-size:2em;">Just your average computer guy.</h4>
+                <h4 class="text-white font-weight-light" style="font-size:2em;">This is a website about me.</h4>
                 <br>
                 <a href="#about-me" class="text-white font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn
                     More >></a>
@@ -208,13 +208,10 @@
                                 </div>
                             </a>
                             <div class="card-body">
-                                <p class="float-left edu-text">Class of 2019 Kasson-Mantorville High School</p>
+                                <p class="float-left">Graduated form Kasson-Mantorville High School  <span class="text-muted ml-1">- Class of 2019</span> </p>
+                                <p class="float-left mb-0 edu-text">Attended <span class="font-weight-normal">Rochester Community and Technical College</span> from 2017-2019</p>
                                 <br>
-                                <p class="float-left mb-0 edu-text">Went to <span class="font-weight-normal">Rochester Community and Technical College</span>
-                                    through PSEO</p>
-                                <br>
-                                <p class="text-muted mt-0 edu-text">2017-2019</p>
-                                <p class="float-left">UW-La Crosse Class of 2023</p>
+                                <p class="float-left mt-3">Going to UW-La Crosse to Study Computer Science <span class="text-muted ml-1">- Class of 2023</span></p>
                             </div>
                         </div>
                     </div>
@@ -248,6 +245,7 @@
                                                     class="about-link">Materialize</a>
                                         </li>
                                     </ul>
+                                    <li>SQL</li>
                                 </ul>
                             </div>
                         </div>
@@ -263,7 +261,7 @@
                                 <h6><i class="fas fa-bowling-ball"></i> Bowling</h6>
                                 <p>I am currently in my high school's bowling team for the 2018-2019 season.</p>
                                 <h6><i class="fas fa-robot"></i> FIRST Robotics</h6>
-                                <p>I have been in robotics since 2017 and just completed my last year. I helped develop
+                                <p class="mb-5">I have been in robotics since 2017 and just completed my last year. I helped develop
                                     our team's <a href="https://team6758.com">website</a> and write code to operate our
                                     robot autonomously and with joystick controls.</p>
                             </div>
@@ -282,7 +280,7 @@
         <span style="margin-left: 1%">© 2018 Quinn Zipse</span>
         <a href="https://www.facebook.com/quinnzipse" class="float-right mr-3 text-white"><i
                     class="fab fa-facebook text-white"></i> Facebook </a>
-        <a href="https://www.twitter.com/quinn_zipse" class="float-right mr-3 text-white"><i
+        <a href="https://www.twitter.com/quinnzipse" class="float-right mr-3 text-white"><i
                     class="fab fa-twitter text-white"></i> Twitter</a>
     </footer>
 </main>

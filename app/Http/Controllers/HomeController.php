@@ -60,4 +60,8 @@ class HomeController extends Controller
         return view('story', ['loggedInSpotify' => $loggedInSpotify, 'image_url' => $image_url, 'song_details' => $body]);
     }
 
+    public function smartBudgeting(){
+        return view('smartbudgeting');
+    }
+
 }
