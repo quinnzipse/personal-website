@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-primary">
-    <a href="{{route('home')}}" class="navbar-brand text-white">quinnzipse.me</a>
+    <a href="{{route('home')}}" class="navbar-brand text-white">quinnzipse.dev</a>
     <div class="collapse navbar-collapse" id="navbarNav"></div>
     <ul class="navbar-nav">
         @guest
