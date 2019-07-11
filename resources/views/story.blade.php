@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keyboards"
           content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, SlippedMars9866">
-    <meta name="description" content="Just a look into a programmers life online.">
+    <meta name="description" content="Just a look into a programmers life online. Actually if you click on this you will be looking at his spotify.">
 
-    <title>Quinn Zipse</title>
+    <title>Spotify</title>
 
     <link href="{{"css/app.css"}}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -22,7 +22,7 @@
 </head>
 <body data-spy="scroll" data-target="#navbar" data-offset="10">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary" id="navbar" style="position:fixed;top:0;left:0;right:0;">
-    <a href="" class="navbar-brand text-white">quinnzipse.me</a>
+    <a href="" class="navbar-brand text-white">quinnzipse.dev</a>
     <button class="navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse"
             aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars text-white" style="font-size: .9em"></i>
