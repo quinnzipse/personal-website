@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keyboards"
-          content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, SlippedMars9866">
+          content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, SlippedMars9866, Software Developer, Dev, Programmer, Computers, Quinnzipse.me, zipse.me, QZ, Qzipse, zipsequinn, personal blog, blog">
     <meta name="description" content="A peek into the life of the developer name Quinn Zipse">
 
     <title>quinnzipse.me</title>
@@ -64,7 +64,9 @@
         <br>
         <br>
         <div class="d-none d-lg-block container mt-5 h-75">
-                <span class="mb-0"><span class="text-primary font-weight-bolder" style="font-size: 200%">Smart Budgeting</span> <span class="text-faint" style="font-size: 120%; margin-left: 74%">v0.1</span></span>
+            <span class="mb-0"><span class="text-primary font-weight-bolder"
+                                     style="font-size: 200%">Smart Budgeting</span> <span class="text-faint"
+                                                                                          style="font-size: 120%; margin-left: 74%">v0.1</span></span>
             <hr class="mt-1">
             <h6 class="text-muted"> A fast way to keep track of expenses.</h6>
 
@@ -73,7 +75,9 @@
 
         </div>
         <div class="d-lg-none container mt-5 h-75">
-            <span class="mb-0"><span class="text-primary font-weight-bolder" style="font-size: 200%">Smart Budgeting</span> <span class="text-faint ml-5" style="font-size: 120%;">v0.1</span></span>
+            <span class="mb-0"><span class="text-primary font-weight-bolder"
+                                     style="font-size: 200%">Smart Budgeting</span> <span class="text-faint ml-5"
+                                                                                          style="font-size: 120%;">v0.1</span></span>
             <hr class="mt-1">
             <h6 class="text-muted"> A fast way to keep track of expenses.</h6>
 

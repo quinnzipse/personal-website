@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keyboards"
-          content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, SlippedMars9866">
+          content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, SlippedMars9866, software, developer, quinnzipse.dev, .dev, zipse.dev">
     <meta name="description" content="A peek into the life of the developer name Quinn Zipse">
 
     <title>quinnzipse.me</title>
@@ -63,8 +63,8 @@
         <div style="padding-top: 25%">
             <div class="h-20"></div>
             <div class="container d-none d-lg-block">
-                <h1 class="text-white font-weight-light" style="font-size:3.7em;">Hello, I am Quinn Zipse</h1>
-                <h4 class="text-white font-weight-light" style="font-size:2em;">This is a website about me.</h4>
+                <h1 class="text-white font-weight-light" style="font-size:3.7em;">Hi, I'm Quinn Zipse</h1>
+                <h4 class="text-white font-weight-light" style="font-size:2em;">Welcome to my website!</h4>
                 <br>
                 <a href="#about-me" class="text-white font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn
                     More >></a>
@@ -81,8 +81,8 @@
                 <br>
                 <br>
                 <br>
-                <h1 class="text-white font-weight-light" style="font-size: 2rem">Hello, I am Quinn Zipse</h1>
-                <h5 class="text-white font-weight-light">Just your average computer guy.</h5>
+                <h1 class="text-white font-weight-light" style="font-size: 2rem">I am Quinn Zipse</h1>
+                <h5 class="text-white font-weight-light">Welcome to my website.</h5>
                 <br>
                 <a href="#about-me" class="text-white font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn
                     More >></a>
@@ -147,7 +147,7 @@
                                     </div>
                                 </a>
                                 <div class="card-body">
-                                    <p>Languages I know include:</p>
+                                    <p>Languages I have used:</p>
                                     <ul>
                                         <li>PHP</li>
                                         <ul>
@@ -185,7 +185,7 @@
                                 </a>
                                 <div class="card-body">
                                     <h6><i class="fas fa-bowling-ball"></i> Bowling</h6>
-                                    <p>I am currently in my high school's bowling team for the 2018-2019 season.</p>
+                                    <p>I was on my high school's bowling team for the 2018-2019 season. Now bowl on my free time with friends.</p>
                                     <h6><i class="fas fa-robot"></i> FIRST Robotics</h6>
                                     <p>I have been in robotics since 2017 and this will be my last year. I helped
                                         develop our team's <a href="https://team6758.com">website</a> and write code to
@@ -223,7 +223,7 @@
                                 </div>
                             </a>
                             <div class="card-body">
-                                <p>Languages I know include:</p>
+                                <p>Languages I have used:</p>
                                 <ul>
                                     <li>PHP</li>
                                     <ul>
@@ -231,21 +231,24 @@
                                     </ul>
                                     <li>Java</li>
                                     <li>JavaScript</li>
-                                    <ul>
-                                        <li>
-                                            <a href="https://nodejs.org/en/" class="about-link">Node.js</a> & <a
-                                                    href="https://reactjs.org/" class="about-link">React</a>
-                                        </li>
-                                    </ul>
+{{--                                    <ul>--}}
+{{--                                        <li>--}}
+{{--                                            <a href="https://nodejs.org/en/" class="about-link">Node.js</a> & <a--}}
+{{--                                                    href="https://reactjs.org/" class="about-link">React</a>--}}
+{{--                                        </li>--}}
+{{--                                    </ul>--}}
                                     <li>Front-end Styling</li>
                                     <ul>
-                                        <li>CSS & SCSS</li>
-                                        <li><a href="https://getbootstrap.com/" class="about-link">Bootstrap</a> & <a
-                                                    href="https://materializecss.com/"
-                                                    class="about-link">Materialize</a>
+                                        <li><a href="https://getbootstrap.com/" class="about-link">Bootstrap</a>
                                         </li>
+                                        <li> <a
+                                                    href="https://materializecss.com/"
+                                                    class="about-link">Materialize</a></li>
                                     </ul>
-                                    <li>SQL</li>
+                                    <li>SQL & MYSQL</li>
+                                    <ul>
+                                        <li>DB2</li>
+                                    </ul>
                                 </ul>
                             </div>
                         </div>
@@ -259,11 +262,11 @@
                             </a>
                             <div class="card-body">
                                 <h6><i class="fas fa-bowling-ball"></i> Bowling</h6>
-                                <p>I am currently in my high school's bowling team for the 2018-2019 season.</p>
+                                <p>I was on my high school's bowling team for the 2018-2019 season. Now I bowl on my free time with friends.</p>
                                 <h6><i class="fas fa-robot"></i> FIRST Robotics</h6>
-                                <p class="mb-5">I have been in robotics since 2017 and just completed my last year. I helped develop
-                                    our team's <a href="https://team6758.com">website</a> and write code to operate our
-                                    robot autonomously and with joystick controls.</p>
+                                <p class="mb-5">I participated in FIRST Robotics since 2017 and just completed my last year in 2019. During my time, I developed
+                                    our team's <a href="https://team6758.com">website</a> and code to operate our
+                                    robot, either autonomously or via joystick controls.</p>
                             </div>
                         </div>
                     </div>
@@ -273,6 +276,14 @@
 
         </div>
     </div>
+    <script>
+        $(document).ready(function () {
+            if(window.location.substr(10) === 'dev'){
+                $('title').html('quinnzipse.dev');
+                $('.navbar-brand').html('quinnzipse.dev');
+            }
+        });
+    </script>
     <div class="bg-primary shadow-lg" style="height: 3%">
 
     </div>

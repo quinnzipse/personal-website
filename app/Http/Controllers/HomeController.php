@@ -6,6 +6,7 @@ use App\SpotifySettings;
 use App\User;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use PHPUnit\Framework\Error\Error;
 
 class HomeController extends Controller
 {
@@ -28,7 +29,8 @@ class HomeController extends Controller
         return view('dashboard/home');
     }
 
-    public function story(){
+    public function story()
+    {
         $currentUser = User::where('spotUsername', '=', 'qzipse-us')->get()[0];
         $spotSettings = SpotifySettings::where('spotUsername', '=', 'qzipse-us')->get()[0];
         $client = new Client();
@@ -39,7 +41,7 @@ class HomeController extends Controller
         $body = null;
 
         //check if user is logged into spotify & if they want the public to see what they are listening to
-        if($currentUser->authToken != '' && $spotSettings->plisten){
+        if ($currentUser->authToken != '' && $spotSettings->plisten) {
 
             //If user is logged in, get his current status from spotify
             $loggedInSpotify = true;
@@ -50,17 +52,17 @@ class HomeController extends Controller
             );
 
             //Logged in but not playing anything
-            if($res->getBody() == '') return view('story', ['loggedInSpotify' => $loggedInSpotify, 'image_url' => null, 'song_details' => null]);
+            if ($res->getBody() == '') return view('story', ['loggedInSpotify' => $loggedInSpotify, 'image_url' => null, 'song_details' => null]);
 
             //parse the spotify data
             $body = json_decode($res->getBody());
             $image_url = $body->item->album->images[1]->url;
         }
-        //TODO: add a way to set hue logged in to true once the feature is up
         return view('story', ['loggedInSpotify' => $loggedInSpotify, 'image_url' => $image_url, 'song_details' => $body]);
     }
 
-    public function smartBudgeting(){
+    public function smartBudgeting()
+    {
         return view('smartbudgeting');
     }
 
