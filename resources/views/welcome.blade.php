@@ -8,7 +8,7 @@
           content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, SlippedMars9866, software, developer, quinnzipse.dev, .dev, zipse.dev">
     <meta name="description" content="A peek into the life of the developer name Quinn Zipse">
 
-    <title>quinnzipse.me</title>
+    <title>quinnzipse.dev</title>
 
     <link href="{{"css/app.css"}}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
@@ -23,7 +23,7 @@
 </head>
 <body data-spy="scroll" data-target="#navbar" data-offset="10">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary" id="navbar" style="position:fixed;top:0;left:0;right:0;">
-    <a href="" class="navbar-brand text-white">quinnzipse.me</a>
+    <a href="" class="navbar-brand text-white">quinnzipse.dev</a>
     <button class="navbar-toggler " type="button" data-toggle="collapse" data-target=".navbar-collapse"
             aria-controls="navbar1" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars text-white" style="font-size: .9em"></i>
@@ -276,14 +276,6 @@
 
         </div>
     </div>
-    <script>
-        $(document).ready(function () {
-            if(document.URL.includes('dev')){
-                $('title').html('quinnzipse.dev');
-                $('.navbar-brand').html('quinnzipse.dev');
-            }
-        });
-    </script>
     <div class="bg-primary shadow-lg" style="height: 3%">
 
     </div>
