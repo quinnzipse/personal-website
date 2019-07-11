@@ -278,7 +278,7 @@
     </div>
     <script>
         $(document).ready(function () {
-            if(window.location.substr(10) === 'dev'){
+            if(document.URL.includes('dev')){
                 $('title').html('quinnzipse.dev');
                 $('.navbar-brand').html('quinnzipse.dev');
             }
