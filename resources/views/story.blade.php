@@ -1,19 +1,11 @@
 @extends('layouts.main')
 
 @section('content')
-    @if($loggedInSpotify) <!-- This will hit when ONLY Spotify is connected -->
-    @if(isset($song_details))
-        @php
-            if(isset($song_details)){
-                $song_name = $song_details->item->name;
-                $artist = $song_details->item->artists[0]->name;
-                $timeout = $song_details->item->duration_ms - $song_details->progress_ms; //Took out an offset because it was no longer needed
-                $playing = $song_details->is_playing;
-            }
-        @endphp
         <script type="text/javascript">
             setTimeout(function () {
-                location.reload();
+                $.get('../spot-data', function (data) {
+
+                });
             }, {{$timeout}});
         </script>
         <div class="container rounded-pill">
@@ -22,7 +14,7 @@
                     <div class="col-12">
                         <div class="container">
                             <div class=" d-flex justify-content-center">
-                                <img src="{{$image_url}}" style="height: 75%; width: 75%;"> 
+                                <img src="{{$image_url}}" style="height: 75%; width: 75%;">
                             </div>
                         </div>
                     </div>
@@ -41,14 +33,4 @@
                 </div>
             </div>
         </div>
-    @else
-        <div class="container h-100">
-            <div class="justify-content-center d-flex h-100">
-                <div class="align-items-center d-flex">
-                    <h3 class="text-faint font-weight-light">Nothing is playing right now.</h3>
-                </div>
-            </div>
-        </div>
-    @endif
-    @endif
 @endsection
