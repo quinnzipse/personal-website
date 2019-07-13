@@ -15,6 +15,9 @@
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+Route::get('/about', function (){
+    return view('about');
+})->name('about');
 //TODO: Refresh Access token / logout of users spotify before allowing them to logout of QuinnZipse.me? Not sure what to do but something should change.
 Route::get('/login', function () {
     return view( 'login');

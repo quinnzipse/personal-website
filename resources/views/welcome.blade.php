@@ -6,20 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keyboards"
           content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, SlippedMars9866, software, developer, quinnzipse.dev, .dev, zipse.dev Dev, Programmer, Computers, Quinnzipse.me, zipse.me, QZ, Qzipse, zipsequinn, personal blog, blog">
-    <meta name="description" content="A peek into the life of the developer name Quinn Zipse. There isn't really much here but I hope you enjoy.">
+    <meta name="description"
+          content="A peek into the developer life of Quinn Zipse. There isn't really much here, but I hope you enjoy.">
 
     <title>quinnzipse.dev</title>
 
-    <link href="{{"css/app.css"}}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
+    <!-- Scripts -->
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
           integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
-    <style type="text/css">
-        body {
-            position: relative;
-        }
-    </style>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body data-spy="scroll" data-target="#navbar" data-offset="10">
 <nav class="navbar navbar-expand-lg navbar-light bg-primary" id="navbar" style="position:fixed;top:0;left:0;right:0;">
@@ -106,99 +112,99 @@
         </div>
     </div>
     </div>
-    <div class="h-75">
+    <div class="mb-10">
         <div class="container" style="padding-top: 3%">
             <br>
             <h1 class="text-primary font-weight-light">About Me</h1>
-            <hr>
-            <br>
+            <hr class="mb-5">
 
-            <!--Mobile version of about-me-->
-            <div id="about-me" class="carousel slide d-block d-md-none" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <a href="" class="about-link">
-                                    <div class="card-header">
-                                        <h5><i class="fas fa-school "> </i> Education</h5>
-                                    </div>
-                                </a>
-                                <div class="card-body">
-                                    <p class="float-left">Current Senior of Kasson-Mantorville High School</p>
-                                    <br>
-                                    <br>
-                                    <p class="float-left mb-0">Enrolled at <span class="font-weight-normal">Rochester Community and Technical College</span>
-                                        through PSEO</p>
-                                    <p class="float-right">2017-Present</p>
-                                    <br>
-                                    <br>
-                                    <p class="float-left">Accepted to UW-La Crosse for Computer Science</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card h-100">
-                                <a href="" class="about-link">
-                                    <div class="card-header">
-                                        <h5><i class="fas fa-award"></i> Skills</h5>
-                                    </div>
-                                </a>
-                                <div class="card-body">
-                                    <p>Languages I have used:</p>
-                                    <ul>
-                                        <li>PHP</li>
-                                        <ul>
-                                            <li><a href="https://laravel.com/" class="about-link">Laravel Framework</a>
-                                            </li>
-                                        </ul>
-                                        <li>Java</li>
-                                        <li>JavaScript</li>
-                                        <ul>
-                                            <li>
-                                                <a href="https://nodejs.org/en/" class="about-link">Node.js</a> & <a
-                                                        href="https://reactjs.org/" class="about-link">React</a>
-                                            </li>
-                                        </ul>
-                                        <li>Front-end Styling</li>
-                                        <ul>
-                                            <li>CSS & SCSS</li>
-                                            <li><a href="https://getbootstrap.com/" class="about-link">Bootstrap</a> &
-                                                <a
-                                                        href="https://materializecss.com/" class="about-link">Materialize</a>
-                                            </li>
-                                        </ul>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="carousel-item">
-                        <div class="col-md-4">
-                            <div class="card">
-                                <a href="" class="about-link">
-                                    <div class="card-header">
-                                        <h5><i class="fas fa-users"></i> Clubs & Activities</h5>
-                                    </div>
-                                </a>
-                                <div class="card-body">
-                                    <h6><i class="fas fa-bowling-ball"></i> Bowling</h6>
-                                    <p>I was on my high school's bowling team for the 2018-2019 season. Now bowl on my free time with friends.</p>
-                                    <h6><i class="fas fa-robot"></i> FIRST Robotics</h6>
-                                    <p>I have been in robotics since 2017 and this will be my last year. I helped
-                                        develop our team's <a href="https://team6758.com">website</a> and write code to
-                                        operate our robot autonomously and with joystick controls.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{{--            <!--Mobile version of about-me-->--}}
+{{--            <div id="about-me" class="carousel slide d-block d-md-none" data-ride="carousel">--}}
+{{--                <div class="carousel-inner">--}}
+{{--                    <div class="carousel-item active">--}}
+{{--                        <div class="col-md-4">--}}
+{{--                            <div class="card h-100">--}}
+{{--                                <a href="" class="about-link">--}}
+{{--                                    <div class="card-header">--}}
+{{--                                        <h5><i class="fas fa-school "> </i> Education</h5>--}}
+{{--                                    </div>--}}
+{{--                                </a>--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <p class="float-left">Current Senior of Kasson-Mantorville High School</p>--}}
+{{--                                    <br>--}}
+{{--                                    <br>--}}
+{{--                                    <p class="float-left mb-0">Enrolled at <span class="font-weight-normal">Rochester Community and Technical College</span>--}}
+{{--                                        through PSEO</p>--}}
+{{--                                    <p class="float-right">2017-Present</p>--}}
+{{--                                    <br>--}}
+{{--                                    <br>--}}
+{{--                                    <p class="float-left">Accepted to UW-La Crosse for Computer Science</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="carousel-item">--}}
+{{--                        <div class="col-md-4">--}}
+{{--                            <div class="card h-100">--}}
+{{--                                <a href="" class="about-link">--}}
+{{--                                    <div class="card-header">--}}
+{{--                                        <h5><i class="fas fa-award"></i> Skills</h5>--}}
+{{--                                    </div>--}}
+{{--                                </a>--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <p>Languages I have used:</p>--}}
+{{--                                    <ul>--}}
+{{--                                        <li>PHP</li>--}}
+{{--                                        <ul>--}}
+{{--                                            <li><a href="https://laravel.com/" class="about-link">Laravel Framework</a>--}}
+{{--                                            </li>--}}
+{{--                                        </ul>--}}
+{{--                                        <li>Java</li>--}}
+{{--                                        <li>JavaScript</li>--}}
+{{--                                        <ul>--}}
+{{--                                            <li>--}}
+{{--                                                <a href="https://nodejs.org/en/" class="about-link">Node.js</a> & <a--}}
+{{--                                                        href="https://reactjs.org/" class="about-link">React</a>--}}
+{{--                                            </li>--}}
+{{--                                        </ul>--}}
+{{--                                        <li>Front-end Styling</li>--}}
+{{--                                        <ul>--}}
+{{--                                            <li>CSS & SCSS</li>--}}
+{{--                                            <li><a href="https://getbootstrap.com/" class="about-link">Bootstrap</a> &--}}
+{{--                                                <a--}}
+{{--                                                        href="https://materializecss.com/" class="about-link">Materialize</a>--}}
+{{--                                            </li>--}}
+{{--                                        </ul>--}}
+{{--                                    </ul>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="carousel-item">--}}
+{{--                        <div class="col-md-4">--}}
+{{--                            <div class="card">--}}
+{{--                                <a href="" class="about-link">--}}
+{{--                                    <div class="card-header">--}}
+{{--                                        <h5><i class="fas fa-users"></i> Clubs & Activities</h5>--}}
+{{--                                    </div>--}}
+{{--                                </a>--}}
+{{--                                <div class="card-body">--}}
+{{--                                    <h6><i class="fas fa-bowling-ball"></i> Bowling</h6>--}}
+{{--                                    <p>I was on my high school's bowling team for the 2018-2019 season. Now bowl on my--}}
+{{--                                        free time with friends.</p>--}}
+{{--                                    <h6><i class="fas fa-robot"></i> FIRST Robotics</h6>--}}
+{{--                                    <p>I have been in robotics since 2017 and this will be my last year. I helped--}}
+{{--                                        develop our team's <a href="https://team6758.com">website</a> and write code to--}}
+{{--                                        operate our robot autonomously and with joystick controls.</p>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <!--Desktop version of about-me-->
-            <div class="d-none d-md-block">
+            <div class="d-none d-lg-block">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="card h-100">
@@ -208,10 +214,13 @@
                                 </div>
                             </a>
                             <div class="card-body">
-                                <p class="float-left">Graduated form Kasson-Mantorville High School  <span class="text-muted ml-1">- Class of 2019</span> </p>
-                                <p class="float-left mb-0 edu-text">Attended <span class="font-weight-normal">Rochester Community and Technical College</span> from 2017-2019</p>
+                                <p class="float-left">Graduated form Kasson-Mantorville High School <span
+                                            class="text-muted ml-1">- Class of 2019</span></p>
+                                <p class="float-left mb-0 edu-text">Attended <span class="font-weight-normal">Rochester Community and Technical College</span>
+                                    from 2017-2019</p>
                                 <br>
-                                <p class="float-left mt-3">Going to UW-La Crosse to Study Computer Science <span class="text-muted ml-1">- Class of 2023</span></p>
+                                <p class="float-left mt-3">Going to UW-La Crosse to Study Computer Science <span
+                                            class="text-muted ml-1">- Class of 2023</span></p>
                             </div>
                         </div>
                     </div>
@@ -231,17 +240,11 @@
                                     </ul>
                                     <li>Java</li>
                                     <li>JavaScript</li>
-{{--                                    <ul>--}}
-{{--                                        <li>--}}
-{{--                                            <a href="https://nodejs.org/en/" class="about-link">Node.js</a> & <a--}}
-{{--                                                    href="https://reactjs.org/" class="about-link">React</a>--}}
-{{--                                        </li>--}}
-{{--                                    </ul>--}}
                                     <li>Front-end Styling</li>
                                     <ul>
                                         <li><a href="https://getbootstrap.com/" class="about-link">Bootstrap</a>
                                         </li>
-                                        <li> <a
+                                        <li><a
                                                     href="https://materializecss.com/"
                                                     class="about-link">Materialize</a></li>
                                     </ul>
@@ -262,9 +265,11 @@
                             </a>
                             <div class="card-body">
                                 <h6><i class="fas fa-bowling-ball"></i> Bowling</h6>
-                                <p>I was on my high school's bowling team for the 2018-2019 season. Now I bowl on my free time with friends.</p>
+                                <p>I was on my high school's bowling team for the 2018-2019 season. Now I bowl on my
+                                    free time with friends.</p>
                                 <h6><i class="fas fa-robot"></i> FIRST Robotics</h6>
-                                <p class="mb-5">I participated in FIRST Robotics since 2017 and just completed my last year in 2019. During my time, I developed
+                                <p class="mb-5">I participated in FIRST Robotics since 2017 and just completed my last
+                                    year in 2019. During my time, I developed
                                     our team's <a href="https://team6758.com">website</a> and code to operate our
                                     robot, either autonomously or via joystick controls.</p>
                             </div>
@@ -272,14 +277,11 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
-    </div>
-    <div class="bg-primary shadow-lg" style="height: 3%">
-
-    </div>
-    <footer class="footer-welcome">
+        <div class="d-flex mt-4">
+                <a href="{{route('about')}}" class="ml-auto mr-auto text-primary small">Click here to see my full bio page.</a>
+        </div>
+    <footer class="footer-welcome fixed-bottom">
         <span style="margin-left: 1%">© 2018 Quinn Zipse</span>
         <a href="https://www.facebook.com/quinnzipse" class="float-right mr-3 text-white"><i
                     class="fab fa-facebook text-white"></i> Facebook </a>
@@ -287,19 +289,6 @@
                     class="fab fa-twitter text-white"></i> Twitter</a>
     </footer>
 </main>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"></script>
-<script href="{{'js/all.js'}}" type="text/js"></script>
 </body>
 
 </html>

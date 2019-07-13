@@ -1,4 +1,4 @@
-<footer class="footer-welcome" style="position: absolute; bottom: 0;">
+<footer class="footer-welcome fixed-bottom">
     <span style="margin-left: 1%">© 2018 Quinn Zipse</span>
     <a href="https://www.facebook.com/quinnzipse" style="margin-left: 81%"><i
                 class="fab fa-facebook text-white"></i> Facebook </a>
