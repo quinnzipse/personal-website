@@ -17,7 +17,6 @@ class CreateSpotUsersTable extends Migration
             $table->increments('id');
             $table->timestamps();
             $table->string('spotUsername')->notNullable();
-            $table->boolean('loggedInSpotify');
             $table->string('image_url');
             $table->string('artist');
             $table->string('song');

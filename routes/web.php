@@ -14,7 +14,7 @@
 //Basic routes
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('index');
 Route::get('/about', function (){
     return view('about');
 })->name('about');
@@ -22,7 +22,7 @@ Route::get('/about', function (){
 Route::get('/login', function () {
     return view( 'login');
 })->name('login');
-Route::get('/spotify', 'HomeController@story')->name('myStory');
+//Route::get('/spotify', 'HomeController@story')->name('myStory');
 Route::get('/301', function (){
     abort(301);
 });

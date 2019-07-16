@@ -5,11 +5,13 @@
     width: 100%;
     height: 60px;
     line-height: 60px;
-    background-color: #0072F3;
-    color: white;
 }
 .footer-welcome a{
     color: white;
+}
+.footer-welcome a:hover{
+    color: white;
+    text-decoration: none;
 }
 .main-divider{
     height: 10%;

@@ -34,80 +34,25 @@ class HomeController extends Controller
     {
 
         $publicUsers = array();
+        $quinn = '';
         $spotUsers = SpotUsers::all();
 
         foreach ($spotUsers as $user) {
             if (SpotifySettings::where('spotUsername', '=', $user->spotUsername)->get()[0]->plisten) {
-                array_push($publicUsers, $user);
+                if ($user->spotUsername != 'qzipse-us') array_push($publicUsers, $user);
+                else $quinn = $user;
             }
         }
 
-        return $publicUsers;
-
-    }
-
-    public function webDataFetcher(User $user) //This does not validate if it is a public listener
-    {
-        $client = new Client();
-
-        $res = $client->request('GET', 'https://api.spotify.com/v1/me/player/currently-playing',
-            ["headers" => [
-                "Authorization" => 'Bearer ' . $user->authToken
-            ]]
-        );
-
-        $body = json_decode($res->getBody());
-
-        $oldUser = SpotUsers::where('spotify-userName', '=', $user->spotUsername)->get();
-
-        if(sizeof($oldUser) > 0){
-            $oldUser = $oldUser[0];
-            $oldUser->image_url = $body->item->album->images[1]->url;
-            $oldUser->artist = "";
-            foreach ($body->item->artists as $artist){
-                $oldUser->artist .= $artist->name . ":";
-                $oldUser->artist_uri .= $artist->id . ":";
-            }
-            $oldUser->song = $body->item->name;
-            $oldUser->song_uri = $body->item->external_urls->spotify;
-            $oldUser->progress_ms = $body->progress_ms;
-            $oldUser->duration = $body->item->duration_ms;
-            $oldUser->isPlaying = $body->is_playing;
-
-            $oldUser->save();
-        }
-        else{
-            $res = $client->request('GET', 'https://api.spotify.com/v1/me');
-            $body2 = json_decode($res->getBody());
-
-            $newUser = new SpotUsers();
-            $newUser->spotUsername = $user->spotUsername;
-            $newUser->loggedInSpotify = $user->loggedInSpotify;
-            $newUser->image_url = $body->item->album->images[1]->url;
-            $newUser->artist = "";
-            foreach ($body->item->artists as $artist){
-                $newUser->artist .= $artist->name . ":";
-                $newUser->artist_uri .= $artist->id . ":";
-            }
-            $newUser->song = $body->item->name;
-            $newUser->user_uri = $body2->external_urls->spotify;
-            $newUser->product = $body2->product;
-            $newUser->user_pfp = $body2->images[0];
-            $newUser->song_uri = $body->item->external_urls->spotify;
-            $newUser->progress_ms = $body->progress_ms;
-            $newUser->duration = $body->item->duration_ms;
-            $newUser->isPlaying = $body->is_playing;
-
-            $newUser->save();
-        }
-
-
+        return array($quinn, $publicUsers);
 
     }
 
     public function story()
     {
-        return view('story', ['publicUsers' => $this->localDataFetcher()]);
+        $users = $this->localDataFetcher();
+
+        return view('story', ['quinn' => $users[0], 'publicUsers' => $users[1]]);
     }
 
     public function smartBudgeting()
