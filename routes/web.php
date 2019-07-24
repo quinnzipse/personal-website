@@ -22,10 +22,10 @@ Route::get('/about', function (){
 Route::get('/login', function () {
     return view( 'login');
 })->name('login');
-//Route::get('/spotify', 'HomeController@story')->name('myStory');
-Route::get('/301', function (){
-    abort(301);
-});
+Route::get('/spotify', 'HomeController@story')->name('myStory');
+//Route::get('/301', function (){
+//    abort(301);
+//});
 
 Auth::routes();
 
