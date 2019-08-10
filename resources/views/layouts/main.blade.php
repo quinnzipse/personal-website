@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="keyboards"
-          content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, SlippedMars9866, dev, software developer, blog, personal website, resume, developer, .dev, webdesign, web, design">
+          content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, quinnzipse.me, quinnzipse.dev, SlippedMars9866, dev, software developer, blog, personal website, resume, developer, .dev, webdesign, web, design">
     <meta name="description" content="A peek into the developer life of Quinn Zipse. There isn't really much here, but I hope you enjoy.">
 
     <title>Quinn Zipse</title>
@@ -31,7 +31,7 @@
 </head>
 <body class="bg-primary">
 @include('layouts.nav')
-<main>
+<main class="h-90">
     @yield('content')
 </main>
 @include('layouts.footer')

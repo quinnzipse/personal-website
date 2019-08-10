@@ -3,20 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EditSettings;
-use App\Providers\RouteServiceProvider;
 use App\SpotifySettings;
 use App\SpotUsers;
 use App\User;
-use bar\baz\source_with_namespace;
-use Couchbase\UserSettings;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
-use function PHPSTORM_META\override;
 
 class SpotifyController extends Controller
 {
@@ -28,7 +21,7 @@ class SpotifyController extends Controller
     function spotifyAuth()
     {
         //Don't make scopes null
-        $scopes = 'user-read-private user-read-email user-read-currently-playing user-read-playback-state';
+        $scopes = 'streaming user-read-private user-read-email user-read-currently-playing user-read-playback-state user-modify-playback-state';
         $redirectURI = route('spotify.auth');
         return redirect('https://accounts.spotify.com/authorize?response_type=code&client_id=' . env('SpotClientID') . '&scope=' . URLEncode($scopes) . '&redirect_uri=' . URLEncode($redirectURI));
     }
@@ -59,6 +52,7 @@ class SpotifyController extends Controller
             $currentuser = Auth::user();
             $currentuser->authToken = $access_token;
             $currentuser->refreshToken = $refresh_token;
+            $currentuser->expiresAt = $body->expires_at;
         } catch (GuzzleException $e) {
             echo "Data not saved!";
         }
@@ -109,9 +103,11 @@ class SpotifyController extends Controller
     {
         $client = new Client();
 
+        $tkn = $this->getToken();
+
         $res = $client->request('GET', 'https://api.spotify.com/v1/me/player/currently-playing',
             ["headers" => [
-                "Authorization" => 'Bearer ' . $user->authToken
+                "Authorization" => 'Bearer ' . $tkn
             ]]
         );
 
@@ -185,6 +181,7 @@ class SpotifyController extends Controller
             $body = json_decode($res->getBody());
             $access_token = $body->access_token;
             $currentuser->authToken = $access_token;
+            $currentuser->expiresAt = $body->expires_at;
             $currentuser->save();
         } catch (GuzzleException $e) {
 

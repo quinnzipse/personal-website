@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use App\SpotifySettings;
 use App\SpotUsers;
-use App\User;
-use GuzzleHttp\Client;
-use Illuminate\Http\Request;
-use PHPUnit\Framework\Error\Error;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\SpotifyController;
 
 class HomeController extends Controller
 {
@@ -50,9 +48,12 @@ class HomeController extends Controller
 
     public function story()
     {
-        $users = $this->localDataFetcher();
+        //$users = $this->localDataFetcher();
 
-        return view('story', ['quinn' => $users[0], 'publicUsers' => $users[1]]);
+        $tkn = SpotUsers::getToken();
+        return view('story', ['authToken' => $tkn]);
+
+        //return view('story', ['quinn' => $users[0], 'publicUsers' => $users[1]]);
     }
 
     public function smartBudgeting()

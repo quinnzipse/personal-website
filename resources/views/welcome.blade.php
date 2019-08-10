@@ -38,9 +38,9 @@
             <div class="h-20"></div>
             <div class="container d-none d-lg-block">
                 <h1 class="text-white font-weight-light" style="font-size:3.7em;">Hi, I'm Quinn Zipse</h1>
-                <h4 class="text-info font-weight-light" style="font-size:2em;">Welcome to my website!</h4>
+                <h4 class="text-info font-weight-light" style="font-size:2em;">Student and Developer.</h4>
                 <br>
-                <a href="#about-me" class="text-success font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn
+                <a href="#about-me" class="text-subtext font-weight-light" style="font-size: 1.2em; margin-bottom: 15px">Learn
                     More >></a>
             </div>
         </div>
@@ -49,7 +49,7 @@
         <div class="container" style="padding-top: 3%">
             <br>
             <h1 class="text-darkerInfo " style="font-family: 'Raleway', sans-serif">About Me</h1>
-            <hr class="mb-5 bg-info">
+            <hr class="mb-5 bg-white">
 
 {{--            <!--Mobile version of about-me-->--}}
 {{--            <div id="about-me" class="carousel slide d-block d-md-none" data-ride="carousel">--}}
@@ -146,7 +146,7 @@
 {{--                                <hr class="bg-success">--}}
                                 <p class="float-left card-text">Graduated form Kasson-Mantorville High School <span class="ml-1 text-subtext">- Class of 2019</span></p>
                                 <p class="float-left mb-0 card-text">Attended <span class="font-weight-normal">Rochester Community and Technical College</span>
-                                    from 2017-2019</p>
+                                    <span class="text-subtext">- 2017-2019</span></p>
                                 <br>
                                 <p class="float-left mt-3 card-text">Going to UW-La Crosse to Study Computer Science <span
                                             class="text-subtext ml-1">- Class of 2023</span></p>
@@ -159,22 +159,22 @@
                                 <h5 class="text-white card-title mb-4"><i class="fas fa-award"></i> Skills</h5>
                                 <ul>
                                     <li>PHP</li>
-                                    <ul>
-                                        <li><a href="https://laravel.com/" class="text-info">Laravel Framework</a></li>
+                                    <ul class="text-subtext">
+                                        <li><a href="https://laravel.com/" class="text-subtext">Laravel Framework</a></li>
                                     </ul>
                                     <li>Java</li>
                                     <li>JavaScript</li>
                                     <li>Front-end Styling</li>
-                                    <ul>
+                                    <ul class="text-subtext">
                                         <li>
-                                            <a href="https://getbootstrap.com/" class="text-info">Bootstrap</a>
+                                            <a href="https://getbootstrap.com/" class="text-subtext">Bootstrap</a>
                                         </li>
                                         <li>
-                                            <a href="https://materializecss.com/" class="text-info">Materialize</a>
+                                            <a href="https://materializecss.com/" class="text-subtext">Materialize</a>
                                         </li>
                                     </ul>
                                     <li>SQL & MYSQL</li>
-                                    <ul>
+                                    <ul class="text-subtext">
                                         <li>DB2</li>
                                     </ul>
                                 </ul>
@@ -185,13 +185,13 @@
                         <div class="card bg-cardColor text-info">
                             <div class="card-body">
                                 <h5 class="text-white card-title mb-4"><i class="fas fa-users"></i> Clubs & Activities</h5>
-                                <h6 class="text-subtext"><i class="fas fa-bowling-ball"></i> Bowling</h6>
-                                <p>I was on my high school's bowling team for the 2018-2019 season. Now I bowl on my
+                                <h6><i class="fas fa-bowling-ball"></i> Bowling</h6>
+                                <p class="text-subtext">I was on my high school's bowling team for the 2018-2019 season. Now I bowl on my
                                     free time with friends.</p>
-                                <h6 class="text-subtext"><i class="fas fa-robot"></i> FIRST Robotics</h6>
-                                <p class="">I participated in FIRST Robotics since 2017 and just completed my last
+                                <h6><i class="fas fa-robot"></i> FIRST Robotics</h6>
+                                <p class="text-subtext">I participated in FIRST Robotics since 2017 and just completed my last
                                     year in 2019. During my time, I developed
-                                    our team's <a href="https://team6758.com" class="text-info">website</a> and code to operate our
+                                    our team's <a href="https://team6758.com" class="text-subtext">website</a> and code to operate our
                                     robot, either autonomously or via joystick controls.</p>
                             </div>
                         </div>
