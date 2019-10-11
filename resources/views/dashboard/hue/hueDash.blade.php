@@ -3,7 +3,7 @@
 @section('content')
     <div class="mb-5">
         <h2 class="float-left text-dark"><i class="far fa-lightbulb text-hue-faint"> </i> Hue Integration</h2>
-        <a href="{{route('hue.connect')}}" class="btn float-right btn-outline btn-outline-hue">Connect to Hue Bridge</a>
+        <a href="{{route('hue.connect')}}" class="btn float-right btn-outline btn-outline-hue disabled">Connect to Hue Bridge</a>
     </div>
     <div class="dropdown-divider"></div>
     @if(false)

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keyboards"
+    <meta name="keywords"
           content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, quinnzipse.me, quinnzipse.dev, SlippedMars9866, dev, software developer, blog, personal website, resume, developer, .dev, webdesign, web, design">
     <meta name="description" content="A peek into the developer life of Quinn Zipse. There isn't really much here, but I hope you enjoy.">
 

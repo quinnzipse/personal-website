@@ -32,7 +32,7 @@
                                     to.</label>
                             </div>
                             <div class="custom-control custom-checkbox">
-                                <input name="padd" type="checkbox" class="custom-control-input" {{$settings->padd == true ? 'checked' : ''}} id="padd">
+                                <input name="padd" type="checkbox" class="custom-control-input disabled" {{$settings->padd == true ? 'checked' : ''}} id="padd" disabled>
                                 <label class="custom-control-label" for="padd">add songs to your queue.</label>
                             </div>
                         </div>
@@ -43,12 +43,12 @@
                         <h4 class="font-weight-normal">Allow the <strong>users</strong> to...</h4>
                         <div class="dropdown-divider"></div>
                         <div class="custom-control custom-checkbox">
-                            <input name="ulisten" type="checkbox" class="custom-control-input" {{$settings->ulisten == true ? 'checked' : ''}} id="ulisten">
+                            <input name="ulisten" type="checkbox" class="custom-control-input disabled" {{$settings->ulisten == true ? 'checked' : ''}} id="ulisten" disabled>
                             <label class="custom-control-label" for="ulisten">see what you are listening
                                 to.</label>
                         </div>
-                        <div class="custom-control custom-checkbox">
-                            <input name="uadd" type="checkbox" class="custom-control-input" {{$settings->uadd == true ? 'checked' : ''}} id="uadd">
+                        <div class="custom-control custom-checkbox disabled">
+                            <input name="uadd" type="checkbox" class="custom-control-input disabled" {{$settings->uadd == true ? 'checked' : ''}} id="uadd" disabled>
                             <label class="custom-control-label" for="uadd">add songs to your queue.</label>
                         </div>
                     </div>

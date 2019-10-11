@@ -100,7 +100,7 @@
                                     <a href="{{route('spotify.musicControl')}}" class="text-muted">Spotify Control</a>
                                 </li>
                                 <li class="list-group-item">
-                                    <a href="{{route('smartDashboard')}}" class="text-muted">Smart Dashboard</a>
+                                    <a href="{{route('development')}}" class="text-muted">Smart Dashboard</a>
                                 </li>
                             </ul>
                         </div>
