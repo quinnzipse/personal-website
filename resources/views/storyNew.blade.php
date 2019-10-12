@@ -6,29 +6,36 @@
         <h2 class="float-left text-dark"><i class="fab fa-spotify text-spotify"></i> Spotify Controller</h2>
     </div>
     <div class="dropdown-divider"></div>
-    <div id="main" class="d-none">
+    <div id="main" class="">
         <div class="row mt-4">
             <div class="container">
                 <div class="row mt-0">
-                    <div class="col-10 offset-1">
-                        <div class="float-left">
+                    <div class="col-12">
+                        <div class="float-right mr-5">
                             <img src="https://i.scdn.co/image/8e76cca4edfc4780b4bc86062e8808534d067e52"
                                  style="width: 100%;" alt="IMAGE HERE" id="album_image">
                         </div>
-                        <div class="float-left ml-5" style="max-width: 45%">
+                        <div class="float-left " style="max-width: 50%; width: 50%">
                             <div class="row mt-3">
-                                <h2 class="font-weight-normal text-wrap" id="song_title">SONG TITLE</h2>
+                                <h2 class="font-weight-normal text-wrap ml-5" id="song_title">SONG TITLE</h2>
                             </div>
                             <div class="row">
-                                <h5 class="font-weight-light float-left" id="artist_name">ARTIST</h5>
+                                <h5 class="font-weight-light float-left ml-5" id="artist_name">ARTIST</h5>
                             </div>
-                            <div class="row "><span class="small" id="changing_time">TIME_CHANGING</span><span
+                            <div class="row "><span class="small ml-5" id="changing_time">TIME_CHANGING</span><span
                                         class="small">/</span><span class="small" id="total_time">TIME_TOTAL</span>
                             </div>
                             <br>
-                            <div class="row">
-                                <button class="btn btn-outline-secondary mt-5" onclick="addToPlaylist()" id="addTo">Add to Playlist
+                            <div class="container-fluid">
+                            <div class="float-left mt-5 ml-3">
+                                <button class="btn btn-sm mr-1" onclick="prev()"><</button>
+                                <button class="btn btn-sm pr-3 pl-3" onclick="toggle()">| |</button>
+                                <button class="btn btn-sm ml-1" onclick="next()">></button>
+                            </div>
+                            <div class="float-right mt-5">
+                                <button class="btn btn-sm btn-outline-success" onclick="addToPlaylist()" id="addTo">Add to Playlist
                                 </button>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -75,6 +82,24 @@
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script>
         let player;
+
+        function prev(){
+            player.previousTrack().then(() => {
+                console.log('Set to previous track!');
+            });
+        }
+
+        function next(){
+            player.nextTrack().then(() => {
+                console.log('Skipped to next track!');
+            });
+        }
+
+        function toggle(){
+            player.togglePlay().then(() => {
+                console.log('Toggled playback!');
+            });
+        }
 
         $('document').ready(function () {
             console.log('{{$settings->d_playlist}}');
