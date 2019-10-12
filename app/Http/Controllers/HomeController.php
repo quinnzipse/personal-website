@@ -51,7 +51,9 @@ class HomeController extends Controller
         //$users = $this->localDataFetcher();
 
         $tkn = SpotUsers::getToken();
-        return view('story', ['authToken' => $tkn]);
+        $username = Auth::user()->spotUsername;
+        $settings = SpotifySettings::where('spotUsername', '=', $username)->get()[0];
+        return view('story', ['authToken' => $tkn, 'settings' => $settings]);
 
         //return view('story', ['quinn' => $users[0], 'publicUsers' => $users[1]]);
     }

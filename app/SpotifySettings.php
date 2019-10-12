@@ -9,6 +9,6 @@ class SpotifySettings extends Model
     public $table = "spotifySettings";
 
     protected $fillable = [
-        'ulisten', 'plisten', 'uadd', 'padd', 'spotUsername'
+        'ulisten', 'plisten', 'uadd', 'padd', 'spotUsername', 'd_playlist'
     ];
 }

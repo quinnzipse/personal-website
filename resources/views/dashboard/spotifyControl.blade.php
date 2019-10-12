@@ -54,6 +54,16 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group-sm">
+                        <label>Select a default playlist</label>
+                        <select class="form-control" id="d_playlist" value="{{$settings->d_playlist}}" name="d_playlist">
+                            <option selected disabled>-- Select One --</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <button type="submit" class="btn btn-outline-success float-right mt-5">Save</button>
         </form>
     @else
@@ -68,6 +78,32 @@
 @endsection
 @section('footer')
     <script type="text/javascript">
+        $(document).ready(function(){
+            const url = 'https://api.spotify.com/v1/me/playlists?limit=50';
+            try {
+                fetch(url, {
+                    headers: {
+                        'Authorization': 'Bearer {{$authToken}}'
+                    }
+                }).then(e => e.json())
+                    .then( e => {
+                            console.log('Success:', e);
+                            let items = e.items;
+                            let html = $('#d_playlist').html();
+                            for(i=0;i<items.length; i++){
+                                if(items[i].collaborative || items[i].owner.id == "{{$username}}") {
+                                    html += '<option value=' + items[i].id + ">" + items[i].name + "</option>";
+                                }
+                            }
+                            $('#d_playlist').html(html);
+                            $('#d_playlist option[value="{{$settings->d_playlist}}"]').prop('selected', 'true');
+                        }
+                    );
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        });
+
         function reauth() {
             swal({
                 title: 'Refresh Access Token?',

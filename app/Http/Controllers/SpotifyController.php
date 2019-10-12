@@ -28,7 +28,7 @@ class SpotifyController extends Controller
     function spotifyAuth()
     {
         //Don't make scopes null
-        $scopes = 'user-read-private user-read-email user-read-currently-playing user-read-playback-state';
+        $scopes = 'user-read-private user-read-email user-read-currently-playing user-read-playback-state playlist-modify-public playlist-read-private playlist-modify-private playlist-read-collaborative';
         $redirectURI = route('spotify.auth');
         return redirect('https://accounts.spotify.com/authorize?response_type=code&client_id=' . env('SpotClientID') . '&scope=' . URLEncode($scopes) . '&redirect_uri=' . URLEncode($redirectURI));
     }
@@ -208,7 +208,7 @@ class SpotifyController extends Controller
             $set = SpotifySettings::where('spotUsername', '=', Auth::user()->spotUsername)->get();
             if (count($set) != 0) $settings = $set[0];
         }
-        return view('dashboard/spotifyControl', ['isLoggedIn' => $isLoggedIn, 'username' => $username, 'settings' => $settings]);
+        return view('dashboard/spotifyControl', ['isLoggedIn' => $isLoggedIn, 'username' => $username, 'settings' => $settings, 'authToken' => Auth::user()->authToken]);
     }
 
     function editSettings(EditSettings $request)
@@ -227,6 +227,8 @@ class SpotifyController extends Controller
         else $settings->plisten = false;
         if($request->get('padd') == 'on') $settings->padd = true;
         else $settings->padd = false;
+
+        $settings->d_playlist = $request->get('d_playlist');
 
         $settings->save();
 
