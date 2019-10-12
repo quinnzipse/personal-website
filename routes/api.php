@@ -3,7 +3,6 @@
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Http\Request;
-use GuzzleHttp;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -20,42 +19,42 @@ use Illuminate\Support\Facades\Auth;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::middleware('auth:api')->get('/spotify/add/playlist', function (Request $request){
-    $currentuser = Auth::user();
-    $client = new Client([
-        'base_uri' => 'https://api.spotify.com/'
-    ]);
-
-    $uri = '';
-
-    try{
-        $res = $client->request('GET', 'https://api.spotify.com/v1/me/player/currently-playing', [
-            "headers" => [
-                "Authorization" => 'Bearer ' . $currentuser->authToken
-            ]
-        ]);
-
-        $body = json_decode($res->getBody());
-        $uri = $body->item->uri;
-
-    } catch (Exception $e){
-        $e->getMessage();
-    }
-
-    try {
-        $res = $client->request('POST', 'https://api.spotify.com/v1/playlists/{playlist_id}/tracks',
-            [
-                "headers" => [
-                    "Authorization" => 'Bearer ' . $currentuser->authToken
-                ],
-                "uris" => [ $uri ]
-            ]
-        );
-
-        $body = json_decode($res->getBody());
-        //TODO: may want to check this somewhere to know if you succeeded
-    } catch (GuzzleException $e) {
-        return $e->getMessage();
-    }
-    return true;
-});
+//Route::middleware('auth:api')->get('/spotify/add/playlist', function (Request $request){
+//    $currentuser = Auth::user();
+//    $client = new Client([
+//        'base_uri' => 'https://api.spotify.com/'
+//    ]);
+//
+//    $uri = '';
+//
+//    try{
+//        $res = $client->request('GET', 'https://api.spotify.com/v1/me/player/currently-playing', [
+//            "headers" => [
+//                "Authorization" => 'Bearer ' . $currentuser->authToken
+//            ]
+//        ]);
+//
+//        $body = json_decode($res->getBody());
+//        $uri = $body->item->uri;
+//
+//    } catch (Exception $e){
+//        $e->getMessage();
+//    }
+//
+//    try {
+//        $res = $client->request('POST', 'https://api.spotify.com/v1/playlists/{playlist_id}/tracks',
+//            [
+//                "headers" => [
+//                    "Authorization" => 'Bearer ' . $currentuser->authToken
+//                ],
+//                "uris" => [ $uri ]
+//            ]
+//        );
+//
+//        $body = json_decode($res->getBody());
+//        //TODO: may want to check this somewhere to know if you succeeded
+//    } catch (GuzzleException $e) {
+//        return $e->getMessage();
+//    }
+//    return true;
+//});

@@ -84,24 +84,29 @@
             <div class="row justify-content-center">
                 <div class="col-md-3 sm">
                     <div class="card">
-                        <div class="card-header">Things To Do:</div>
+                        <div class="card-header">Navigation:</div>
                         <div class="card-body">
                             <ul class="list-group list-group-flush align-content-center">
-                                <li class="list-group-item">
-                                    <a href="{{route('home')}}" class="text-muted">Dashboard</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="{{route('calendar.view')}}" class="text-muted">Calendar</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="{{route('hue.lightControl')}}" class="text-muted">Hue Light Control</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="{{route('spotify.musicControl')}}" class="text-muted">Spotify Control</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <a href="{{route('development')}}" class="text-muted">Smart Dashboard</a>
-                                </li>
+                                @if(Auth::user() == App\User::get()[0])
+                                    <li class="list-group-item">
+                                        <a href="{{route('home')}}" class="text-darkerInfo">Dashboard</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="{{route('calendar.view')}}" class="text-darkerInfo">Calendar</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="{{route('hue.lightControl')}}" class="text-darkerInfo">Hue Light Control</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="{{route('development')}}" class="text-darkerInfo">Smart Dashboard</a>
+                                    </li>
+                                @endif
+                                    <li class="list-group-item">
+                                        <a href="{{route('spotify.musicControl')}}" class="text-muted">Spotify Settings</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a href="{{route('myStory')}}" class="text-muted">Spotify Controller</a>
+                                    </li>
                             </ul>
                         </div>
                     </div>

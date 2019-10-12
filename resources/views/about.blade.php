@@ -3,11 +3,11 @@
 @section('content')
     <div class="container">
 
-        <div class="row d-inline">
-            <h2 class="text-darkerInfo mt-5">Bio</h2>
-            <hr class="bg-white border-white">
-            <p class="text-faint"></p>
-        </div>
+{{--        <div class="row d-inline">--}}
+{{--            <h2 class="text-darkerInfo mt-5">Bio</h2>--}}
+{{--            <hr class="bg-white border-white">--}}
+{{--            <p class="text-faint"></p>--}}
+{{--        </div>--}}
         <div class="row d-inline">
             <h2 class="text-darkerInfo mt-4">Education</h2>
             <hr class="bg-white">

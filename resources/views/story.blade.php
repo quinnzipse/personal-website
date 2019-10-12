@@ -1,159 +1,21 @@
 @extends('layouts.main')
 
 @section('content')
-    {{--        <script type="text/javascript">--}}
-    {{--            setTimeout(function () {--}}
-    {{--                $.get('{{route('something')}}', function (data) {--}}
-
-    {{--                });--}}
-    {{--            }, {{$timeout}});--}}
-    {{--        </script>--}}
-    {{--    <script>--}}
-    {{--        console.log("here's what we got");--}}
-    {{--        console.log({!!json_encode($publicUsers)!!});--}}
-    {{--        console.log({!!json_encode($quinn)!!});--}}
-    {{--    </script>--}}
-    {{--    @if(isset($quinn))--}}
-    {{--        <div class="h-100 d-flex align-items-center justify-content-center" style="opacity: 75% !important;">--}}
-    {{--            <div class="jumbotron pt-4 pb-4">--}}
-    {{--                <div class="d-inline">--}}
-    {{--                    <span class="display-4 text-left">Now Playing: </span>--}}
-    {{--                </div>--}}
-    {{--                <hr>--}}
-    {{--                <div class="lead">qzipse-us</div>--}}
-    {{--                <div class="row">--}}
-    {{--                    <div class="col-6 align-self-center">--}}
-    {{--                        <div class="flex-row">--}}
-    {{--                            @if(strlen($quinn->song) > 17)--}}
-    {{--                                <h2 class="font-weight-normal truncate">{{$quinn->song}}</h2>--}}
-    {{--                            @else--}}
-    {{--                                <h1 class="font-weight-normal">{{$quinn->song}}</h1>--}}
-    {{--                            @endif--}}
-    {{--                        </div>--}}
-    {{--                        <div class="flex-row">--}}
-    {{--                            <h4 class="font-weight-light float-left">{{$quinn->artist}}</h4>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                    <div class="col-6">--}}
-    {{--                        <div class="container">--}}
-    {{--                            <div class=" d-flex justify-content-center">--}}
-    {{--                               <img src="{{$quinn->image_url}}" style="height: 80%; width: 80%;">--}}
-    {{--                            </div>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    @php
-        //if(isset($quinn)){
-
-            //$strArray = count_chars($quinn->artist,1);
-            //$count = $strArray[58];
-        //}
-    @endphp
-    {{--            <div class="h-100 w-100 container" style="overflow: hidden;">--}}
-    {{--                <div class="row d-flex align-items-center justify-content-center mt-7">--}}
-    {{--                    <div class="col-3 pr-0">--}}
-    {{--                        <div class="container d-flex justify-content-end pr-0 mr-0">--}}
-    {{--                            <a href="{{$quinn->song_uri}}" style="width: 100%; height: 100%;"--}}
-    {{--                               class="d-flex justify-content-end" target="_blank">--}}
-    {{--                                <img src="{{$quinn->image_url}}" class="hover-img"--}}
-    {{--                                     style="height: 75%; width: 75%; opacity: .35;">--}}
-    {{--                            </a>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                    <div class="col-4 p-0">--}}
-    {{--                        <div class=" d-flex justify-content-center">--}}
-    {{--                            <a href="{{$quinn->song_uri}}" class="d-flex justify-content-center"--}}
-    {{--                               style="height: 100%; width: 100%;" target="_blank">--}}
-    {{--                                <img src="{{$quinn->image_url}}" class="hover-main-img" style="height: 98%; width: 98%;">--}}
-    {{--                            </a>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                    <div class="col-3 pl-0">--}}
-    {{--                        <div class="container d-flex justify-content-start pl-0 ml-0">--}}
-    {{--                            <a href="{{$quinn->song_uri}}" style="width: 100%; height: 100%;"--}}
-    {{--                               class="d-flex justify-content-start" target="_blank">--}}
-    {{--                                <img src="{{$quinn->image_url}}" class="hover-img"--}}
-    {{--                                     style="height: 75%; width: 75%; opacity: .35;">--}}
-    {{--                            </a>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--                <div class="row d-flex align-items-center justify-content-center mt-4">--}}
-    {{--                    <div class="col-6 d-flex justify-content-center">--}}
-    {{--                        @if(strlen($quinn->song) > 17)--}}
-    {{--                            <h2 class="font-weight-normal truncate text-white">{{$quinn->song}}</h2>--}}
-    {{--                        @else--}}
-    {{--                            <h1 class="font-weight-normal text-white">{{$quinn->song}}</h1>--}}
-    {{--                        @endif--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--                <div class="row d-flex align-items-center justify-content-center mt-1">--}}
-    {{--                    <div class="flex-row">--}}
-    {{--                        <h4 class="font-weight-light text-faint">{{$quinn->artist}}</h4>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        @endif--}}
-    {{--        @foreach($publicUsers as $user)--}}
-    {{--            <div class="container mt-5">--}}
-    {{--                <div class="row">--}}
-    {{--                    <div class="col-lg-2"></div>--}}
-    {{--                    <div class="col-lg-8">--}}
-    {{--                        <div class="card border-success">--}}
-    {{--                            <div class="card-body text-spotify">--}}
-    {{--                                <div class="row">--}}
-    {{--                                    <div class="col-lg-6 col-8 col-sm-7">--}}
-    {{--                                        <div class="col-12">--}}
-    {{--                                            <div class="container">--}}
-    {{--                                                <div class=" d-flex justify-content-center">--}}
-    {{--                                                    <img src="{{$user->image_url}}" style="height: 75%; width: 75%;">--}}
-    {{--                                                </div>--}}
-    {{--                                            </div>--}}
-    {{--                                        </div>--}}
-    {{--                                    </div>--}}
-    {{--                                    <div class="col-lg-4 col-5">--}}
-    {{--                                        <div class="row mt-3">--}}
-    {{--                                            @if(strlen($user->song) > 17)--}}
-    {{--                                                <h4 class="font-weight-normal truncate">{{$user->song}}</h4>--}}
-    {{--                                            @else--}}
-    {{--                                                <h2 class="font-weight-normal">{{$user->song}}</h2>--}}
-    {{--                                            @endif--}}
-    {{--                                        </div>--}}
-    {{--                                        <div class="row">--}}
-    {{--                                            <h5 class="font-we--}}
-    {{--                                            ight-light float-left">{{$user->artist}}</h5>--}}
-    {{--                                        </div>--}}
-    {{--                                        <div class="row">--}}
-    {{--                                            <div class="hp_slide">--}}
-    {{--                                                <div class="hp_range"></div>--}}
-    {{--                                            </div>--}}
-    {{--                                        </div>--}}
-    {{--                                    </div>--}}
-    {{--                                </div>--}}
-    {{--                            </div>--}}
-    {{--                        </div>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--    @endforeach--}}
-
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-1"></div>
             <div class="col-lg-10">
-                <div class="card border-success">
-                    <div class="card-header bg-dark text-quinn">
-                        <span id="context">CONTEXT HERE</span>
+                <div class="card border-cardColor">
+                    <div class="card-header bg-cardColor text-white-50 border-cardColor">
+                        <h5 class="mb-0" id="context">CONTEXT HERE</h5>
                     </div>
-                    <div class="card-body bg-dark text-spotify">
-                        <div class="row">
+                    <div class="card-body bg-dark text-white">
+                        <div class="row mt-3">
                             <div class="col-lg-8 col-12 col-sm-10">
                                 <div class="col-12">
                                     <div class="container">
                                         <div class=" d-flex justify-content-center">
-                                            <img src="" style="height: 70%; width: 70%;" alt="IMAGE HERE" id="album_image">
+                                            <img src="https://i.scdn.co/image/8e76cca4edfc4780b4bc86062e8808534d067e52" style="height: 70%; width: 70%;" alt="IMAGE HERE" id="album_image">
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +31,7 @@
                                 <div class="row "><span class="small" id="changing_time">TIME_CHANGING</span><span class="small">/</span><span class="small" id="total_time">TIME_TOTAL</span></div>
                                 <br>
                                 <div class="row">
-                                    <button class="btn btn-outline-green mt-5" onclick="addToPlaylist()">Add to Playlist</button>
+                                    <button class="btn btn-outline-quinn mt-5" onclick="addToPlaylist()">Add to Playlist</button>
                                 </div>
                             </div>
                         </div>
@@ -177,6 +39,35 @@
                 </div>
             </div>
         </div>
+        <div class="row mt-4">
+            <div class="offset-md-1 col-md-10">
+                <h5 class="text-quinn">Next Up: </h5>
+            </div>
+        </div>
+        @for($i=0; $i<2; $i++)
+            <div class="row mt-2" >
+                <div class="offset-md-1 col-md-10">
+                    <div class="card bg-dark border-dark">
+                        <div class="card-body pt-2 pb-2 text-white-50" style="font-size: 90%" id="next{{$i}}">
+                            <div class="row">
+                                <div class="col-3 offset-1 text-truncate" id="nextSongTitle{{$i}}">
+                                    NEXT SONG TITLE{{$i}}
+                                </div>
+                                <div class="col-3 text-truncate" id="nextSongArtist{{$i}}">
+                                    Artist{{$i}}
+                                </div>
+                                <div class="col-3 text-truncate"  id="nextSongAlbum{{$i}}">
+                                    Album{{$i}}
+                                </div>
+                                <div class="col-1"  id="nextSongDuration{{$i}}">
+                                    10:43
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endfor
     </div>
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
@@ -187,11 +78,8 @@
             console.log('{{$settings->d_playlist}}');
         });
 
-        async function addToPlaylist(){
+        function addToPlaylist(){
             player.getCurrentState().then(state =>{
-                    let response;
-                    console.log(state.track_window.current_track.uri);
-                    //TODO: need to pass in the playlist id into this view so I can use it
                     const url = 'https://api.spotify.com/v1/playlists/{{$settings->d_playlist}}/tracks';
                     const data = {"uris": [
                         state.track_window.current_track.uri
@@ -246,27 +134,22 @@
 
             // Playback status updates
             player.addListener('player_state_changed', state => {
-                console.log(state);
-                console.log(state.track_window.current_track.name); //this gets the name of the current song playing
-                console.log("context_description: " + state.context.metadata.context_description);
-                console.log("position: " + state.position);
-                console.log("duration of the song: " + state.duration);
-                console.log("remaining in ms: " + (state.duration - state.position));
-                console.log(state.paused);
-                console.log("next tracks: " + state.track_window.next_tracks);
-                console.log("Artist: " + state.track_window.current_track.artists[0].name);
-                console.log("Album: " + state.track_window.current_track.album.name);
-                console.log("Album Art: " + state.track_window.current_track.album.images[0].url);
-                console.log("Track ID: " + state.track_window.current_track.id);
+                // console.log(state);
+                // console.log(state.track_window.current_track.name); //this gets the name of the current song playing
+                // console.log("context_description: " + state.context.metadata.context_description);
+                // console.log("position: " + state.position);
+                // console.log("duration of the song: " + state.duration);
+                // console.log("remaining in ms: " + (state.duration - state.position));
+                // console.log(state.paused);
+                // console.log("next tracks: " + state.track_window.next_tracks);
+                // console.log("Artist: " + state.track_window.current_track.artists[0].name);
+                // console.log("Album: " + state.track_window.current_track.album.name);
+                // console.log("Album Art: " + state.track_window.current_track.album.images[0].url);
+                // console.log("Track ID: " + state.track_window.current_track.id);
 
-                artists = state.track_window.current_track.artists;
-                console.log(artists);
-                let artistsNames = "";
-                for(i=0; i<artists.length; i++){
-                    if(i>0) artistsNames += ", ";
-                    artistsNames += artists[i].name;
-                };
-                $('#artist_name').text(artistsNames);
+                updateNext(state.track_window.next_tracks);
+
+                $('#artist_name').text( getArtistNames( state.track_window.current_track.artists ) );
                 $('#song_title').text(state.track_window.current_track.name);
                 $('#album_image').prop('src', state.track_window.current_track.album.images[0].url);
                 if(state.context.metadata.context_description){
@@ -298,26 +181,39 @@
                 }
             });
 
-            function timer(totalTime, starting){
-                console.warn(starting);
-                //Constructs ending time
-                let timeMin = totalTime.getMinutes();
-                let timeSec = totalTime.getSeconds();
+            function updateNext(nextTracks){
+                console.log(nextTracks);
+                for(i=0; i<2; i++) {
+                    $('#nextSongAlbum' + i).text(nextTracks[i].album.name);
+                    $('#nextSongArtist' + i).text(getArtistNames(nextTracks[i].artists));
+                    $('#nextSongDuration' + i).text(getMinSecFormat(new Date(nextTracks[i].duration_ms)));
+                    $('#nextSongTitle' + i).text(nextTracks[i].name);
+                }
+            }
+
+            function getArtistNames(artists){
+                let names = '';
+                for(x=0; x<artists.length; x++){
+                    if(x>0) names += ", ";
+                    names += artists[x].name;
+                }
+                return names;
+            }
+
+            function getMinSecFormat(time)
+            {
+                let timeMin = time.getMinutes();
+                let timeSec = time.getSeconds();
                 if(timeSec < 10) timeSec = "0" + timeSec;
-                let endingTime = timeMin + ":" + timeSec;
+                return timeMin + ":" + timeSec;
+            }
+
+            function timer(totalTime, starting){
+                let endingTime = getMinSecFormat(totalTime);
                 $('#total_time').text(endingTime);
 
                  timerInter = setInterval(function(){
-                     let progress = new Date(new Date() - starting);
-                     let p_seconds = progress.getSeconds();
-                     if(p_seconds < 10) p_seconds = "0" + p_seconds;
-                     let p_min = progress.getMinutes();
-                     // $('#changing_time').text
-                     document.getElementById("changing_time").innerHTML =  p_min  + ":" + p_seconds;
-                     // if(progress > totalTime){
-                     //     clearInterval(timerInter);
-                    //     timerInter = null;
-                    // }
+                     document.getElementById("changing_time").innerHTML =  getMinSecFormat( new Date( new Date() - starting ) );
                 }, 1000);
             }
 

@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dashboard/home');
+        return redirect(route('spotify.musicControl'));
     }
 
     public function localDataFetcher()
@@ -53,7 +53,7 @@ class HomeController extends Controller
         $tkn = SpotUsers::getToken();
         $username = Auth::user()->spotUsername;
         $settings = SpotifySettings::where('spotUsername', '=', $username)->get()[0];
-        return view('story', ['authToken' => $tkn, 'settings' => $settings]);
+        return view('storyNew', ['authToken' => $tkn, 'settings' => $settings]);
 
         //return view('story', ['quinn' => $users[0], 'publicUsers' => $users[1]]);
     }
