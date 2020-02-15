@@ -32,6 +32,7 @@ Auth::routes();
 //dashboard routes
 Route::get('/underdevelopment', 'HomeController@dev')->middleware('auth')->name('development');
 Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
+Route::get('/jill', 'HomeController@jill')->name('jill');
 
 //Phillips Hue Routes
 Route::get('/hue/controller', 'HueController@control')->middleware('auth')->name('hue.lightControl');

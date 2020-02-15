@@ -63,4 +63,8 @@ class HomeController extends Controller
         return view('smartbudgeting');
     }
 
+    public function jill(){
+        return view('jill');
+    }
+
 }
