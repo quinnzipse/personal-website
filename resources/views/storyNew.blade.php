@@ -6,7 +6,7 @@
         <h2 class="float-left text-dark"><i class="fab fa-spotify text-spotify"></i> Spotify Controller</h2>
     </div>
     <div class="dropdown-divider"></div>
-    <div id="main" class="">
+    <div id="main" class="d-none">
         <div class="row mt-4">
             <div class="container">
                 <div class="row mt-0">
@@ -51,8 +51,9 @@
         <div class="row">
             <div class="col-12">
                 <table class="table table-hover mt-2 overflow-auto" max-width="100%">
+                    <tbody>
                     @for($i=0; $i<2; $i++)
-                        <tr class="pt-2 pb-2" style="max-width: 30%">
+                        <tr class="pt-2 pb-2" style="max-width: 30%" id="next{{$i}}">
                             <td class="text-truncate" id="nextSongTitle{{$i}}">
                                 NEXT SONG TITLE{{$i}}
                             </td>
@@ -67,6 +68,7 @@
                             </td>
                         </tr>
                     @endfor
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -81,29 +83,31 @@
     </div>
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script>
-        let player;
+        let player, playlistName;
+
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000
+        });
 
         function prev(){
             player.previousTrack().then(() => {
-                console.log('Set to previous track!');
             });
         }
 
         function next(){
             player.nextTrack().then(() => {
-                console.log('Skipped to next track!');
             });
         }
 
         function toggle(){
             player.togglePlay().then(() => {
-                console.log('Toggled playback!');
             });
         }
 
         $('document').ready(function () {
-            console.log('{{$settings->d_playlist}}');
-
              getPlaylistName();
         });
 
@@ -116,6 +120,7 @@
                         }
                     }).then(e => e.json())
                         .then(e => {
+                                playlistName = e.name;
                                 $("#addTo").text('Add to "' + e.name + '"');
                             }
                         );
@@ -146,6 +151,10 @@
                     }).then(e => e.json())
                         .then(e => {
                                 console.log('Success:', e);
+                                Toast.fire({
+                                    type: 'success',
+                                    title: 'Song added to ' + playlistName
+                                });
                             }
                         );
                 } catch (error) {
@@ -186,18 +195,6 @@
             player.addListener('player_state_changed', state => {
                 $('#main, #context').removeClass('d-none');
                 $('#notPlaying').addClass('d-none');
-                // console.log(state);
-                // console.log(state.track_window.current_track.name); //this gets the name of the current song playing
-                // console.log("context_description: " + state.context.metadata.context_description);
-                // console.log("position: " + state.position);
-                // console.log("duration of the song: " + state.duration);
-                // console.log("remaining in ms: " + (state.duration - state.position));
-                // console.log(state.paused);
-                // console.log("next tracks: " + state.track_window.next_tracks);
-                // console.log("Artist: " + state.track_window.current_track.artists[0].name);
-                // console.log("Album: " + state.track_window.current_track.album.name);
-                // console.log("Album Art: " + state.track_window.current_track.album.images[0].url);
-                // console.log("Track ID: " + state.track_window.current_track.id);
 
                 updateNext(state.track_window.next_tracks);
 
@@ -221,7 +218,6 @@
                     clearInterval(timerInter);
                     timerInter = null;
                 } else if ((id !== state.track_window.current_track.id || timerInter == null && state.duration - state.position > 1000) || Math.abs(state.position - oldpos) > 2000) {
-                    console.log("Hello I am going to set one");
                     // debugger;
                     id = state.track_window.current_track.id;
                     if (timerInter) {
@@ -234,13 +230,17 @@
             });
 
             function updateNext(nextTracks) {
-                console.log(nextTracks);
-                for (i = 0; i < 2; i++) {
+
+                $('tbody').children().addClass('d-none');
+
+                for (i = 0; i < nextTracks.length; i++) {
+                    $('#next' + i).removeClass('d-none');
                     $('#nextSongAlbum' + i).text(nextTracks[i].album.name.substring(0, 30));
                     $('#nextSongArtist' + i).text(getArtistNames(nextTracks[i].artists).substring(0, 25));
                     $('#nextSongDuration' + i).text(getMinSecFormat(new Date(nextTracks[i].duration_ms)));
                     $('#nextSongTitle' + i).text(nextTracks[i].name.substring(0, 30));
                 }
+
             }
 
             function getArtistNames(artists) {

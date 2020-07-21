@@ -105,14 +105,18 @@
         });
 
         function reauth() {
-            swal({
+            Swal.fire({
                 title: 'Refresh Access Token?',
-                icon: 'warning',
-                buttons: ["Nope.", "Yes!"]
+                type: 'warning',
+                showCancelButton: true,
+                cancelButtonText: 'No',
+                confirmButtonText: "Yes!",
             }).then(function (value) {
-                if(!value) return;
+                if(!value.value) return;
                 window.location = "/spotify/reauth"
-            })
+            });
         }
+
+
     </script>
 @endsection
