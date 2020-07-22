@@ -35,17 +35,23 @@
 </head>
 <body>
 <main>
+
     <div id="main_content">
-        <h1 class="text-white">Hi, I'm Quinn Zipse</h1><br>
-        <div class="description-container">
-            <ul class="description-list">
-                <li class="text-white description-item">Student</li>
-                <li class="text-white description-item">Developer</li>
-                <li class="text-white description-item">Gamer</li>
-                <li class="text-white description-item">Investor</li>
-                <li class="text-white description-item">Bowler</li>
-            </ul>
+        <div id="image_container">
         </div>
+        <div id="text_container">
+            <h1 class="text-white">Hi, I'm Quinn Zipse</h1><br>
+            <div class="description-container">
+                <ul class="description-list">
+                    <li class="text-white description-item">Student</li>
+                    <li class="text-white description-item">Developer</li>
+                    <li class="text-white description-item">Gamer</li>
+                    <li class="text-white description-item">Investor</li>
+                    <li class="text-white description-item">Human</li>
+                </ul>
+            </div>
+        </div>
+        <div id="gradient"></div>
     </div>
     <div id="about-panel">
         <div class="about-card" id="personal">
@@ -69,27 +75,48 @@
     </div>
 </main>
 <style type="text/css">
+
     #main_content {
-        position: absolute;
-        width: fit-content;
-        top: 50%;
-        left: 600px;
-        transform: translate(-50%, -50%);
+        display: flex;
+        width: 100%;
+        height: 100vh;
     }
 
-    #main_content * {
+    #image_container {
+        background: radial-gradient(circle, rgba(40, 80, 46, 0) 40% , rgba(40, 80, 46, .9) 65%, rgba(40, 80, 46) 70%), url("../img/quinn2.jpg");
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: cover;
+        width: 35%;
+        height: 70%;
+        margin: auto;
+    }
+
+    #text_container {
+        margin: auto auto auto 0;
+        width: fit-content;
         font-size: 2.5rem;
         font-family: 'Major Mono Display', monospace;
         line-height: 2.6rem;
+        z-index: 30;
     }
 
-    #main_content h1 {
+    #text_container h1 {
         font-size: 3.6rem;
     }
 
     body {
+        background-color: rgb(40, 80, 46);
+    }
+
+    #gradient {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        overflow: hidden;
+        /*z-index: -1;*/
         /*background: linear-gradient(360deg, rgba(85,116,60,1) 9%, rgba(40,80,46,1) 87%);*/
-        background: linear-gradient(360deg, rgba(85,116,60,1) 1%, rgba(40,80,46,1) 36%, rgba(27,47,51,1) 91%);
+        background: linear-gradient(360deg, rgba(85, 116, 60, .6) 1%, rgba(40, 80, 46, .6) 36%, rgba(27, 47, 51, .6) 91%);
         /*background: linear-gradient(360deg, rgba(239,48,84,1) 0%, rgba(27,47,51,1) 100%);*/
         /*background: linear-gradient(360deg, rgba(239, 48, 84, 1) 0%, rgba(140, 112, 81, 1) 35%, rgba(27, 47, 51, 1) 83%);*/
     }
@@ -104,7 +131,7 @@
         margin-top: 0;
         text-align: left;
         list-style: none;
-        animation: change 14s infinite;
+        animation: change 16s infinite;
     }
 
     .description-item {
@@ -144,7 +171,7 @@
         margin-top: 100vh;
         height: 100vh;
         /*background: linear-gradient(360deg, rgba(27,47,51,1) 5%, rgba(40,80,46,1) 36%,  91%);*/
-        background-color: rgba(85,116,60,1);
+        background-color: rgba(85, 116, 60, 1);
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 5%;

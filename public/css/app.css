@@ -18066,13 +18066,7 @@ a.text-dark:focus {
   }
 }
 
-#main_content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  height: 160px;
+#text_container {
   overflow: hidden;
   font-family: 'Lato', sans-serif;
   font-size: 35px;
@@ -18080,20 +18074,20 @@ a.text-dark:focus {
   color: #ecf0f1;
 }
 
-#main_content__container {
+#text_container__container {
   font-weight: 600;
   overflow: hidden;
   height: 40px;
   padding: 0 40px;
 }
 
-#main_content__container__text {
+#text_container__container__text {
   display: inline;
   float: left;
   margin: 0;
 }
 
-#main_content__container__list {
+#text_container__container__list {
   margin-top: 0;
   padding-left: 110px;
   text-align: left;
@@ -18106,7 +18100,7 @@ a.text-dark:focus {
   animation-iteration-count: infinite;
 }
 
-#main_content__container__list__item {
+#text_container__container__list__item {
   line-height: 40px;
   margin: 0;
 }
