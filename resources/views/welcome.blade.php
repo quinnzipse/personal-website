@@ -35,12 +35,10 @@
 </head>
 <body>
 <main>
-
     <div id="main_content">
-        <div id="image_container">
-        </div>
         <div id="text_container">
-            <h1 class="text-white">Hi, I'm Quinn Zipse</h1><br>
+            <h2 class="mb-0"> Hi, I'm </h2>
+            <h1 class="text-white">Quinn Zipse</h1>
             <div class="description-container">
                 <ul class="description-list">
                     <li class="text-white description-item">Student</li>
@@ -51,26 +49,44 @@
                 </ul>
             </div>
         </div>
-        <div id="gradient"></div>
+        <div id="image_container" class="">
+            <div id="inner_container">
+                <img src="{{asset('/img/quinn_color.jpg')}}" alt="a picture of me :)">
+            </div>
+        </div>
     </div>
     <div id="about-panel">
-        <div class="about-card" id="personal">
-            <span>Personal</span>
-            <ul>
-                <li>Contributed to the Arctic Code Vault</li>
-            </ul>
-        </div>
-        <div class="about-card" id="professional">
-            <span>Professional</span>
-            <ul>
-                <li>Studying Computer Science at The University of Wisconsin La-Crosse</li>
-            </ul>
-        </div>
-        <div class="about-card" id="scholarly">
-            <span>Scholarly</span>
-            <ul>
-                <li>Studying Computer Science at The University of Wisconsin La-Crosse</li>
-            </ul>
+        <div class="container" id="about_panel_container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="about-card" id="personal">
+                        <h4 class="text-center"><i class="fas fa-home"></i> Personal</h4>
+                        <hr>
+                        <ul>
+                            <li>Contributed to the Arctic Code Vault</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="about-card" id="scholarly">
+                        <h4 class="text-center"><i class="fas fa-graduation-cap"></i> Scholarly</h4>
+                        <hr>
+                        <ul>
+                            <li>Sophomore at The University of Wisconsin La-Crosse</li>
+                            <li></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="about-card" id="professional">
+                        <h4 class="text-center"><i class="fas fa-user-tie"></i> Professional</h4>
+                        <hr>
+                        <ul>
+                            <li>Intern at AgVantage Software, Inc.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </main>
@@ -79,59 +95,65 @@
     #main_content {
         display: flex;
         width: 100%;
-        height: 100vh;
+        height: 55vh;
+        background: rgb(40, 80, 46) linear-gradient(360deg, rgba(40, 80, 46, 1) 10%, rgba(27, 47, 51, 1) 91%);
+    }
+
+    #inner_container {
+        border: 3px solid white;
+        border-radius: 50%;
     }
 
     #image_container {
-        background: radial-gradient(circle, rgba(40, 80, 46, 0) 40% , rgba(40, 80, 46, .9) 65%, rgba(40, 80, 46) 70%), url("../img/quinn2.jpg");
-        background-position: right;
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 35%;
-        height: 70%;
+        width: 23%;
+        height: fit-content;
+        margin: auto auto -3px auto;
+        /*border: 5px solid rgba(60, 60, 60, .1);*/
+        border-radius: 50%;
+        /*box-shadow: 3px 10px rgba(0, 0, 0, .1);*/
+    }
+
+    #image_container img {
+        width: 100%;
         margin: auto;
-    }
-
-    #text_container {
-        margin: auto auto auto 0;
-        width: fit-content;
-        font-size: 2.5rem;
-        font-family: 'Major Mono Display', monospace;
-        line-height: 2.6rem;
-        z-index: 30;
-    }
-
-    #text_container h1 {
-        font-size: 3.6rem;
+        border-radius: 50%;
     }
 
     body {
-        background-color: rgb(40, 80, 46);
+        font-family: 'Major Mono Display', monospace;
     }
 
-    #gradient {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-        /*z-index: -1;*/
-        /*background: linear-gradient(360deg, rgba(85,116,60,1) 9%, rgba(40,80,46,1) 87%);*/
-        background: linear-gradient(360deg, rgba(85, 116, 60, .6) 1%, rgba(40, 80, 46, .6) 36%, rgba(27, 47, 51, .6) 91%);
-        /*background: linear-gradient(360deg, rgba(239,48,84,1) 0%, rgba(27,47,51,1) 100%);*/
-        /*background: linear-gradient(360deg, rgba(239, 48, 84, 1) 0%, rgba(140, 112, 81, 1) 35%, rgba(27, 47, 51, 1) 83%);*/
+    #text_container {
+        font-family: 'Major Mono Display', monospace;
+        margin: auto 0 4% auto;
+        width: fit-content;
+        font-size: 2.5rem;
+        line-height: 2.6rem;
+    }
+
+    #text_container h1 {
+        font-size: 4.5rem;
+        line-height: 4.5rem;
+    }
+
+    #text_container h2 {
+        font-size: 1.8rem;
+        margin-left: 4px;
+        line-height: 1.8rem;
     }
 
     .description-container {
         overflow: hidden;
-        height: 2.6rem;
+        height: 3rem;
+        margin-top: 45px;
     }
 
     .description-list {
-        padding-left: 3px;
+        padding-left: 4px;
         margin-top: 0;
         text-align: left;
         list-style: none;
-        animation: change 16s infinite;
+        animation: change 12s infinite;
     }
 
     .description-item {
@@ -140,46 +162,42 @@
     }
 
     @-webkit-keyframes change {
-        0%, 10%, 100% {
+        0%, 16%, 100% {
             transform: translateY(0);
         }
-        12.5%, 22.5% {
+        20%, 36% {
             transform: translateY(-20%);
         }
-        25%, 35% {
+        40%, 56% {
             transform: translateY(-40%);
         }
-        37.5%, 47.5% {
+        60%, 76% {
             transform: translateY(-60%);
         }
-        50%, 60% {
+        80%, 96% {
             transform: translateY(-80%);
         }
-        62.5%, 72.5% {
-            transform: translateY(-60%);
-        }
-        75%, 85% {
-            transform: translateY(-40%);
-        }
-        87.5%, 97.5% {
-            transform: translateY(-20%);
-        }
+
     }
 </style>
 <style type="text/css">
     #about-panel {
-        margin-top: 100vh;
-        height: 100vh;
+        margin-top: 3px;
+        height: calc(45vh - 3px);
         /*background: linear-gradient(360deg, rgba(27,47,51,1) 5%, rgba(40,80,46,1) 36%,  91%);*/
         background-color: rgba(85, 116, 60, 1);
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        grid-gap: 5%;
+        display: flex;
+    }
+
+    #about_panel_container {
+        margin: auto;
     }
 
     .about-card {
+        padding: 3%;
         margin: auto auto 10% auto;
-        display: flex;
+        border: 2px solid white;
+        border-radius: 10px;
     }
 
     .about-card span {
@@ -188,6 +206,24 @@
         display: block !important;
     }
 
+    .about-card ul {
+        font-family: 'Montserrat', sans-serif;
+        padding-left: 0;
+        text-align: center;
+    }
+
+    .about-card h4 {
+        color: #EF8275;
+    }
+
+    .about-card hr {
+        background-color: #EF8275;
+    }
+
+    .about-card li {
+        list-style: none;
+        color: #E6E8E6;
+    }
 </style>
 </body>
 </html>
