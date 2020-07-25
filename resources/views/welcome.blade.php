@@ -57,34 +57,9 @@
     </div>
     <div id="about-panel">
         <div class="container" id="about_panel_container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="about-card" id="personal">
-                        <h4 class="text-center"><i class="fas fa-home"></i> Personal</h4>
-                        <hr>
-                        <ul>
-                            <li>Contributed to the Arctic Code Vault</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="about-card" id="scholarly">
-                        <h4 class="text-center"><i class="fas fa-graduation-cap"></i> Scholarly</h4>
-                        <hr>
-                        <ul>
-                            <li>Sophomore at The University of Wisconsin La-Crosse</li>
-                            <li></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="about-card" id="professional">
-                        <h4 class="text-center"><i class="fas fa-user-tie"></i> Professional</h4>
-                        <hr>
-                        <ul>
-                            <li>Intern at AgVantage Software, Inc.</li>
-                        </ul>
-                    </div>
+            <div class="card">
+                <div class="card-body">
+                    <p>I am a full time student at The University of Wisconsin - La Crosse. I'm studying </p>
                 </div>
             </div>
         </div>
@@ -96,6 +71,7 @@
         display: flex;
         width: 100%;
         height: 55vh;
+
         background: rgb(40, 80, 46) linear-gradient(360deg, rgba(40, 80, 46, 1) 10%, rgba(27, 47, 51, 1) 91%);
     }
 
