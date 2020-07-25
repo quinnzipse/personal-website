@@ -56,10 +56,28 @@
         </div>
     </div>
     <div id="about-panel">
-        <div class="container" id="about_panel_container">
-            <div class="card">
-                <div class="card-body">
-                    <p>I am a full time student at The University of Wisconsin - La Crosse. I'm studying </p>
+        <div id="about_panel_container">
+            <div id="about">
+                <p><span>Web Developer by day, Chicken Tender by night.</span> Born and raised in Southeast Minnesota.
+                    Full-time student at The University of Wisconsin - La Crosse. Majoring in Computer Science,
+                    graduating Fall of 2022.
+                    Tesla and Google fanboy. Currently an intern at AgVantage Software, Inc. where I develop web apps
+                    for agricultural co-ops around the nation.</p>
+            </div>
+            <div class="d-inline-flex" style="width: 49%">
+                <div id="connections">
+                    <div id="conn_text_container">
+                        <h4>Get in touch!</h4>
+                    </div>
+                    <div id="connect_container">
+                        <div id="brand_container">
+                            <a href="https://instagram.com/quinn.zipse"><i class="fab fa-instagram"></i></a>
+                            <a href="https://facebook.com/quinnzipse"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://linkedin.com/in/quinnzipse"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://github.com/quinnzipse"><i class="fab fa-github"></i></a>
+                            <a href="https://twitter.com/quinnzipse"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -166,40 +184,71 @@
     }
 
     #about_panel_container {
-        margin: auto;
+        margin: auto 6%;
+        display: flex;
     }
 
-    .about-card {
-        padding: 3%;
-        margin: auto auto 10% auto;
-        border: 2px solid white;
-        border-radius: 10px;
-    }
-
-    .about-card span {
-        font-size: 2rem;
-        color: white;
-        display: block !important;
-    }
-
-    .about-card ul {
+    #about {
+        display: inline-flex;
+        color: ghostwhite;
         font-family: 'Montserrat', sans-serif;
-        padding-left: 0;
-        text-align: center;
+        width: 50%;
+        text-align: right;
+        line-height: 2rem;
+        padding: 2%;
+        border-right: 1px solid floralwhite;
     }
 
-    .about-card h4 {
+    #about p {
+        margin-top: 1%;
+        font-size: 1.1rem;
+    }
+
+    #about span {
+        color: #EF8275;
+        font-size: 1.5rem;
+    }
+
+    #connections {
+        display: inline-grid;
+        width: 100%;
+        margin: auto 15%;
+        height: 75%;
+        padding: 4% 0;
+        color: floralwhite;
+        /*background: linear-gradient(0deg, rgba(91, 133, 170, .7), rgba(91, 133, 170, .3));*/
+        background: linear-gradient(360deg, rgba(40, 80, 46, .2) 10%, rgba(27, 47, 51, .25) 91%);
+        /*border-bottom: 1px solid rgba(239, 130, 117, .4);*/
+        border-radius: 15px;
+    }
+    #conn_text_container {
+        margin: 0 auto;
+    }
+
+    #conn_text_container h4 {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 2.3rem;
         color: #EF8275;
     }
 
-    .about-card hr {
-        background-color: #EF8275;
+    #brand_container {
+        display: flex;
+        width: 55%;
+        margin: auto;
+        padding-top: 4%;
     }
 
-    .about-card li {
-        list-style: none;
-        color: #E6E8E6;
+    #brand_container a {
+        margin: auto;
+        color: floralwhite;
+        font-size: 1.5rem;
     }
+
+    #brand_container a:hover {
+        color: lightgray;
+    }
+
+
 </style>
 </body>
 </html>
