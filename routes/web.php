@@ -33,6 +33,8 @@ Auth::routes();
 Route::get('/underdevelopment', 'HomeController@dev')->middleware('auth')->name('development');
 Route::get('/home', 'HomeController@index')->middleware('auth')->name('home');
 Route::get('/jill', 'HomeController@jill')->name('jill');
+Route::get('/jill/valentines/2020', 'HomeController@jillVal20')->name('jillVal20');
+Route::get('/music', 'HomeController@music')->name('music');
 
 //Phillips Hue Routes
 Route::get('/hue/controller', 'HueController@control')->middleware('auth')->name('hue.lightControl');
