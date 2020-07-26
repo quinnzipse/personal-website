@@ -117,11 +117,22 @@ body {
     line-height: 2rem;
     padding: 2%;
     border-right: 1px solid floralwhite;
+    animation: fade 1.2s;
+}
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 100%;
+    }
 }
 
 @media (min-width: 1500px) {
     #about {
         width: 47%;
+        white-space: normal;
     }
     #other_stuff {
         width: 45%;

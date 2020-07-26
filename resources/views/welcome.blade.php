@@ -7,7 +7,7 @@
     <meta name="keywords"
           content="Quinn, quinn, zipse,  Zipse, Quinn Zipse, quinn zipse, quinnzipse, QuinnZipse, SlippedMars9866, software, developer, quinnzipse.dev, .dev, zipse.dev Dev, Programmer, Computers, Quinnzipse.me, zipse.me, QZ, Qzipse, zipsequinn, personal blog, blog, developer life, student">
     <meta name="description"
-          content="A peek into the developer life of Quinn Zipse. This website explains who I am and gives me a place on the internet to call home. There isn't really much here, but I hope you enjoy. ">
+          content="A peek into the developer life of Quinn Zipse. This website explains who I am and gives me a place on the internet to call home. Enjoy! ">
 
     <title>Quinn Zipse</title>
 
@@ -25,6 +25,7 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://quinnzipse.dev/img/quinn_color.jpg">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css"
           integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
