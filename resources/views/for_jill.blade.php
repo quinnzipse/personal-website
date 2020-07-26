@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Dear Jill</title>
+    <title>Dear Jillybean</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -31,19 +31,14 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body style="background-color: pink">
-<div class=" h-100 d-flex justify-content-center align-items-center">
-    <h1 class="text-white" style="font-size: 5em">Happy Valentine's Day!</h1>
-</div>
-<div class="h-100 w-100">
-        <div class="row d-flex justify-content-center align-items-center w-100">
-            <h1 class="text-white mt-5">Here's to us!</h1>
-        </div>
-        <div class="row d-flex justify-content-center align-items-center mt-5 w-100">
-            <h1 class="text-white mr-4"><i class="far fa-heart"></i></h1>
-            <img src="{{asset('img/quinn_jill.jpg')}}" alt="Picture of me and you <3" width="50%">
-            <h1 class="text-white ml-4"><i class="far fa-heart"></i></h1>
-        </div>
-</div>
+<body>
+<main>
+    <h3 id="title">All of our great memories!</h3>
+</main>
+<style type="text/css">
+    #title {
+        padding: 2%;
+    }
+</style>
 </body>
 </html>
