@@ -63,18 +63,21 @@ class HomeController extends Controller
         return view('smartbudgeting');
     }
 
-    public function music() {
+    public function music()
+    {
         $tkn = SpotUsers::getToken();
         $settings = SpotifySettings::where('spotUsername', '=', 'qzipse-us')->get()[0];
-        if($settings->plisten) return view('music', ['authToken' => $tkn, 'settings' => $settings]);
+        if ($settings->plisten) return view('music', ['authToken' => $tkn, 'settings' => $settings]);
         return view('music');
     }
 
-    public function jillVal20(){
+    public function jillVal20()
+    {
         return view('jill');
     }
 
-    public function jill() {
+    public function jill()
+    {
 //        try {
 //            // Make a request to list all albums in the user's library
 //            // Iterate over all the albums in this list

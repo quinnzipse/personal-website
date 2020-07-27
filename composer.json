@@ -12,7 +12,8 @@
         "google/photos-library": "^1.6",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "5.6.*",
-        "laravel/tinker": "^1.0"
+        "laravel/tinker": "^1.0",
+      "ext-curl": "*"
     },
     "require-dev": {
         "filp/whoops": "^2.0",

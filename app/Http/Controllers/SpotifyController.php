@@ -28,7 +28,7 @@ class SpotifyController extends Controller
     function spotifyAuth()
     {
         //Don't make scopes null
-        $scopes = 'user-read-private user-read-email user-read-currently-playing user-read-playback-state playlist-modify-public playlist-read-private playlist-modify-private playlist-read-collaborative';
+        $scopes = 'user-read-private user-read-recently-played user-read-email user-read-currently-playing user-read-playback-state playlist-modify-public playlist-read-private playlist-modify-private playlist-read-collaborative';
         $redirectURI = route('spotify.auth');
         return redirect('https://accounts.spotify.com/authorize?response_type=code&client_id=' . env('SpotClientID') . '&scope=' . URLEncode($scopes) . '&redirect_uri=' . URLEncode($redirectURI));
     }
@@ -86,7 +86,7 @@ class SpotifyController extends Controller
                 $settings->spotUsername = Auth::user()->spotUsername;
                 $settings->save();
             } else $settings = $set[0];
-        }catch (\mysqli_sql_exception $e){
+        } catch (\mysqli_sql_exception $e) {
 
         }
 
@@ -119,11 +119,11 @@ class SpotifyController extends Controller
 
         $oldUser = SpotUsers::where('spotUsername', '=', $user->spotUsername)->get();
 
-        if(sizeof($oldUser) > 0){
+        if (sizeof($oldUser) > 0) {
             $oldUser = $oldUser[0];
             $oldUser->image_url = $body->item->album->images[1]->url;
             $oldUser->artist = "";
-            foreach ($body->item->artists as $artist){
+            foreach ($body->item->artists as $artist) {
                 $oldUser->artist .= $artist->name . ":";
                 $oldUser->artist_uri .= $artist->id . ":";
             }
@@ -134,8 +134,7 @@ class SpotifyController extends Controller
             $oldUser->isPlaying = $body->is_playing;
 
             $oldUser->save();
-        }
-        else{
+        } else {
             $res = $client->request('GET', 'https://api.spotify.com/v1/me',
                 ['headers' => [
                     "Authorization" => 'Bearer ' . $user->authToken
@@ -147,7 +146,7 @@ class SpotifyController extends Controller
             $newUser->spotUsername = $user->spotUsername;
             $newUser->image_url = $body->item->album->images[1]->url;
             $newUser->artist = "";
-            foreach ($body->item->artists as $artist){
+            foreach ($body->item->artists as $artist) {
                 $newUser->artist .= $artist->name . ":";
                 $newUser->artist_uri .= $artist->id . ":";
             }
@@ -163,6 +162,44 @@ class SpotifyController extends Controller
             $newUser->save();
         }
 
+    }
+
+    function fetchRecentData()
+    {
+        $quinns_code = User::get()[0]->authToken;
+        $client = new Client();
+        try {
+            $res = $client->request('get', 'https://api.spotify.com/v1/me/player/recently-played',
+                ['headers' => [
+                    'Authorization' => 'Bearer ' . $quinns_code
+                ],
+                ]
+            );
+        } catch (GuzzleException $e) {
+            return $e->getMessage();
+        }
+
+        return json_decode($res->getBody());
+    }
+
+    function fetchNowPlaying()
+    {
+        $quinns_code = User::get()[0]->authToken;
+        $client = new Client();
+        try {
+            $res = $client->request('get', 'https://api.spotify.com/v1/me/player/currently-playing', ['headers' => [
+                'Authorization' => 'Bearer ' . $quinns_code
+            ]]);
+        } catch (GuzzleException $e) {
+            return $e->getMessage();
+        }
+
+        return json_decode($res->getBody());
+    }
+
+    function seeData()
+    {
+        return view('music', ['recently_played' => $this->fetchRecentData(), 'now_playing' => $this->fetchNowPlaying()]);
     }
 
     function refreshToken()
@@ -215,17 +252,17 @@ class SpotifyController extends Controller
     {
 
         $count = SpotifySettings::where('spotUsername', '=', Auth::user()->spotUsername)->get();
-        if(count($count) != 0) $settings = $count[0];
+        if (count($count) != 0) $settings = $count[0];
 
         //user
-        if($request->get('ulisten') == 'on') $settings->ulisten = true;
+        if ($request->get('ulisten') == 'on') $settings->ulisten = true;
         else $settings->ulisten = false;
-        if($request->get('uadd') == 'on') $settings->uadd = true;
+        if ($request->get('uadd') == 'on') $settings->uadd = true;
         else $settings->uadd = false;
         //public
-        if($request->get('plisten') == 'on') $settings->plisten = true;
+        if ($request->get('plisten') == 'on') $settings->plisten = true;
         else $settings->plisten = false;
-        if($request->get('padd') == 'on') $settings->padd = true;
+        if ($request->get('padd') == 'on') $settings->padd = true;
         else $settings->padd = false;
 
         $settings->d_playlist = $request->get('d_playlist');
@@ -235,20 +272,27 @@ class SpotifyController extends Controller
         return redirect(route('spotify.musicControl'));
     }
 
-    function next(){
+    function next()
+    {
 
         return redirect(route('smartDashboard'));
     }
-    function prev(){
+
+    function prev()
+    {
 
         return redirect(route('smartDashboard'));
     }
-    function pause(){
+
+    function pause()
+    {
 
         return redirect(route('smartDashboard'));
     }
-    function play(){
+
+    function play()
+    {
 
         return redirect(route('smartDashboard'));
-}
+    }
 }
