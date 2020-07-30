@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Auth;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::post('spotify/add_to_queue/', 'SpotifyController@add_to_queue')->name('spotify.addToQueue');
+
 //Route::middleware('auth:api')->get('/spotify/add/playlist', function (Request $request){
 //    $currentuser = Auth::user();
 //    $client = new Client([

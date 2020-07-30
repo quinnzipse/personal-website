@@ -197,6 +197,21 @@ class SpotifyController extends Controller
         return json_decode($res->getBody());
     }
 
+    function add_to_queue(Request $request){
+        $auth_token = User::get()[0]->authToken;
+        $client = new Client();
+        var_dump($request);
+        try {
+            $res = $client->request('post', "https://api.spotify.com/v1/me/player/queue?uri=$request->uri", ['headers' => [
+                'Authorization' => 'Bearer ' . $auth_token
+            ]]);
+        } catch (GuzzleException $e){
+            return $e->getMessage();
+        }
+
+        return json_decode($res->getBody());
+    }
+
     function seeData()
     {
         return view('music', ['recently_played' => $this->fetchRecentData(), 'now_playing' => $this->fetchNowPlaying()]);

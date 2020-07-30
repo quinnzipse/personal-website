@@ -35,90 +35,167 @@
 
 </head>
 <body class="bg-dark text-white">
+@php
+        @endphp
 <main>
     <noscript>
         <h1>Please Enable JavaScript to Continue.</h1>
     </noscript>
-    <div id="app"></div>
-    <div class="container">
-        @if(!$error)
-            <h3 style="margin: 2%">Recently Played Songs</h3>
-            @if(isset($now_playing))
-                <div id="playing_cards">
-                    <div class="card bg-dark text-white border-white" style="width: 15%">
-                        <div class="card-body" style="padding: 5%;">
-                            <img alt="cover" src="{{$now_playing->item->album->images[0]->url}}" style="width: 100%; border-radius: 5px; margin-bottom: 2%">
-                            <div class="card-title">
-                                <h4>{{$now_playing->item->name}}</h4>
-                            </div>
-                            <p> @php
-                                    $artists = array_column($now_playing->item->artists, 'name');
-                                    $artists = implode(', ', $artists);
-                                    echo $artists;
-                                @endphp
-                            </p>
+    @if(!$error)
+        @if(isset($now_playing))
+            <div id="song_marquee">
+                <div id="previous_song">
+                    <img src="{{$recently_played->items[0]->track->album->images[1]->url}}"
+                         alt="{{$recently_played->items[0]->track->name}}">
+                </div>
+                <div id="now_playing">
+                    <div id="now_playing_container">
+                        <img alt="cover" src="{{$now_playing->item->album->images[0]->url}}"
+                             style="width: 100%; border-radius: 5px; margin-bottom: 2%">
+                        <div class="card-title">
+                            <h4>{{$now_playing->item->name}}</h4>
+                        </div>
+                        <p>
+                            @php
+                                $artists = array_column($now_playing->item->artists, 'name');
+                                $artists = implode(', ', $artists);
+                                echo $artists;
+                            @endphp
+                        </p>
+                    </div>
+                </div>
+                <div id="next_marquee">
+                    <div id="next_up">
+                        <div id="next_up_container">
+                            <i class="fas fa-plus"></i>
                         </div>
                     </div>
                 </div>
-            @else
-                <div class="card" style="width: 23%;">
-                    <div class="card-body bg-dark"><h4>Nothing Playing Right Now</h4></div>
-                </div>
-            @endif
-            <div id="recently_played">
-                <div class="card bg-dark" style="margin-bottom: 0">
-                    <div class="card-grid" style="padding-bottom: 0">
-                        <div id="title_header"><small>Title</small></div>
-                        <div id="artists_header"><small>Artists</small></div>
-                        <div id="played_at_header"><small>Listened To</small></div>
-                    </div>
-                </div>
-                @foreach($recently_played->items as $item)
-                    <div class="card bg-dark">
-                        <div class="card-grid">
-                            <div class="title">{{$item->track->name}}</div>
-                            <div class="artist">
-                                @php
-                                    $artists = array_column($item->track->artists, 'name');
-                                    $artists = implode(', ', $artists);
-                                    echo $artists;
-                                @endphp
-                            </div>
-                            <div class="played_at">
-                                @php
-                                    $time = new Carbon(substr($item->played_at, 0, strpos($item->played_at, 'T')) . ' ' . substr($item->played_at, strpos($item->played_at, 'T')+1, 8));
-                                    echo $time->diffForHumans();
-                                @endphp
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
             </div>
         @else
-            <div class="card">
-                <div class="card-body">
-                    <div class="card-title"><h4>Error</h4></div>
-                    <p class="">{{$data}}</p>
-                </div>
+            <div class="card" style="width: 23%;" id="song_marquee">
+                <div class="card-body bg-dark"><h4>Nothing Playing Right Now</h4></div>
             </div>
         @endif
-    </div>
+{{--        <div id="extras">--}}
+{{--            <div id="song_history">--}}
+{{--                <div class="card bg-dark" style="margin-bottom: 0">--}}
+{{--                    <div class="card-grid" style="padding-bottom: 0">--}}
+{{--                        <div id="title_header"><small>Title</small></div>--}}
+{{--                        <div id="artists_header"><small>Artists</small></div>--}}
+{{--                        <div id="played_at_header"><small>Listened To</small></div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                @foreach($recently_played->items as $item)--}}
+{{--                    <div class="card bg-dark">--}}
+{{--                        <div class="card-grid">--}}
+{{--                            <div class="title">{{$item->track->name}}</div>--}}
+{{--                            <div class="artist">--}}
+{{--                                @php--}}
+{{--                                    $artists = array_column($item->track->artists, 'name');--}}
+{{--                                    $artists = implode(', ', $artists);--}}
+{{--                                    echo $artists;--}}
+{{--                                @endphp--}}
+{{--                            </div>--}}
+{{--                            <div class="played_at">--}}
+{{--                                @php--}}
+{{--                                    $time = new Carbon(substr($item->played_at, 0, strpos($item->played_at, 'T')) . ' ' . substr($item->played_at, strpos($item->played_at, 'T')+1, 8));--}}
+{{--                                    echo $time->diffForHumans();--}}
+{{--                                @endphp--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
+{{--            <div id="request_button_container">--}}
+{{--                <button class="btn btn-sm btn-primary" disabled>Request A Song</button>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+    @else
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title"><h4>Error</h4></div>
+                <p class="text-dark">{{$recently_played}}</p>
+            </div>
+        </div>
+    @endif
 </main>
+<script>
+    const getQueue = async () => {
+        const request = await fetch();
+        const response = request.json();
+
+        if(!response.ok) console.warn('Error while fetching queue');
+
+        console.log(response);
+
+        response.forEach(val => {
+
+        });
+    };
+
+    const addSongToQueue = async (uri) => {
+        const request = await fetch("../api/spotify/add_to_queue/", {
+            method: "POST",
+            body: JSON.stringify({
+                uri: uri
+            }),
+        });
+        const response = request.json();
+        console.log(response);
+    }
+</script>
 <style>
-    .card-grid {
-        padding: 1%;
+    #song_marquee {
         display: grid;
-        grid-template-columns: 2fr 2fr 1fr;
+        grid-template-columns: 1fr 1.3fr 1fr;
+        column-gap: 10px;
+        margin: 5vh 10px 0 10px;
+        height: 75vh;
     }
 
-    .card {
-        margin: .5% 1%;
+    #previous_song {
+        height: 80%;
+        margin: auto;
+    }
+
+    #now_playing {
+        display: flex;
+        height: 100%;
+    }
+
+    #now_playing_container {
+        margin: auto;
+        width: 80%;
+    }
+
+    #now_playing_container img {
+        width: 100% !important;
+    }
+
+    #next_marquee {
+        height: 80%;
+        display: flex;
+    }
+
+    #next_up {
+        height: 15vh;
+        width: 15vh;
+        border: lawngreen solid 2px;
+        color: lawngreen;
+        border-radius: 10px;
+        margin: auto;
+        display: flex;
+    }
+
+    #next_up_container {
+        margin: auto;
+        text-align: center;
+    }
+
+    #next_up i {
+        font-size: x-large;
     }
 </style>
-<script>
-    $(document).ready(() => {
-        console.log('hello!');
-    });
-</script>
 </body>
 </html>
