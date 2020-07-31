@@ -45,8 +45,13 @@
         @if(isset($now_playing))
             <div id="song_marquee">
                 <div id="previous_song">
-                    <img src="{{$recently_played->items[0]->track->album->images[1]->url}}"
-                         alt="{{$recently_played->items[0]->track->name}}">
+                    <div id="prev_container">
+                        @for($i=0; $i<5; $i++)
+                            <img src="{{$recently_played->items[$i]->track->album->images[1]->url}}"
+                                 alt="{{$recently_played->items[$i]->track->name}}"
+                                 style="left: {{$i*3}}%; top: {{$i*3}}%">
+                        @endfor
+                    </div>
                 </div>
                 <div id="now_playing">
                     <div id="now_playing_container">
@@ -69,6 +74,8 @@
                         <div id="next_up_container">
                             <i class="fas fa-plus"></i>
                         </div>
+                        <div id="next_up_songs">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,40 +84,40 @@
                 <div class="card-body bg-dark"><h4>Nothing Playing Right Now</h4></div>
             </div>
         @endif
-{{--        <div id="extras">--}}
-{{--            <div id="song_history">--}}
-{{--                <div class="card bg-dark" style="margin-bottom: 0">--}}
-{{--                    <div class="card-grid" style="padding-bottom: 0">--}}
-{{--                        <div id="title_header"><small>Title</small></div>--}}
-{{--                        <div id="artists_header"><small>Artists</small></div>--}}
-{{--                        <div id="played_at_header"><small>Listened To</small></div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                @foreach($recently_played->items as $item)--}}
-{{--                    <div class="card bg-dark">--}}
-{{--                        <div class="card-grid">--}}
-{{--                            <div class="title">{{$item->track->name}}</div>--}}
-{{--                            <div class="artist">--}}
-{{--                                @php--}}
-{{--                                    $artists = array_column($item->track->artists, 'name');--}}
-{{--                                    $artists = implode(', ', $artists);--}}
-{{--                                    echo $artists;--}}
-{{--                                @endphp--}}
-{{--                            </div>--}}
-{{--                            <div class="played_at">--}}
-{{--                                @php--}}
-{{--                                    $time = new Carbon(substr($item->played_at, 0, strpos($item->played_at, 'T')) . ' ' . substr($item->played_at, strpos($item->played_at, 'T')+1, 8));--}}
-{{--                                    echo $time->diffForHumans();--}}
-{{--                                @endphp--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                @endforeach--}}
-{{--            </div>--}}
-{{--            <div id="request_button_container">--}}
-{{--                <button class="btn btn-sm btn-primary" disabled>Request A Song</button>--}}
-{{--            </div>--}}
-{{--        </div>--}}
+        {{--        <div id="extras">--}}
+        {{--            <div id="song_history">--}}
+        {{--                <div class="card bg-dark" style="margin-bottom: 0">--}}
+        {{--                    <div class="card-grid" style="padding-bottom: 0">--}}
+        {{--                        <div id="title_header"><small>Title</small></div>--}}
+        {{--                        <div id="artists_header"><small>Artists</small></div>--}}
+        {{--                        <div id="played_at_header"><small>Listened To</small></div>--}}
+        {{--                    </div>--}}
+        {{--                </div>--}}
+        {{--                @foreach($recently_played->items as $item)--}}
+        {{--                    <div class="card bg-dark">--}}
+        {{--                        <div class="card-grid">--}}
+        {{--                            <div class="title">{{$item->track->name}}</div>--}}
+        {{--                            <div class="artist">--}}
+        {{--                                @php--}}
+        {{--                                    $artists = array_column($item->track->artists, 'name');--}}
+        {{--                                    $artists = implode(', ', $artists);--}}
+        {{--                                    echo $artists;--}}
+        {{--                                @endphp--}}
+        {{--                            </div>--}}
+        {{--                            <div class="played_at">--}}
+        {{--                                @php--}}
+        {{--                                    $time = new Carbon(substr($item->played_at, 0, strpos($item->played_at, 'T')) . ' ' . substr($item->played_at, strpos($item->played_at, 'T')+1, 8));--}}
+        {{--                                    echo $time->diffForHumans();--}}
+        {{--                                @endphp--}}
+        {{--                            </div>--}}
+        {{--                        </div>--}}
+        {{--                    </div>--}}
+        {{--                @endforeach--}}
+        {{--            </div>--}}
+        {{--            <div id="request_button_container">--}}
+        {{--                <button class="btn btn-sm btn-primary" disabled>Request A Song</button>--}}
+        {{--            </div>--}}
+        {{--        </div>--}}
     @else
         <div class="card">
             <div class="card-body">
@@ -121,15 +128,26 @@
     @endif
 </main>
 <script>
+    let queue = [];
+    $(document).ready(() => {
+        setTimeout(() => location.reload(), 36000);
+    });
+
+    const updateQueue = () => {
+        let html = '';
+        queue.forEach((val, i) => html += `<img src="${val.album.images[0].url}" style="top: ${i*3}%; bottom: ${i*3}%" alt="${val.album.name}">`);
+        $('#next_up_songs').html(html);
+    };
+
     const getQueue = async () => {
         const request = await fetch();
         const response = request.json();
 
-        if(!response.ok) console.warn('Error while fetching queue');
+        if (!response.ok) console.warn('Error while fetching queue');
 
         console.log(response);
 
-        response.forEach(val => {
+        response.forEach(val => {``
 
         });
     };
@@ -154,9 +172,16 @@
         height: 75vh;
     }
 
+    #prev_container {
+        margin: auto;
+        position: relative;
+        width: 300px;
+        height: 300px;
+    }
+
     #previous_song {
         height: 80%;
-        margin: auto;
+        display: flex;
     }
 
     #now_playing {
@@ -176,6 +201,10 @@
     #next_marquee {
         height: 80%;
         display: flex;
+    }
+
+    #previous_song img {
+        position: absolute;
     }
 
     #next_up {

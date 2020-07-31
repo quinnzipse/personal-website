@@ -29,15 +29,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->call(function () {
-            //GET REQUEST/SQL SAVING
-//            $log = fopen('C:\\Users\\qzips\\Documents\\log.txt', 'w');
             $quinn = User::get()[0];
             $client = new Client();
-
-//            fwrite($log, json_encode($quinn));
-
-//                $currentuser = User::where('id', '=', $id)->get()[$id];
-//                if($currentuser->refreshToken == null) return;
 
             try {
                 $res = $client->request('POST', 'https://accounts.spotify.com/api/token',
@@ -53,7 +46,6 @@ class Kernel extends ConsoleKernel
 
                 $body = json_decode($res->getBody());
 
-//                fwrite($log, json_encode($body));
                 $access_token = $body->access_token;
                 $quinn->authToken = $access_token;
                 $quinn->save();
@@ -63,6 +55,30 @@ class Kernel extends ConsoleKernel
 
             return true;
         })->everyThirtyMinutes();
+
+//        $schedule->call(function () {
+//            $quinns_code = User::get()[0]->authToken;
+//            $client = new Client();
+//            try {
+//                $res1 = $client->request('get', 'https://api.spotify.com/v1/me/player/currently-playing', ['headers' => [
+//                    'Authorization' => 'Bearer ' . $quinns_code
+//                ]]);
+//            } catch (GuzzleException $e) {
+//                return $e->getMessage();
+//            }
+//            try {
+//                $res = $client->request('get', 'https://api.spotify.com/v1/me/player/recently-played',
+//                    ['headers' => [
+//                        'Authorization' => 'Bearer ' . $quinns_code
+//                    ],
+//                    ]
+//                );
+//            } catch (GuzzleException $e) {
+//                return $e->getMessage();
+//            }
+//
+//            return json_decode($res->getBody());
+//        })->everyMinute();
     }
 
     /**
