@@ -145,6 +145,7 @@
     let queue = [];
     $(document).ready(() => {
         setTimeout(() => location.reload(), 36000);
+        $('#recently_played_collapse').collapse('show');
     });
 
     const updateQueue = () => {
@@ -179,8 +180,6 @@
     }
 </script>
 <style>
-   #extras {
-   }
    
    #main_content {
       padding: 2% 50px;
@@ -211,15 +210,12 @@
    }
    
    #table_body {
+      height: 63vh !important;
       overflow-y: auto;
    }
    
    .card-title {
       margin-top: 2%;
-   }
-   
-   .card {
-      margin-bottom: 1%;
    }
 </style>
 </body>
