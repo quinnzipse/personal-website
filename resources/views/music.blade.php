@@ -60,7 +60,7 @@
             </div>
          @else
             <div class="card" id="now_playing">
-               <div class="card-body"><h4>Nothing Playing Right Now</h4></div>
+               <div class="card-body m-auto"><h4>Nothing Playing Right Now</h4></div>
             </div>
          @endif
          <div id="extras">
@@ -109,12 +109,12 @@
                <div class="collapse" id="song_request_collapse" data-parent="#extras" aria-labelledby="song_request_title">
                   <div class="card-body">
                      <div id="request_button_container">
-                        <form>
+                        <form action="javascript:searchSongs()">
                            <div class="form-group">
                               <label for="song_title">Song Title</label>
-                              <input class="form-control" type="text" id="song_title">
+                              <input class="form-control" type="text" id="search_term" name="search_term">
                            </div>
-                           <button class="btn btn-sm btn-primary" disabled>Request A Song</button>
+                           <button class="btn btn-sm btn-primary">Request A Song</button>
                         </form>
                      </div>
                   </div>
@@ -144,7 +144,7 @@
 <script>
     let queue = [];
     $(document).ready(() => {
-        setTimeout(() => location.reload(), 36000);
+        // setTimeout(() => location.reload(), 36000);
         $('#recently_played_collapse').collapse('show');
     });
 
@@ -168,6 +168,17 @@
         });
     };
 
+    const searchSongs = async () => {
+        const request = await fetch(`../spotify/search_term?${$('form').serialize()}`);
+        const response = await request.json();
+        console.log(response);
+        response.tracks.items.forEach(val => {
+            let names = [];
+            val.artists.forEach(artist => names.push(artist.name));
+            console.log(val.name, val.uri, names.join(', '));
+        });
+    };
+    
     const addSongToQueue = async (uri) => {
         const request = await fetch("../api/spotify/add_to_queue/", {
             method: "POST",
