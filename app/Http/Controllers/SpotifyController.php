@@ -189,8 +189,7 @@ class SpotifyController extends Controller
         } catch (GuzzleException $e) {
             return $e->getMessage();
         }
-
-        return json_decode($res->getBody());
+        return $res->getBody();
     }
 
     function search_songs(Request $request) {
@@ -223,7 +222,7 @@ class SpotifyController extends Controller
 
     function seeData()
     {
-        return view('music', ['recently_played' => $this->fetchRecentData(), 'now_playing' => $this->fetchNowPlaying()]);
+        return view('music', ['recently_played' => $this->fetchRecentData(), 'now_playing' => json_decode($this->fetchNowPlaying())]);
     }
 
     function refreshToken()

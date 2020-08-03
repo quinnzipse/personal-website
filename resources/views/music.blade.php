@@ -45,11 +45,11 @@
                 <div id="now_playing_container">
                     <div id="now_playing">
                         <img alt="cover" src="{{$now_playing->item->album->images[0]->url}}"
-                             style="border-radius: 5px;" crossorigin="anonymous">
+                             style="border-radius: 5px;" crossorigin="anonymous" id="now_playing_img">
                         <div class="card-title">
-                            <h4>{{$now_playing->item->name}}</h4>
+                            <h2 id="now_playing_title">{{$now_playing->item->name}}</h2>
                         </div>
-                        <p>
+                        <p id="now_playing_artists">
                             @php
                                 $artists = array_column($now_playing->item->artists, 'name');
                                 $artists = implode(', ', $artists);
@@ -151,7 +151,7 @@
                         </h6>
                     </div>
                     <div class="collapse" id="queue_collapse" data-parent="#extras" aria-labelledby="queue_title">
-                        <div class="card-body">
+                        <div class="card-body" id="queue_gen">
 
                         </div>
                     </div>
@@ -192,12 +192,26 @@
 
     $(document).ready(() => {
         $('#recently_played_collapse').collapse('show');
+        setTimeout(getNowPlaying, 30000);
     });
+
+    const getNowPlaying = async () => {
+        const request = await fetch('../spotify/get_currently_playing');
+        const response = await request.json();
+
+        let artists = [];
+        response.item.artists.forEach(val => artists.push(val.name));
+
+        document.getElementById('now_playing_artists').innerText = artists.join(', ');
+        document.getElementById('now_playing_title').innerText = response.item.name;
+        document.getElementById('now_playing_img').src = response.item.album.images[0].url;
+        setTimeout(getNowPlaying, 45000);
+    }
 
     const updateQueue = () => {
         let html = '';
-        queue.forEach((val, i) => html += `<img src="${val.album.images[0].url}" style="top: ${i * 3}%; bottom: ${i * 3}%" alt="${val.album.name}">`);
-        $('#next_up_songs').html(html);
+        queue.forEach((val) => html += `<div class="mt-3"><h6>${val.name}</h6><span>${val.artists[0].name}</span></div>`);
+        $('#queue_gen').html(html);
     };
 
     const getQueue = async () => {
@@ -246,17 +260,23 @@
         if (collapse.html() === '') {
             collapse.html(`<div class="more_info p-2 mt-1"><img id="result_img_${i}" src="${item.album.images[1].url}" style="width: 180px" crossorigin="anonymous" alt="album cover">` +
                 `<div style="margin-left: 5%"><h6>${item.name}</h6><p>${item.artists[0].name}</p><small class="explicit" ${(item.explicit ? '' : "hidden")}>explicit</small></div>` +
-                `<div><button class="btn btn-sm btn-info" onclick="addSongToQueue('${item.uri}')">Add to Queue</button></div></div>`);
+                `<div><button class="btn btn-sm btn-info" onclick="addSongToQueue('${i}')">Add to Queue</button></div></div>`);
             await waitOnImgLoad(document.getElementById('result_img_' + i));
         }
 
         collapse.collapse('toggle');
     }
 
-    const addSongToQueue = async (uri) => {
-        const request = await fetch(`../spotify/add_to_queue?uri=${uri}`);
+    const addSongToQueue = async (i) => {
+        let item = results.tracks.items[i];
+        const request = await fetch(`../spotify/add_to_queue?uri=${item.uri}`);
         const response = request.status;
-        console.log(response);
+        if(response === 200) {
+            alert('Song Added Successfully! Queue Position: ' + (queue.length + 1));
+            queue.push(item);
+            updateQueue();
+        }
+        else alert('Failed to add song to queue, please try again.');
     }
 </script>
 <style>
