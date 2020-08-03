@@ -35,7 +35,7 @@
 
 </head>
 <body>
-<main>
+<main id="app">
     <noscript>
         <h1>Please Enable JavaScript to Continue.</h1>
     </noscript>
@@ -255,7 +255,7 @@
 
     const addSongToQueue = async (uri) => {
         const request = await fetch(`../spotify/add_to_queue?uri=${uri}`);
-        const response = request.json();
+        const response = request.status;
         console.log(response);
     }
 </script>

@@ -216,10 +216,9 @@ class SpotifyController extends Controller
                 'Authorization' => 'Bearer ' . $auth_token
             ]]);
         } catch (GuzzleException $e){
-            return $e->getMessage();
+            exit(500);
         }
-
-        return json_decode($res->getBody());
+        exit($res->getStatusCode());
     }
 
     function seeData()
