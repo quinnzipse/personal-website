@@ -205,7 +205,7 @@
         document.getElementById('now_playing_artists').innerText = artists.join(', ');
         document.getElementById('now_playing_title').innerText = response.item.name;
         document.getElementById('now_playing_img').src = response.item.album.images[0].url;
-        setTimeout(getNowPlaying, 45000);
+        setTimeout(getNowPlaying, 30000);
     }
 
     const updateQueue = () => {
