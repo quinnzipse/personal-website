@@ -20,15 +20,11 @@ use function PHPSTORM_META\override;
 
 class SpotifyController extends Controller
 {
-    function const()
-    {
-
-    }
-
     function spotifyAuth()
     {
         //Don't make scopes null
-        $scopes = 'user-read-private user-read-recently-played user-read-email user-read-currently-playing user-read-playback-state playlist-modify-public playlist-read-private playlist-modify-private playlist-read-collaborative';
+        $scopes = 'user-read-private user-read-recently-played user-read-email user-read-currently-playing ' .
+            'user-read-playback-state playlist-modify-public playlist-read-private playlist-modify-private playlist-read-collaborative';
         $redirectURI = route('spotify.auth');
         return redirect('https://accounts.spotify.com/authorize?response_type=code&client_id=' . env('SpotClientID') . '&scope=' . URLEncode($scopes) . '&redirect_uri=' . URLEncode($redirectURI));
     }
@@ -215,7 +211,6 @@ class SpotifyController extends Controller
     function add_to_queue(Request $request){
         $auth_token = User::get()[0]->authToken;
         $client = new Client();
-        var_dump($request);
         try {
             $res = $client->request('post', "https://api.spotify.com/v1/me/player/queue?uri=$request->uri", ['headers' => [
                 'Authorization' => 'Bearer ' . $auth_token

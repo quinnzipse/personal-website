@@ -54,7 +54,7 @@ Route::get('/spotify/try', 'SpotifyController@spotifyAuth')->middleware('auth')-
 Route::get('/spotify/logout', 'SpotifyController@logout')->middleware('auth')->name('spotify.logout');
 Route::post('/spotify/settings/', 'SpotifyController@editSettings')->middleware('auth')->name('spotify.process.settings');
 Route::get('/spotify/controller', 'SpotifyController@control')->middleware('auth')->name('spotify.musicControl');
-Route::post('/spotify/add_to_queue', 'SpotifyController@add_to_queue')->name('spotify.addToQueue');
+Route::get('/spotify/add_to_queue', 'SpotifyController@add_to_queue')->name('spotify.addToQueue');
 Route::get('/spotify/search_term', 'SpotifyController@search_songs')->name('spotify.searchTerm');
 //Stuff for smartdash
 Route::get('spotify/prev', 'SpotifyController@prev')->middleware('auth')->name('spotify.musicControl.prev');
