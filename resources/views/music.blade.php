@@ -167,32 +167,30 @@
             </div>
     </div>
 </main>
+<script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <script>
-    let queue = [], results = {};
-
     const colorThief = new ColorThief();
-    const img = document.querySelector('img');
-    let colorPalette = [];
+    let queue = {!! json_encode($queue) !!}, results = {}, recently_played = [];
 
-    // Make sure image is finished loading
-    if (img.complete) {
-        colorPalette = colorThief.getPalette(img);
+    setColorScheme();
+    initQueue();
 
-        document.querySelector('main').style.background = `rgba(${colorPalette[3].join(', ')}, .6)`;
-        document.querySelector('.card').style.background = `rgba(${colorPalette[2].join(', ')}, .6)`;
-        let sum = 0;
-        colorPalette[0].forEach(val => sum += val);
-        document.querySelector('main').style.color = (sum / 3.0 > 100 ? 'black' : 'white')
-
-    } else {
-        img.addEventListener('load', function () {
-            console.log(colorThief.getColor(img));
-        });
-    }
+    // Pusher Setup
+    let pusher = new Pusher('de2dbfb8a4ec89137fd9', {
+        cluster: 'us2'
+    });
+    let channel = pusher.subscribe('quinns-music');
+    channel.bind('new-song', function (data) {
+        alert(JSON.stringify(data));
+    });
+    channel.bind('queue-updated', function (data) {
+        console.log(data);
+        updateQueue(data);
+    });
 
     $(document).ready(() => {
         $('#recently_played_collapse').collapse('show');
-        setTimeout(getNowPlaying, 30000);
+        setTimeout(getNowPlaying, 10000);
     });
 
     const getNowPlaying = async () => {
@@ -205,28 +203,21 @@
         document.getElementById('now_playing_artists').innerText = artists.join(', ');
         document.getElementById('now_playing_title').innerText = response.item.name;
         document.getElementById('now_playing_img').src = response.item.album.images[0].url;
-        setTimeout(getNowPlaying, 30000);
+        setTimeout(getNowPlaying, 10000);
+        setColorScheme();
     }
 
-    const updateQueue = () => {
-        let html = '';
-        queue.forEach((val) => html += `<div class="mt-3"><h6>${val.name}</h6><span>${val.artists[0].name}</span></div>`);
-        $('#queue_gen').html(html);
+    const updateQueue = (data) => {
+        let song_data = JSON.parse(data.song.data);
+        queue.push(song_data);
+        $('#queue_gen').append(`<div class="mt-3"><h6>${song_data.name}</h6><span>${song_data.artists[0].name}</span></div>`);
     };
 
-    const getQueue = async () => {
-        const request = await fetch();
-        const response = request.json();
-
-        if (!response.ok) console.warn('Error while fetching queue');
-
-        console.log(response);
-
-        response.forEach(val => {
-            ``
-
+    function initQueue () {
+        queue.forEach(val => {
+            $('#queue_gen').prepend(`<div class="mt-3"><h6>${val.name}</h6><span>${val.artists[0].name}</span></div>`);
         });
-    };
+    }
 
     const searchSongs = async () => {
         let result_element = $('#search_results');
@@ -268,15 +259,31 @@
     }
 
     const addSongToQueue = async (i) => {
-        let item = results.tracks.items[i];
-        const request = await fetch(`../spotify/add_to_queue?uri=${item.uri}`);
-        const response = request.status;
-        if(response === 200) {
-            alert('Song Added Successfully! Queue Position: ' + (queue.length + 1));
-            queue.push(item);
-            updateQueue();
-        }
+        let item = JSON.stringify(results.tracks.items[i]);
+        const request = await fetch(`../spotify/add_to_queue?data=${item}`);
+        if (request.status === 200) alert('Song Added Successfully!');
         else alert('Failed to add song to queue, please try again.');
+    }
+
+    function setColorScheme() {
+        // Make sure image is finished loading
+        const img = document.getElementById('now_playing_img');
+
+        if (img.complete) {
+            let colorPalette;
+            colorPalette = colorThief.getPalette(img);
+
+            document.querySelector('main').style.background = `rgba(${colorPalette[3].join(', ')}, .6)`;
+            document.querySelector('.card').style.background = `rgba(${colorPalette[2].join(', ')}, .6)`;
+            let sum = 0;
+            colorPalette[0].forEach(val => sum += val);
+            document.querySelector('main').style.color = (sum / 3.0 > 100 ? 'black' : 'white')
+
+        } else {
+            img.addEventListener('load', function () {
+                setColorScheme();
+            });
+        }
     }
 </script>
 <style>

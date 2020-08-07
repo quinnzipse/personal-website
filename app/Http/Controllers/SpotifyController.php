@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Event;
+use App\Events\NewSong;
+use App\Events\QueueUpdated;
 use App\Http\Requests\EditSettings;
 use App\Providers\RouteServiceProvider;
+use App\Song;
 use App\SpotifySettings;
 use App\SpotUsers;
 use App\User;
@@ -16,10 +20,13 @@ use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use function PHPSTORM_META\override;
 
 class SpotifyController extends Controller
 {
+    public $now_playing = -1;
+
     function spotifyAuth()
     {
         //Don't make scopes null
@@ -189,10 +196,42 @@ class SpotifyController extends Controller
         } catch (GuzzleException $e) {
             return $e->getMessage();
         }
+
+        $song_received = json_decode($res->getBody());
+
+        $count = Song::where('uri', '=', $song_received->item->uri)->count();
+        if ($count !== 0) {
+            // It changed. We need to broadcast a message to clients.
+            $song = Song::find($song_id);
+            $song->listened_to++;
+            $song->queued = false;
+            $song->save();
+        }
+        else {
+            $song = new Song();
+            $song->name = $song_received->item->name;
+            $song->uri = $song_received->item->uri;
+            $song->data = json_encode($song_received->item);
+            $song->listened_to = 1;
+            $song->save();
+
+        }
+
         return $res->getBody();
     }
 
-    function search_songs(Request $request) {
+    function didTheSongChange(int $song_id)
+    {
+        if($this->now_playing === $song_id) return false; // It didn't change, there's no need to do anything.
+
+        $this->now_playing = $song_id;
+
+        event(new QueueUpdated($song));
+
+    }
+
+    function search_songs(Request $request)
+    {
         $auth_token = User::get()[0]->authToken;
         $client = new Client();
         try {
@@ -207,22 +246,37 @@ class SpotifyController extends Controller
         return $res->getBody();
     }
 
-    function add_to_queue(Request $request){
+    function add_to_queue(Request $request)
+    {
+        $song_request = json_decode($request->data);
         $auth_token = User::get()[0]->authToken;
         $client = new Client();
         try {
-            $res = $client->request('post', "https://api.spotify.com/v1/me/player/queue?uri=$request->uri", ['headers' => [
+            $res = $client->request('post', "https://api.spotify.com/v1/me/player/queue?uri=" . $song_request->uri, ['headers' => [
                 'Authorization' => 'Bearer ' . $auth_token
             ]]);
-        } catch (GuzzleException $e){
+        } catch (GuzzleException $e) {
             exit(500);
         }
+
+        $song = new Song();
+        $song->name = $song_request->name;
+        $song->uri = $song_request->uri;
+        $song->data = json_encode($song_request);
+        $song->queued = true;
+        $song->save();
+
+        event(new QueueUpdated($song));
+
         exit($res->getStatusCode());
     }
 
     function seeData()
     {
-        return view('music', ['recently_played' => $this->fetchRecentData(), 'now_playing' => json_decode($this->fetchNowPlaying())]);
+        $queued = Song::where('queued', '=', true)->get();
+        $queue = array();
+        foreach ($queued as $song) array_push($queue, json_decode($song->data));
+        return view('music', ['recently_played' => $this->fetchRecentData(), 'now_playing' => json_decode($this->fetchNowPlaying()), 'queue' => $queue]);
     }
 
     function refreshToken()
@@ -295,27 +349,14 @@ class SpotifyController extends Controller
         return redirect(route('spotify.musicControl'));
     }
 
-    function next()
+    function newSongTrigger()
     {
+        $song = new Song();
+        $song->name = 'Test Song';
+        $song->data = '{}';
+        $song->save();
+        event(new NewSong($song));
 
-        return redirect(route('smartDashboard'));
-    }
-
-    function prev()
-    {
-
-        return redirect(route('smartDashboard'));
-    }
-
-    function pause()
-    {
-
-        return redirect(route('smartDashboard'));
-    }
-
-    function play()
-    {
-
-        return redirect(route('smartDashboard'));
+        return redirect(route('music'));
     }
 }
