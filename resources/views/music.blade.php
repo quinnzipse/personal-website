@@ -176,34 +176,28 @@
     initQueue();
 
     // Pusher Setup
-    let pusher = new Pusher('de2dbfb8a4ec89137fd9', {
-        cluster: 'us2'
+    let pusher = new Pusher('{{env('PUSHER_APP_KEY')}}', {
+        cluster: '{{env('PUSHER_APP_CLUSTER')}}'
     });
     let channel = pusher.subscribe('quinns-music');
-    channel.bind('new-song', function (data) {
-        alert(JSON.stringify(data));
-    });
-    channel.bind('queue-updated', function (data) {
-        console.log(data);
-        updateQueue(data);
-    });
+    channel.bind('new-song', data => updateNowPlaying(data));
+    channel.bind('queue-updated', data => updateQueue(data));
 
     $(document).ready(() => {
         $('#recently_played_collapse').collapse('show');
-        setTimeout(getNowPlaying, 10000);
     });
 
-    const getNowPlaying = async () => {
-        const request = await fetch('../spotify/get_currently_playing');
-        const response = await request.json();
+    function updateNowPlaying(data) {
+        let song_data = JSON.parse(data.song.data);
+
+        console.log(song_data);
 
         let artists = [];
-        response.item.artists.forEach(val => artists.push(val.name));
+        song_data.artists.forEach(val => artists.push(val.name));
 
         document.getElementById('now_playing_artists').innerText = artists.join(', ');
-        document.getElementById('now_playing_title').innerText = response.item.name;
-        document.getElementById('now_playing_img').src = response.item.album.images[0].url;
-        setTimeout(getNowPlaying, 10000);
+        document.getElementById('now_playing_title').innerText = song_data.name;
+        document.getElementById('now_playing_img').src = song_data.album.images[0].url;
         setColorScheme();
     }
 
@@ -213,7 +207,7 @@
         $('#queue_gen').append(`<div class="mt-3"><h6>${song_data.name}</h6><span>${song_data.artists[0].name}</span></div>`);
     };
 
-    function initQueue () {
+    function initQueue() {
         queue.forEach(val => {
             $('#queue_gen').prepend(`<div class="mt-3"><h6>${val.name}</h6><span>${val.artists[0].name}</span></div>`);
         });

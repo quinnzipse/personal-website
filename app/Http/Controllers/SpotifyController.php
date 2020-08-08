@@ -6,13 +6,10 @@ use App\Event;
 use App\Events\NewSong;
 use App\Events\QueueUpdated;
 use App\Http\Requests\EditSettings;
-use App\Providers\RouteServiceProvider;
 use App\Song;
 use App\SpotifySettings;
 use App\SpotUsers;
 use App\User;
-use bar\baz\source_with_namespace;
-use Couchbase\UserSettings;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
@@ -196,38 +193,42 @@ class SpotifyController extends Controller
         } catch (GuzzleException $e) {
             return $e->getMessage();
         }
-
         $song_received = json_decode($res->getBody());
 
-        $count = Song::where('uri', '=', $song_received->item->uri)->count();
-        if ($count !== 0) {
-            // It changed. We need to broadcast a message to clients.
-            $song = Song::find($song_id);
-            $song->listened_to++;
-            $song->queued = false;
-            $song->save();
+        if($res->getStatusCode() === 204) {
+            // HTTP 204 NO CONTENT
+            // Nothing is playing :(
+            Log::debug('204 ' . $song_received);
+            return '';
         }
-        else {
+
+        $song = Song::where('uri', '=', $song_received->item->uri)->first();
+        if (isset($song)) {
+            if ($song->status !== 'now_playing') {
+                // New Song!
+                // Change its status, broadcast a message, update last songs status, increment listened_to.
+                Song::where('status', '=', 'now_playing')->update(['status' => 'played']);
+
+                $song->listened_to++;
+                $song->status = 'now_playing';
+                $song->save();
+            } else {
+                return $res->getBody();
+            }
+        } else {
+            // It changed. We need to broadcast a message to clients.
             $song = new Song();
             $song->name = $song_received->item->name;
             $song->uri = $song_received->item->uri;
             $song->data = json_encode($song_received->item);
             $song->listened_to = 1;
+            $song->status = 'now_playing';
             $song->save();
-
         }
 
+        event(new NewSong($song));
+
         return $res->getBody();
-    }
-
-    function didTheSongChange(int $song_id)
-    {
-        if($this->now_playing === $song_id) return false; // It didn't change, there's no need to do anything.
-
-        $this->now_playing = $song_id;
-
-        event(new QueueUpdated($song));
-
     }
 
     function search_songs(Request $request)
@@ -263,7 +264,7 @@ class SpotifyController extends Controller
         $song->name = $song_request->name;
         $song->uri = $song_request->uri;
         $song->data = json_encode($song_request);
-        $song->queued = true;
+        $song->status = 'queued';
         $song->save();
 
         event(new QueueUpdated($song));
@@ -273,7 +274,7 @@ class SpotifyController extends Controller
 
     function seeData()
     {
-        $queued = Song::where('queued', '=', true)->get();
+        $queued = Song::where('status', '=', 'queued')->orderBy('created_at', 'desc')->get();
         $queue = array();
         foreach ($queued as $song) array_push($queue, json_decode($song->data));
         return view('music', ['recently_played' => $this->fetchRecentData(), 'now_playing' => json_decode($this->fetchNowPlaying()), 'queue' => $queue]);
@@ -347,16 +348,5 @@ class SpotifyController extends Controller
         $settings->save();
 
         return redirect(route('spotify.musicControl'));
-    }
-
-    function newSongTrigger()
-    {
-        $song = new Song();
-        $song->name = 'Test Song';
-        $song->data = '{}';
-        $song->save();
-        event(new NewSong($song));
-
-        return redirect(route('music'));
     }
 }

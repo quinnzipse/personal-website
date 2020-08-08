@@ -20,7 +20,7 @@ class CreateSongsTable extends Migration
             $table->string('uri');
             $table->json('data');
             $table->smallInteger('listened_to')->default(0);
-            $table->enum('status')->default(0);
+            $table->enum('status', ['queued', 'now_playing', 'played']);
         });
     }
 

@@ -46,18 +46,6 @@ class HomeController extends Controller
 
     }
 
-    public function story()
-    {
-        //$users = $this->localDataFetcher();
-
-        $tkn = SpotUsers::getToken();
-        $username = Auth::user()->spotUsername;
-        $settings = SpotifySettings::where('spotUsername', '=', $username)->get()[0];
-        return view('storyNew', ['authToken' => $tkn, 'settings' => $settings]);
-
-        //return view('story', ['quinn' => $users[0], 'publicUsers' => $users[1]]);
-    }
-
     public function smartBudgeting()
     {
         return view('smartbudgeting');
