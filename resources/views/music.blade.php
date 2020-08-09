@@ -40,11 +40,44 @@
     <noscript>
         <h1>Please Enable JavaScript to Continue.</h1>
     </noscript>
+    <div id="side_menu" style="position: absolute; left: -100px;"></div>
     <div id="main_content">
         @if(!$error)
-            @if(isset($now_playing_data))
-                <div id="now_playing_container">
-                    <div id="now_playing">
+            <div id="buttons">
+                <div id="button_grid">
+                    <div title="Powered by Spotify"><i class="fab fa-spotify"></i></div>
+                    <div title="Request a Song!">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-music-note-beamed pr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
+                            <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
+                            <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
+                        </svg>
+                    </div>
+                    <div title="View Recently Played">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-history"
+                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                  d="M8.515 1.019A7 7 0 0 0 8 1V0a8 8 0 0 1 .589.022l-.074.997zm2.004.45a7.003 7.003 0 0 0-.985-.299l.219-.976c.383.086.76.2 1.126.342l-.36.933zm1.37.71a7.01 7.01 0 0 0-.439-.27l.493-.87a8.025 8.025 0 0 1 .979.654l-.615.789a6.996 6.996 0 0 0-.418-.302zm1.834 1.79a6.99 6.99 0 0 0-.653-.796l.724-.69c.27.285.52.59.747.91l-.818.576zm.744 1.352a7.08 7.08 0 0 0-.214-.468l.893-.45a7.976 7.976 0 0 1 .45 1.088l-.95.313a7.023 7.023 0 0 0-.179-.483zm.53 2.507a6.991 6.991 0 0 0-.1-1.025l.985-.17c.067.386.106.778.116 1.17l-1 .025zm-.131 1.538c.033-.17.06-.339.081-.51l.993.123a7.957 7.957 0 0 1-.23 1.155l-.964-.267c.046-.165.086-.332.12-.501zm-.952 2.379c.184-.29.346-.594.486-.908l.914.405c-.16.36-.345.706-.555 1.038l-.845-.535zm-.964 1.205c.122-.122.239-.248.35-.378l.758.653a8.073 8.073 0 0 1-.401.432l-.707-.707z"/>
+                            <path fill-rule="evenodd" d="M8 1a7 7 0 1 0 4.95 11.95l.707.707A8.001 8.001 0 1 1 8 0v1z"/>
+                            <path fill-rule="evenodd"
+                                  d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
+                        </svg>
+                    </div>
+                    <div title="View Queue">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-music-note-list"
+                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"/>
+                            <path fill-rule="evenodd" d="M12 3v10h-1V3h1z"/>
+                            <path d="M11 2.82a1 1 0 0 1 .804-.98l3-.6A1 1 0 0 1 16 2.22V4l-5 1V2.82z"/>
+                            <path fill-rule="evenodd"
+                                  d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div id="now_playing_container">
+                <div id="now_playing">
+                    @if(isset($now_playing_data))
                         <img alt="cover" src="{{$now_playing_data->album->images[0]->url}}"
                              style="border-radius: 5px;" crossorigin="anonymous" id="now_playing_img">
                         <div class="card-title">
@@ -57,124 +90,21 @@
                                 echo $artists;
                             @endphp
                         </p>
-                    </div>
+                    @else
+                        <div class="card-body m-auto"><h4>Nothing Playing Right Now</h4></div>
+                    @endif
                 </div>
-            @else
-                <div class="card" id="now_playing">
-                    <div class="card-body m-auto"><h4>Nothing Playing Right Now</h4></div>
-                </div>
-            @endif
-            <div id="extras" style="display: none">
-                <div class="card" id="song_history">
-                    <div class="card-header" id="recently_played_title">
-                        <h6 style="margin-bottom: 0">
-                            <button class="btn btn-link btn-sm" data-toggle="collapse"
-                                    data-target="#recently_played_collapse">Recently Played
-                            </button>
-                        </h6>
-                    </div>
-                    <div class="collapse" id="recently_played_collapse" data-parent="#extras"
-                         aria-labelledby="recently_played_title">
-                        <div class="card-body" style="padding: 0" id="table-container">
-                            <div class="card c-card" style="margin-bottom: 0">
-                                <div class="card-grid" style="padding-bottom: 0">
-                                    <div id="title_header"><small>Title</small></div>
-                                    <div id="artists_header"><small>Artists</small></div>
-                                    <div id="played_at_header" class="text-right"><small>Listened To</small></div>
-                                </div>
-                            </div>
-                            <div id="table_body">
-                                @foreach($recently_played->items as $item)
-                                    <div class="card c-card">
-                                        <div class="card-grid">
-                                            <h6 style="margin-bottom: 0"
-                                                class="title text-truncate">{{$item->track->name}}</h6>
-                                            <div class="artist text-truncate">
-                                                @php
-                                                    $artists = array_column($item->track->artists, 'name');
-                                                    $artists = implode(', ', $artists);
-                                                    echo $artists;
-                                                @endphp
-                                            </div>
-                                            <div class="played_at text-right">
-                                                @php
-                                                    $time = new Carbon(substr($item->played_at, 0, strpos($item->played_at, 'T')) . ' ' . substr($item->played_at, strpos($item->played_at, 'T')+1, 8));
-                                                    echo $time->diffForHumans();
-                                                @endphp
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="song_request_title">
-                        <h6 style="margin-bottom: 0">
-                            <button class="btn btn-link btn-sm" data-toggle="collapse"
-                                    data-target="#song_request_collapse">Request a Song
-                            </button>
-                        </h6>
-                    </div>
-                    <div class="collapse" id="song_request_collapse" data-parent="#extras"
-                         aria-labelledby="song_request_title">
-                        <div class="card-body">
-                            <div id="request_button_container">
-                                <form action="javascript:searchSongs()">
-                                    @csrf
-                                    <div class="form-row">
-                                        <div class="col-lg-10 col-md-8 col-sm-7">
-                                            <div class="form-group">
-                                                <label for="search_term" class="sr-only">Search</label>
-                                                <input class="form-control form-control-sm" type="text" id="search_term"
-                                                       name="search_term" placeholder="Search anything on Spotify!"
-                                                       required minlength="2" maxlength="40">
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <button class="btn btn-sm btn-darkerInfo">Search</button>
-                                        </div>
-                                    </div>
-                                </form>
-                                <div id="search_results">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="queue_title">
-                        <h6 style="margin-bottom: 0">
-                            <button class="btn btn-link btn-sm" data-toggle="collapse" data-target="#queue_collapse">
-                                Queue
-                            </button>
-                        </h6>
-                    </div>
-                    <div class="collapse" id="queue_collapse" data-parent="#extras" aria-labelledby="queue_title">
-                        <div class="card-body" id="queue_gen">
-                            @php
-                                $queue = array_reverse($queue);
-                            @endphp
-                            @foreach($queue as $song)
-                                <div class="mt-3"><h6>{{$song->name}}</h6>
-                                    <span>{{join(', ', array_column($song->artists, 'name'))}}</span></div>
-                            @endforeach
-                        </div>
-                    </div>
-                </div>
-                @else
-                    <div class="card" style="grid-column: 1 / span 2 !important;">
-                        <div class="card-body">
-                            <div class="card-title"><h4>Error</h4></div>
-                            <p class="text-dark">{{$recently_played}}</p>
-                        </div>
-                    </div>
-                @endif
             </div>
+            <div id="code" class="d-flex w-100">
+                <div class="mt-auto ml-auto pr-4 pb-3">
+                    <img src="{{asset('/img/sampleSpotifyCode.jpg')}}" alt="Spotify Code" id="code" style="border-radius: 5px">
+                </div>
+            </div>
+        @endif
     </div>
 </main>
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
+<script src="https://unpkg.com/feather-icons"></script>
 <script>
     const colorThief = new ColorThief();
     let results = {}, nowPlaying = {!! $now_playing->data !!};
@@ -193,6 +123,7 @@
     channel.bind('queue-updated', data => updateQueue(data));
 
     $(document).ready(() => {
+        feather.replace();
         $('#recently_played_collapse').collapse('show');
     });
 
@@ -279,8 +210,7 @@
             let colorPalette;
             colorPalette = colorThief.getPalette(img);
 
-            document.querySelector('main').style.background = `rgba(${colorPalette[3].join(', ')}, .6)`;
-            document.querySelector('.card').style.background = `rgba(${colorPalette[2].join(', ')}, .6)`;
+            document.querySelector('main').style.background = `rgba(${colorPalette[3].join(', ')}, .5)`;
             let sum = 0;
             colorPalette[0].forEach(val => sum += val);
             document.querySelector('main').style.color = (sum / 3.0 > 100 ? 'black' : 'white')
@@ -294,20 +224,64 @@
 </script>
 <style>
     #main_content {
-        padding: 2% 50px;
         display: grid;
-        grid-template-columns: .7fr 1fr;
-        column-gap: 50px;
+        grid-template-columns: 1fr 4fr 1fr;
         height: 100vh !important;
     }
 
+    /* Now Playing Styling. */
     #now_playing_container {
         display: flex;
-        padding: 0 2%;
+        width: 100%;
+    }
+
+    #now_playing {
+        margin: auto;
+        width: 40%;
     }
 
     #now_playing img {
         width: 100%;
+        min-width: 300px;
+    }
+
+    /* Code Styling */
+    #code {
+        width: 150px;
+    }
+
+    /* Button Styling */
+    #button_grid {
+        display: grid;
+        padding: 6%;
+        row-gap: 10px;
+        grid-template-rows: repeat(4, 1fr);
+    }
+
+    #button_grid div {
+        padding: 3%;
+        width: fit-content !important;
+        border-radius: 50%;
+        transition: background-color 350ms, color 450ms;
+        transition-delay: 50ms;
+        display: flex;
+    }
+
+    #buttons i {
+       font-size: 25px;
+        line-height: 25px;
+        margin: auto;
+    }
+
+    #buttons svg {
+        margin: auto;
+        width: 25px;
+        height: 25px;
+    }
+
+    #button_grid div:hover {
+        color: whitesmoke;
+        background-color: rgba(0, 0, 0, .8);
     }
 
     .card-grid {
