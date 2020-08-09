@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Event;
 use App\Events\NewSong;
 use App\Events\QueueUpdated;
 use App\Http\Requests\EditSettings;
@@ -11,14 +10,10 @@ use App\SpotifySettings;
 use App\SpotUsers;
 use App\User;
 use GuzzleHttp\Exception\GuzzleException;
-use GuzzleHttp\Exception\RequestException;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
-use GuzzleHttp\ClientInterface;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use function PHPSTORM_META\override;
 
 class SpotifyController extends Controller
 {
@@ -198,7 +193,6 @@ class SpotifyController extends Controller
         if($res->getStatusCode() === 204) {
             // HTTP 204 NO CONTENT
             // Nothing is playing :(
-            Log::debug('204 ' . $song_received);
             return '';
         }
 
@@ -217,6 +211,8 @@ class SpotifyController extends Controller
             }
         } else {
             // It changed. We need to broadcast a message to clients.
+            Song::where('status', '=', 'now_playing')->update(['status' => 'played']);
+
             $song = new Song();
             $song->name = $song_received->item->name;
             $song->uri = $song_received->item->uri;
@@ -257,27 +253,54 @@ class SpotifyController extends Controller
                 'Authorization' => 'Bearer ' . $auth_token
             ]]);
         } catch (GuzzleException $e) {
-            exit(500);
+            http_response_code(500);
+            exit();
         }
 
-        $song = new Song();
-        $song->name = $song_request->name;
-        $song->uri = $song_request->uri;
-        $song->data = json_encode($song_request);
-        $song->status = 'queued';
-        $song->save();
+        $song = Song::where('uri', '=', $song_request->uri)->first();
+
+        Log::debug($song);
+
+        if(isset($song)){
+            // If the song already exists, switch its status to queued.
+            if($song->status !== 'now_playing'){
+                $song->status = 'queued';
+                $song->save();
+            }
+            else {
+                // Don't allow the user to queue the song that is currently playing.
+                Log::alert('Queued song that is currently playing. We have no way of handling this....');
+                http_response_code(400);
+                exit();
+            }
+        }
+        else {
+            // If the song doesn't exist, add it and show that it is queued.
+            $song = new Song();
+            $song->name = $song_request->name;
+            $song->uri = $song_request->uri;
+            $song->data = json_encode($song_request);
+            $song->status = 'queued';
+            $song->save();
+        }
 
         event(new QueueUpdated($song));
 
-        exit($res->getStatusCode());
+        http_response_code($res->getStatusCode());
+        exit();
     }
 
     function seeData()
     {
+        // Prepare the queue object
         $queued = Song::where('status', '=', 'queued')->orderBy('created_at', 'desc')->get();
         $queue = array();
+
+        // Get the now playing song from the local database.
+        $now_playing = Song::where('status', '=', 'now_playing')->first();
+
         foreach ($queued as $song) array_push($queue, json_decode($song->data));
-        return view('music', ['recently_played' => $this->fetchRecentData(), 'now_playing' => json_decode($this->fetchNowPlaying()), 'queue' => $queue]);
+        return view('music', ['recently_played' => $this->fetchRecentData(), 'now_playing' => $now_playing, 'queue' => $queue]);
     }
 
     function refreshToken()

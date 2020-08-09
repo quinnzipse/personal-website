@@ -28,6 +28,8 @@
         const REAUTH_TIME = 1800000;
         let errors = 0;
 
+        reauth();
+
         (function () {
             setTimeout(getNowPlaying, NOW_PLAYING_TIME);
             setTimeout(reauth, REAUTH_TIME);

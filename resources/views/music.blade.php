@@ -5,6 +5,7 @@
         use Carbon\Carbon;
         $error = true;
         if(isset($recently_played->items)) $error = false;
+        if(isset($now_playing)) $now_playing_data = json_decode($now_playing->data);
     @endphp
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -44,14 +45,14 @@
             @if(isset($now_playing))
                 <div id="now_playing_container">
                     <div id="now_playing">
-                        <img alt="cover" src="{{$now_playing->item->album->images[0]->url}}"
+                        <img alt="cover" src="{{$now_playing_data->album->images[0]->url}}"
                              style="border-radius: 5px;" crossorigin="anonymous" id="now_playing_img">
                         <div class="card-title">
-                            <h2 id="now_playing_title">{{$now_playing->item->name}}</h2>
+                            <h2 id="now_playing_title">{{$now_playing->name}}</h2>
                         </div>
                         <p id="now_playing_artists">
                             @php
-                                $artists = array_column($now_playing->item->artists, 'name');
+                                $artists = array_column($now_playing_data->artists, 'name');
                                 $artists = implode(', ', $artists);
                                 echo $artists;
                             @endphp
@@ -152,7 +153,13 @@
                     </div>
                     <div class="collapse" id="queue_collapse" data-parent="#extras" aria-labelledby="queue_title">
                         <div class="card-body" id="queue_gen">
-
+                            @php
+                                $queue = array_reverse($queue);
+                            @endphp
+                            @foreach($queue as $song)
+                                <div class="mt-3"><h6>{{$song->name}}</h6>
+                                    <span>{{join(', ', array_column($song->artists, 'name'))}}</span></div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -170,17 +177,19 @@
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <script>
     const colorThief = new ColorThief();
-    let queue = {!! json_encode($queue) !!}, results = {}, recently_played = [];
+    let results = {}, recently_played = [];
 
     setColorScheme();
-    initQueue();
 
     // Pusher Setup
     let pusher = new Pusher('{{env('PUSHER_APP_KEY')}}', {
         cluster: '{{env('PUSHER_APP_CLUSTER')}}'
     });
     let channel = pusher.subscribe('quinns-music');
-    channel.bind('new-song', data => updateNowPlaying(data));
+    channel.bind('new-song', data => {
+        updateQueue();
+        updateNowPlaying(data);
+    });
     channel.bind('queue-updated', data => updateQueue(data));
 
     $(document).ready(() => {
@@ -201,16 +210,13 @@
         setColorScheme();
     }
 
-    const updateQueue = (data) => {
+    const updateQueueAdd = (data) => {
         let song_data = JSON.parse(data.song.data);
-        queue.push(song_data);
         $('#queue_gen').append(`<div class="mt-3"><h6>${song_data.name}</h6><span>${song_data.artists[0].name}</span></div>`);
     };
 
-    function initQueue() {
-        queue.forEach(val => {
-            $('#queue_gen').prepend(`<div class="mt-3"><h6>${val.name}</h6><span>${val.artists[0].name}</span></div>`);
-        });
+    function updateQueueRemove() {
+        $('#queue_gen:first-child').remove();
     }
 
     const searchSongs = async () => {
