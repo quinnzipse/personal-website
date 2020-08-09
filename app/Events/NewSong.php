@@ -13,15 +13,18 @@ class NewSong implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $song;
+    public $wasQueued;
 
     /**
      * Create a new event instance.
      *
      * @param Song $song
+     * @param bool $wasQueued
      */
-    public function __construct(Song $song)
+    public function __construct(Song $song, bool $wasQueued)
     {
         $this->song = $song;
+        $this->wasQueued = $wasQueued;
     }
 
     /**

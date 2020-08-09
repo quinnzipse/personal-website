@@ -42,7 +42,7 @@
     </noscript>
     <div id="main_content">
         @if(!$error)
-            @if(isset($now_playing))
+            @if(isset($now_playing_data))
                 <div id="now_playing_container">
                     <div id="now_playing">
                         <img alt="cover" src="{{$now_playing_data->album->images[0]->url}}"
@@ -64,7 +64,7 @@
                     <div class="card-body m-auto"><h4>Nothing Playing Right Now</h4></div>
                 </div>
             @endif
-            <div id="extras">
+            <div id="extras" style="display: none">
                 <div class="card" id="song_history">
                     <div class="card-header" id="recently_played_title">
                         <h6 style="margin-bottom: 0">
@@ -177,7 +177,7 @@
 <script src="https://js.pusher.com/7.0/pusher.min.js"></script>
 <script>
     const colorThief = new ColorThief();
-    let results = {}, recently_played = [];
+    let results = {}, nowPlaying = {!! $now_playing->data !!};
 
     setColorScheme();
 
@@ -187,8 +187,8 @@
     });
     let channel = pusher.subscribe('quinns-music');
     channel.bind('new-song', data => {
-        updateQueue();
         updateNowPlaying(data);
+        if (data.wasQueued) $('#queue_gen div:first').remove();
     });
     channel.bind('queue-updated', data => updateQueue(data));
 
@@ -208,15 +208,21 @@
         document.getElementById('now_playing_title').innerText = song_data.name;
         document.getElementById('now_playing_img').src = song_data.album.images[0].url;
         setColorScheme();
+
+        // Add the new song to the top of the list.
+        $('#table_body').prepend();
+
+        // If we are going to add one, we should also remove one...
+        $('#table_body div:last').remove();
+
+        // Lastly, update the nowPlaying variable.
+        nowPlaying = JSON.parse(data.song.data);
     }
 
-    const updateQueueAdd = (data) => {
+    function updateQueue(data) {
+        // Add a song to the queue.
         let song_data = JSON.parse(data.song.data);
         $('#queue_gen').append(`<div class="mt-3"><h6>${song_data.name}</h6><span>${song_data.artists[0].name}</span></div>`);
-    };
-
-    function updateQueueRemove() {
-        $('#queue_gen:first-child').remove();
     }
 
     const searchSongs = async () => {
@@ -261,8 +267,8 @@
     const addSongToQueue = async (i) => {
         let item = JSON.stringify(results.tracks.items[i]);
         const request = await fetch(`../spotify/add_to_queue?data=${item}`);
-        if (request.status === 200) alert('Song Added Successfully!');
-        else alert('Failed to add song to queue, please try again.');
+        if (request.status === 204 || request.status === 200) alert('Song Added Successfully!');
+        else alert('Failed to add song to queue, please try again. HTTP ' + request.status);
     }
 
     function setColorScheme() {

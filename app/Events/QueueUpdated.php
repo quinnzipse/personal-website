@@ -13,15 +13,18 @@ class QueueUpdated implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $song;
+    public $remove;
 
     /**
      * Create a new event instance.
      *
      * @param Song $song
+     * @param bool $remove
      */
-    public function __construct(Song $song)
+    public function __construct(Song $song, bool $remove)
     {
         $this->song = $song;
+        $this->remove = $remove;
     }
 
     /**

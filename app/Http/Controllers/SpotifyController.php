@@ -17,8 +17,6 @@ use Illuminate\Support\Facades\Log;
 
 class SpotifyController extends Controller
 {
-    public $now_playing = -1;
-
     function spotifyAuth()
     {
         //Don't make scopes null
@@ -177,6 +175,11 @@ class SpotifyController extends Controller
         return json_decode($res->getBody());
     }
 
+    /**
+     * Gets the song currently playing and updates the database. Broadcasts the new state if necessary.
+     *
+     * @return \Psr\Http\Message\StreamInterface|string
+     */
     function fetchNowPlaying()
     {
         $quinns_code = User::get()[0]->authToken;
@@ -190,13 +193,13 @@ class SpotifyController extends Controller
         }
         $song_received = json_decode($res->getBody());
 
-        if($res->getStatusCode() === 204) {
+        if ($res->getStatusCode() === 204) {
             // HTTP 204 NO CONTENT
             // Nothing is playing :(
             return '';
         }
 
-        $song = Song::where('uri', '=', $song_received->item->uri)->first();
+        $song = Song::where([['uri', '=', $song_received->item->uri], ['status', '!=', 'queued']])->first();
         if (isset($song)) {
             if ($song->status !== 'now_playing') {
                 // New Song!
@@ -222,11 +225,20 @@ class SpotifyController extends Controller
             $song->save();
         }
 
-        event(new NewSong($song));
+        $queued_song = Song::where([['status', '=', 'queued'], ['uri', '=', $song->uri]])->first();
+        if(isset($queued_song)) $queued_song->delete();
+
+        event(new NewSong($song, isset($queued_song)));
 
         return $res->getBody();
     }
 
+    /**
+     * Takes a user provided string and uses it to search Spotify.
+     *
+     * @param Request $request
+     * @return \Psr\Http\Message\StreamInterface|string
+     */
     function search_songs(Request $request)
     {
         $auth_token = User::get()[0]->authToken;
@@ -243,6 +255,11 @@ class SpotifyController extends Controller
         return $res->getBody();
     }
 
+    /**
+     * Adds a song to the database as queued and sends out an event to clients.
+     *
+     * @param Request $request
+     */
     function add_to_queue(Request $request)
     {
         $song_request = json_decode($request->data);
@@ -257,39 +274,25 @@ class SpotifyController extends Controller
             exit();
         }
 
-        $song = Song::where('uri', '=', $song_request->uri)->first();
+        $song = new Song();
+        $song->name = $song_request->name;
+        $song->uri = $song_request->uri;
+        $song->data = json_encode($song_request);
+        $song->status = 'queued';
+        $song->listened_to = -1;
+        $song->save();
 
-        Log::debug($song);
-
-        if(isset($song)){
-            // If the song already exists, switch its status to queued.
-            if($song->status !== 'now_playing'){
-                $song->status = 'queued';
-                $song->save();
-            }
-            else {
-                // Don't allow the user to queue the song that is currently playing.
-                Log::alert('Queued song that is currently playing. We have no way of handling this....');
-                http_response_code(400);
-                exit();
-            }
-        }
-        else {
-            // If the song doesn't exist, add it and show that it is queued.
-            $song = new Song();
-            $song->name = $song_request->name;
-            $song->uri = $song_request->uri;
-            $song->data = json_encode($song_request);
-            $song->status = 'queued';
-            $song->save();
-        }
-
-        event(new QueueUpdated($song));
+        event(new QueueUpdated($song, false));
 
         http_response_code($res->getStatusCode());
         exit();
     }
 
+    /**
+     * Gathers the initial data to build the music view.
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
+     */
     function seeData()
     {
         // Prepare the queue object
@@ -303,6 +306,11 @@ class SpotifyController extends Controller
         return view('music', ['recently_played' => $this->fetchRecentData(), 'now_playing' => $now_playing, 'queue' => $queue]);
     }
 
+    /**
+     * Refreshes the users token that calls the function
+     *
+     * @return \Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     function refreshToken()
     {
         $currentuser = Auth::user();
