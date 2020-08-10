@@ -180,7 +180,7 @@ class SpotifyController extends Controller
      *
      * @return \Psr\Http\Message\StreamInterface|string
      */
-    function fetchNowPlaying()
+    public static function fetchNowPlaying()
     {
         $quinns_code = User::get()[0]->authToken;
         $client = new Client();
