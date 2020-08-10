@@ -34,26 +34,273 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    <style>
+        main {
+            transition: background-color 400ms;
+        }
+
+        #main_content {
+            display: grid;
+            grid-template-columns: 1fr 4fr 1fr;
+            height: 100vh !important;
+            transition: color 200ms;
+            transition-delay: 100ms;
+        }
+
+        /* Now Playing Styling. */
+        #now_playing_container {
+            display: flex;
+            width: 100%;
+        }
+
+        #now_playing {
+            margin: auto;
+            width: 40%;
+        }
+
+        #now_playing img {
+            margin-bottom: 2%;
+            width: 100%;
+            min-width: 300px;
+            border-radius: 8px;
+        }
+
+        /* Code Styling */
+        #code {
+            width: 150px;
+        }
+
+        /* Button Styling */
+        #button_grid {
+            display: grid;
+            padding: 6%;
+            row-gap: 10px;
+            grid-template-rows: repeat(4, 1fr);
+        }
+
+        #button_grid div {
+            padding: 3%;
+            width: fit-content !important;
+            border-radius: 10px;
+            transition: background-color 500ms, color 450ms;
+            transition-delay: 50ms;
+            display: flex;
+            overflow-y: hidden;
+            cursor: pointer;
+        }
+
+        #buttons i {
+            font-size: 25px;
+            line-height: 25px;
+            margin: auto;
+        }
+
+        #buttons svg {
+            margin: auto;
+            width: 25px;
+            height: 25px;
+        }
+
+        #button_grid div:hover {
+            color: whitesmoke;
+            background-color: rgba(0, 0, 0, .7);
+        }
+
+        #button_grid div:hover > .button-desc {
+            width: 160px;
+        }
+
+        .button-desc {
+            margin-left: 5%;
+            height: 25px;
+            line-height: 20px;
+            font-size: 20px;
+            width: 0;
+            overflow-x: hidden;
+            white-space: nowrap;
+            color: whitesmoke;
+            transition: width 400ms;
+        }
+
+        /* Menu Styles!! */
+
+        #side_menu {
+            position: absolute;
+            left: -1000px;
+            transition: 500ms ease-in-out;
+            background-color: rgba(0, 0, 0, .5);
+            height: 100vh;
+            width: 35vw;
+        }
+
+        #close-button {
+            font-size: xx-large;
+            position: absolute;
+            right: 20px;
+            top: 1%;
+            color: whitesmoke;
+            cursor: pointer;
+        }
+
+        #screen {
+            height: 100vh;
+            width: 100vw;
+            position: absolute;
+            left: -100%;
+            transition: 500ms ease-in-out;
+            background-color: rgba(0, 0, 0, .3);
+        }
+
+        .c-menus {
+            display: none;
+            margin-left: 13%;
+            padding-top: 3%;
+        }
+
+        /* Request Menu Styles */
+        .card-title {
+            margin-top: 2%;
+        }
+
+        #search_results {
+            color: whitesmoke;
+            max-height: 85vh;
+            overflow-y: auto;
+            margin: 1% 0;
+        }
+
+        #search_results::-webkit-scrollbar {
+            background-color: transparent;
+            width: 5px;
+        }
+
+        #search_results::-webkit-scrollbar-thumb {
+            background-color: rgba(0, 0, 0, .3);
+            border-radius: 2px;
+        }
+
+        .search_result, #result_header {
+            display: grid;
+            grid-template-columns: 2fr 1.5fr;
+            padding: .8% 1.1%;
+        }
+
+        .search_result:nth-child(odd) {
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .search_result:nth-child(even) {
+            background: rgba(0, 0, 0, .05);
+        }
+
+        .search_result:hover {
+            background: rgba(0, 0, 0, .15);
+        }
+
+        .clickable:hover {
+            cursor: pointer;
+        }
+
+        .more_info {
+            grid-column: span 2;
+            display: grid;
+            grid-template-columns: auto 1fr 1fr;
+        }
+
+        .explicit {
+            padding: 1% 2%;
+            border-radius: 5px;
+            background-color: rgba(60, 60, 60, .5);
+            color: white;
+            display: block;
+            width: fit-content;
+        }
+
+        /* Queue Menu Styling */
+        #queue_gen {
+            color: whitesmoke;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr .8fr .4fr;
+            column-gap: 5px;
+        }
+
+        .c-card {
+            padding: .5% 2%;
+            border: none;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, .3);
+        }
+
+        #table_body {
+            height: 63vh !important;
+            overflow-y: auto;
+        }
+    </style>
+
 </head>
 <body>
 <main id="app">
     <noscript>
         <h1>Please Enable JavaScript to Continue.</h1>
     </noscript>
-    <div id="side_menu" style="position: absolute; left: -100px;"></div>
+    <!-- Hidden Side Menu for Controls -->
+    <div id="screen"></div>
+    <div id="side_menu">
+        <span id="close-button">&times;</span>
+        <div id="request" class="c-menus">
+            <div class="pr-4">
+                <h2 class="text-white">Request a Song</h2>
+                <form class="mt-3 row" action="javascript:searchSongs()">
+                    <div class="form-group col-md-12">
+                        <label class="sr-only" for="search_key">Search</label>
+                        <div class="input-group input-group-sm">
+                            <input class="form-control form-control-sm" name="search_term"
+                                   placeholder="Search Spotify..." type="text"
+                                   id="search_key">
+                            <div class="input-group-append">
+                                <button class="btn btn-green" type="button"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div id="search_results"></div>
+            </div>
+        </div>
+        <div id="history" class="c-menus">
+            <h2 class="text-white">Recently Played</h2>
+            <div id="history_gen"></div>
+        </div>
+        <div id="queue" class="c-menus">
+            <h2 class="text-white">Queue</h2>
+            <hr class="bg-white mr-5">
+            <div id="queue_gen">
+                @foreach($queue as $song)
+                    <div class="mt-3"><h6>{{$song->name}}</h6><span>{{join(', ', array_column($song->artists, 'name'))}}</span></div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    <!-- Main container for everything you see on initial load -->
     <div id="main_content">
         @if(!$error)
             <div id="buttons">
                 <div id="button_grid">
                     <div title="Powered by Spotify"><i class="fab fa-spotify"></i></div>
-                    <div title="Request a Song!">
-                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-music-note-beamed pr-1" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <div class="custom-button" id="request_btn">
+                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-music-note-beamed"
+                             fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M6 13c0 1.105-1.12 2-2.5 2S1 14.105 1 13c0-1.104 1.12-2 2.5-2s2.5.896 2.5 2zm9-2c0 1.105-1.12 2-2.5 2s-2.5-.895-2.5-2 1.12-2 2.5-2 2.5.895 2.5 2z"/>
                             <path fill-rule="evenodd" d="M14 11V2h1v9h-1zM6 3v10H5V3h1z"/>
                             <path d="M5 2.905a1 1 0 0 1 .9-.995l8-.8a1 1 0 0 1 1.1.995V3L5 4V2.905z"/>
                         </svg>
+                        <span class="button-desc">Request a Song!</span>
                     </div>
-                    <div title="View Recently Played">
+                    <div class="custom-button" id="history_btn">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-clock-history"
                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -62,8 +309,9 @@
                             <path fill-rule="evenodd"
                                   d="M7.5 3a.5.5 0 0 1 .5.5v5.21l3.248 1.856a.5.5 0 0 1-.496.868l-3.5-2A.5.5 0 0 1 7 9V3.5a.5.5 0 0 1 .5-.5z"/>
                         </svg>
+                        <span class="button-desc">Recently Played</span>
                     </div>
-                    <div title="View Queue">
+                    <div class="custom-button" id="queue_btn">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-music-note-list"
                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                             <path d="M12 13c0 1.105-1.12 2-2.5 2S7 14.105 7 13s1.12-2 2.5-2 2.5.895 2.5 2z"/>
@@ -72,14 +320,16 @@
                             <path fill-rule="evenodd"
                                   d="M0 11.5a.5.5 0 0 1 .5-.5H4a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 7H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 .5 3H8a.5.5 0 0 1 0 1H.5a.5.5 0 0 1-.5-.5z"/>
                         </svg>
+                        <span class="button-desc">Queue</span>
                     </div>
                 </div>
             </div>
             <div id="now_playing_container">
                 <div id="now_playing">
                     @if(isset($now_playing_data))
-                        <img alt="cover" src="{{$now_playing_data->album->images[0]->url}}"
-                             style="border-radius: 5px;" crossorigin="anonymous" id="now_playing_img">
+                        <img alt="cover" class="shadow" src="{{$now_playing_data->album->images[0]->url}}"
+                             crossorigin="anonymous"
+                             id="now_playing_img">
                         <div class="card-title">
                             <h2 id="now_playing_title">{{$now_playing->name}}</h2>
                         </div>
@@ -97,7 +347,8 @@
             </div>
             <div id="code" class="d-flex w-100">
                 <div class="mt-auto ml-auto pr-4 pb-3">
-                    <img src="{{asset('/img/sampleSpotifyCode.jpg')}}" alt="Spotify Code" id="code" style="border-radius: 5px">
+                    <img src="{{asset('/img/sampleSpotifyCode.jpg')}}" alt="Spotify Code" id="code"
+                         style="border-radius: 5px">
                 </div>
             </div>
         @endif
@@ -123,9 +374,25 @@
     channel.bind('queue-updated', data => updateQueue(data));
 
     $(document).ready(() => {
-        feather.replace();
         $('#recently_played_collapse').collapse('show');
+        $('.custom-button').click(function () {
+            openMenu(this.id);
+        });
+        $('#close-button').click(closeMenu);
+        $('#screen').click(closeMenu);
     });
+
+    function closeMenu() {
+        $('.c-menus').hide('slow');
+        $('#side_menu')[0].style.left = '-1000px';
+        $('#screen')[0].style.left = '-100%';
+    }
+
+    function openMenu(option) {
+        $('#' + option.split('_')[0]).show();
+        $('#side_menu')[0].style.left = 0;
+        $('#screen')[0].style.left = 0;
+    }
 
     function updateNowPlaying(data) {
         let song_data = JSON.parse(data.song.data);
@@ -196,8 +463,12 @@
     }
 
     const addSongToQueue = async (i) => {
-        let item = JSON.stringify(results.tracks.items[i]);
-        const request = await fetch(`../spotify/add_to_queue?data=${item}`);
+        let item = results.tracks.items[i];
+        delete item.available_markets;
+        delete item.album.available_markets;
+        console.log(item);
+        console.log(item.uri);
+        const request = await fetch(`../spotify/add_to_queue?data=${JSON.stringify(item)}`);
         if (request.status === 204 || request.status === 200) alert('Song Added Successfully!');
         else alert('Failed to add song to queue, please try again. HTTP ' + request.status);
     }
@@ -210,9 +481,10 @@
             let colorPalette;
             colorPalette = colorThief.getPalette(img);
 
-            document.querySelector('main').style.background = `rgba(${colorPalette[3].join(', ')}, .5)`;
+            document.querySelector('main').style.backgroundColor = `rgba(${colorPalette[0].join(', ')}, .5)`;
             let sum = 0;
             colorPalette[0].forEach(val => sum += val);
+            console.log(sum);
             document.querySelector('main').style.color = (sum / 3.0 > 100 ? 'black' : 'white')
 
         } else {
@@ -222,138 +494,5 @@
         }
     }
 </script>
-<style>
-    #main_content {
-        display: grid;
-        grid-template-columns: 1fr 4fr 1fr;
-        height: 100vh !important;
-    }
-
-    /* Now Playing Styling. */
-    #now_playing_container {
-        display: flex;
-        width: 100%;
-    }
-
-    #now_playing {
-        margin: auto;
-        width: 40%;
-    }
-
-    #now_playing img {
-        width: 100%;
-        min-width: 300px;
-    }
-
-    /* Code Styling */
-    #code {
-        width: 150px;
-    }
-
-    /* Button Styling */
-    #button_grid {
-        display: grid;
-        padding: 6%;
-        row-gap: 10px;
-        grid-template-rows: repeat(4, 1fr);
-    }
-
-    #button_grid div {
-        padding: 3%;
-        width: fit-content !important;
-        border-radius: 50%;
-        transition: background-color 350ms, color 450ms;
-        transition-delay: 50ms;
-        display: flex;
-    }
-
-    #buttons i {
-       font-size: 25px;
-        line-height: 25px;
-        margin: auto;
-    }
-
-    #buttons svg {
-        margin: auto;
-        width: 25px;
-        height: 25px;
-    }
-
-    #button_grid div:hover {
-        color: whitesmoke;
-        background-color: rgba(0, 0, 0, .8);
-    }
-
-    .card-grid {
-        display: grid;
-        grid-template-columns: 1fr .8fr .4fr;
-        column-gap: 5px;
-    }
-
-    .c-card {
-        padding: .5% 2%;
-        border: none;
-    }
-
-    .card {
-        background-color: rgba(255, 255, 255, .3);
-    }
-
-    #table_body {
-        height: 63vh !important;
-        overflow-y: auto;
-    }
-
-    .card-title {
-        margin-top: 2%;
-    }
-
-    #search_results {
-        max-height: 60vh;
-        overflow-y: auto;
-        margin: 1% 0;
-    }
-
-    .search_result, #result_header {
-        display: grid;
-        grid-template-columns: 2fr 1.5fr;
-        padding: .8% 1.1%;
-    }
-
-    #song_request_collapse {
-        background: rgba(255, 255, 255, .1);
-    }
-
-    .search_result:nth-child(odd) {
-        background: rgba(255, 255, 255, .05);
-    }
-
-    .search_result:nth-child(even) {
-        background: rgba(0, 0, 0, .05);
-    }
-
-    .search_result:hover {
-        background: rgba(0, 0, 0, .15);
-    }
-
-    .clickable:hover {
-        cursor: pointer;
-    }
-
-    .more_info {
-        grid-column: span 2;
-        display: grid;
-        grid-template-columns: auto 1fr 1fr;
-    }
-
-    .explicit {
-        padding: 1% 2%;
-        border-radius: 5px;
-        background-color: rgba(60, 60, 60, .5);
-        color: white;
-        display: block;
-        width: fit-content;
-    }
-</style>
 </body>
 </html>

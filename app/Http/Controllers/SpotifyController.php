@@ -244,7 +244,7 @@ class SpotifyController extends Controller
         $auth_token = User::get()[0]->authToken;
         $client = new Client();
         try {
-            $uri = 'https://api.spotify.com/v1/search?q=' . urlencode($request->search_term) . '&type=artist,track';
+            $uri = 'https://api.spotify.com/v1/search?q=' . urlencode($request->search_term) . '&limit=40&type=artist,track';
             $res = $client->request('get', $uri, ['headers' => [
                 'Authorization' => 'Bearer ' . $auth_token
             ]]);
