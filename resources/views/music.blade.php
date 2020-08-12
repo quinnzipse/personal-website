@@ -164,7 +164,7 @@
 
         #search_results {
             color: whitesmoke;
-            max-height: 85vh;
+            max-height: 80vh;
             overflow-y: auto;
             margin: 1% 0;
         }
