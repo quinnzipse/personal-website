@@ -104,9 +104,6 @@
                                     <li class="list-group-item">
                                         <a href="{{route('spotify.musicControl')}}" class="text-muted">Spotify Settings</a>
                                     </li>
-                                    <li class="list-group-item">
-                                        <a href="{{route('myStory')}}" class="text-muted">Spotify Controller</a>
-                                    </li>
                             </ul>
                         </div>
                     </div>
