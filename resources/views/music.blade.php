@@ -360,7 +360,7 @@
          </div>
          <div id="code" class="d-flex w-100">
             <div class="mt-auto ml-auto pr-4 pb-3">
-               <img src="{{asset('/img/sampleSpotifyCode.jpg')}}" alt="Spotify Code" id="code"
+               <img src="{{asset('/img/spotifycode.svg')}}" alt="Spotify Code" id="code"
                     style="border-radius: 5px">
             </div>
          </div>
