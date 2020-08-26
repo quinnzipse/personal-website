@@ -240,6 +240,10 @@
          height: 63vh !important;
          overflow-y: auto;
       }
+      
+      .bi {
+         z-index: 22;
+      }
    </style>
 
 </head>
@@ -263,7 +267,7 @@
                             placeholder="Search Spotify..." type="text"
                             id="search_key">
                      <div class="input-group-append">
-                        <button class="btn btn-green" type="button"><i class="fas fa-search"></i></button>
+                        <button class="btn btn-green" type="submit"><i class="fas fa-search"></i></button>
                      </div>
                   </div>
                </div>
