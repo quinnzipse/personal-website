@@ -24,6 +24,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
             integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
             crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -459,7 +460,7 @@
             results.tracks.items.forEach((val, i) => {
                 let names = [];
                 val.artists.forEach(artist => names.push(artist.name));
-                result_element.append(`<div class="search_result"><span class="clickable" onclick="moreInfo(${i})">${val.name}</span>` +
+                result_element.append(`<div class="search_result"><span class="clickable text-truncate pr-1" onclick="moreInfo(${i})">${val.name}</span>` +
                     `<span class="clickable" onclick="moreInfo(${i})">${names.join(', ')}</span><div class="collapse" id="result_collapse_${i}" data-parent="#search_results" style="grid-column: span 2"></div></div>`);
             });
         } else
@@ -477,7 +478,7 @@
         if (collapse.html() === '') {
             collapse.html(`<div class="more_info p-2 mt-1"><img id="result_img_${i}" src="${item.album.images[1].url}" style="width: 180px" crossorigin="anonymous" alt="album cover">` +
                 `<div style="margin-left: 5%"><h6>${item.name}</h6><p>${item.artists[0].name}</p><small class="explicit" ${(item.explicit ? '' : "hidden")}>explicit</small></div>` +
-                `<div><button class="btn btn-sm btn-info" onclick="addSongToQueue('${i}')">Add to Queue</button></div></div>`);
+                `<div><button class="btn btn-sm btn-info" onclick="addSongToQueue('${i}')" id="button_to_add_${i}">Add to Queue</button></div></div>`);
             await waitOnImgLoad(document.getElementById('result_img_' + i));
         }
 
@@ -490,9 +491,27 @@
         delete item.album.available_markets;
         console.log(item);
         console.log(item.uri);
-        const request = await fetch(`../spotify/add_to_queue?data=${JSON.stringify(item)}`);
-        if (request.status === 204 || request.status === 200) alert('Song Added Successfully!');
-        else alert('Failed to add song to queue, please try again. HTTP ' + request.status);
+        const request = await fetch(`../spotify/add_to_queue?data=${encodeURIComponent(JSON.stringify(item))}`);
+        if (request.status === 204 || request.status === 200){
+            $(`#button_to_add_${i}`).text('Queued ⌛').prop('disabled', true);
+            Swal.fire({
+                title: 'Song Queued',
+                text: 'Thanks for the recommendation! 😊',
+                icon: 'success',
+                timer: 1900,
+                timerProgressBar: true
+            })
+        }
+        else {
+            Swal.fire({
+                title: 'Error',
+                text: `Your song was not added. HTTP ${request.status}`,
+                icon: 'error',
+                confirmButtonText: 'Whatever 😒',
+                timer: 2000,
+                timerProgressBar: true
+            })
+        }
     }
 
     function setColorScheme() {
@@ -507,7 +526,7 @@
             let sum = 0;
             colorPalette[0].forEach(val => sum += val);
             console.log(sum);
-            document.querySelector('main').style.color = (sum / 3.0 > 100 ? 'black' : 'white')
+            document.querySelector('main').style.color = (sum / 3.0 > 125 ? 'black' : 'white')
 
         } else {
             img.addEventListener('load', function () {
