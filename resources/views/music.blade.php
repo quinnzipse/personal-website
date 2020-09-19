@@ -40,14 +40,6 @@
             transition: background-color 400ms;
         }
 
-        #main_content {
-            display: grid;
-            grid-template-columns: 1fr 4fr 1fr;
-            height: 100vh !important;
-            transition: color 200ms;
-            transition-delay: 100ms;
-        }
-
         /* Now Playing Styling. */
         #now_playing_container {
             display: flex;
@@ -56,7 +48,59 @@
 
         #now_playing {
             margin: auto;
-            width: 40%;
+        }
+
+        /* Phone Only Styling */
+        @media (max-width: 450px) {
+            #now_playing {
+                width: 80%;
+            }
+
+            #now_playing {
+                margin-top: 30% !important;
+            }
+
+            #button_grid{
+                display: none !important;
+            }
+
+            #code {
+                display: none;
+            }
+
+            body {
+                height: 100vh !important;
+            }
+
+            #side_menu {
+                display: none !important;
+            }
+
+            #main_content {
+                height: 100vh;
+            }
+        }
+
+        /* Everything but phone styling */
+        @media (min-width: 450px) {
+            #now_playing {
+                width: 50vh;
+            }
+
+            #main_content {
+                display: grid;
+                grid-template-columns: 1fr 4fr 1fr;
+                height: 100vh !important;
+                transition: color 200ms;
+                transition-delay: 100ms;
+            }
+
+            #button_grid {
+                display: grid;
+                padding: 6%;
+                row-gap: 10px;
+                grid-template-rows: repeat(4, 1fr);
+            }
         }
 
         #now_playing img {
@@ -72,13 +116,6 @@
         }
 
         /* Button Styling */
-        #button_grid {
-            display: grid;
-            padding: 6%;
-            row-gap: 10px;
-            grid-template-rows: repeat(4, 1fr);
-        }
-
         #button_grid div {
             padding: 3%;
             width: fit-content !important;
