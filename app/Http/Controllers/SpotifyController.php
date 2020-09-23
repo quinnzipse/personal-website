@@ -380,4 +380,11 @@ class SpotifyController extends Controller
 
         return redirect(route('spotify.musicControl'));
     }
+
+    function manageQueue(){
+
+        $queue = Song::where('status', '=', 'queued')->get();
+
+        return view('dashboard.spotify.manageQueue', ['queue' => $queue]);
+    }
 }
