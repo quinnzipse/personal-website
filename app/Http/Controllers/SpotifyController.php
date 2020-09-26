@@ -289,6 +289,21 @@ class SpotifyController extends Controller
     }
 
     /**
+     * Removes a song from the database queue only. Has no affect on the Spotify queue.
+     *
+     * @param Request $request
+     */
+    function remove_from_queue(Request $request){
+        // Find the song based on the uri provided.
+        $song = Song::where([['uri', '=', $request->uri], ['status', '=', 'queued']])->first();
+
+        if($song == null) http_response_code('400');
+        else $song->delete();
+
+        exit();
+    }
+
+    /**
      * Gathers the initial data to build the music view.
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\View\View
@@ -382,6 +397,7 @@ class SpotifyController extends Controller
     }
 
     function manageQueue(){
+
 
         $queue = Song::where('status', '=', 'queued')->get();
 

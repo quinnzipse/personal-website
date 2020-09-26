@@ -55,6 +55,7 @@ Route::get('/spotify/manage_queue', 'SpotifyController@manageQueue')->middleware
 Route::post('/spotify/settings/', 'SpotifyController@editSettings')->middleware('auth')->name('spotify.process.settings');
 Route::get('/spotify/controller', 'SpotifyController@control')->middleware('auth')->name('spotify.musicControl');
 Route::get('/spotify/add_to_queue', 'SpotifyController@add_to_queue')->name('spotify.addToQueue');
+Route::get('/spotify/remove_from_queue', 'SpotifyController@remove_from_queue')->name('spotify.removeFromQueue');
 Route::get('/spotify/search_term', 'SpotifyController@search_songs')->name('spotify.searchTerm');
 Route::get('/spotify/get_currently_playing', 'SpotifyController@fetchNowPlaying')->name('spotify.nowPlaying');
 Route::get('/spotify/trigger/song', 'SpotifyController@newSongTrigger')->name('spotify.trigger.newSongTrigger');
