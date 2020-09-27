@@ -403,4 +403,13 @@ class SpotifyController extends Controller
 
         return view('dashboard.spotify.manageQueue', ['queue' => $queue]);
     }
+
+    /**
+     * Takes all the data in the database and gives it to a view for further processing.
+     */
+    function displayData() {
+        $data = Song::where('status', '!=', 'queued')->simplePaginate(10);
+
+        return view('dashboard.spotify.displayData', ['data' => $data]);
+    }
 }

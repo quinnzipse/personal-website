@@ -52,6 +52,7 @@ Route::get('spotify/reauth', 'SpotifyController@refreshToken')->middleware('auth
 Route::get('/spotify/try', 'SpotifyController@spotifyAuth')->middleware('auth')->name('spotify.login');
 Route::get('/spotify/logout', 'SpotifyController@logout')->middleware('auth')->name('spotify.logout');
 Route::get('/spotify/manage_queue', 'SpotifyController@manageQueue')->middleware('auth')->name('spotify.manageQueue');
+Route::get('/spotify/view', 'SpotifyController@displayData')->middleware('auth')->name('spotify.displayData');
 Route::post('/spotify/settings/', 'SpotifyController@editSettings')->middleware('auth')->name('spotify.process.settings');
 Route::get('/spotify/controller', 'SpotifyController@control')->middleware('auth')->name('spotify.musicControl');
 Route::get('/spotify/add_to_queue', 'SpotifyController@add_to_queue')->name('spotify.addToQueue');
