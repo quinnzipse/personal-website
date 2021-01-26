@@ -60,7 +60,7 @@
                 margin-top: 30% !important;
             }
 
-            #button_grid{
+            #button_grid {
                 display: none !important;
             }
 
@@ -285,9 +285,47 @@
         }
     </style>
 
+    <style>
+        #away_screen {
+            position: absolute;
+            display: flex;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            background-color: rgba(40, 40, 40, .95);
+            width: 100vw;
+        }
+
+        #away_screen .away_info {
+            margin: 0 auto auto 0;
+            padding: 7vh;
+            color: whitesmoke !important;
+        }
+
+        #away_song_title {
+            font-size: 4.3rem;
+        }
+
+        #away_song_artists {
+            font-size: 2rem;
+        }
+    </style>
+
 </head>
 <body>
 <main id="app">
+    <div id="away_screen" style="display: none">
+        <div class="away_info">
+            <h4 id="away_song_title">{{$now_playing->name}}</h4>
+            <small id="away_song_artists">
+                @php
+                    $artists = array_column($now_playing_data->artists, 'name');
+                    $artists = implode(', ', $artists);
+                    echo $artists;
+                @endphp
+            </small>
+        </div>
+    </div>
     <noscript>
         <h1>Please Enable JavaScript to Continue.</h1>
     </noscript>
@@ -346,7 +384,6 @@
         @if(!$error)
             <div id="buttons">
                 <div id="button_grid">
-                    <div title="Powered by Spotify"><i class="fab fa-spotify"></i></div>
                     <div class="custom-button cb-hover" id="request_btn">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-music-note-beamed"
                              fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -465,6 +502,11 @@
         document.getElementById('now_playing_artists').innerText = artists.join(', ');
         document.getElementById('now_playing_title').innerText = song_data.name;
         document.getElementById('now_playing_img').src = song_data.album.images[0].url;
+
+        document.getElementById('away_song_artists').innerText = artists.join(', ');
+        document.getElementById('away_song_title').innerText = song_data.name;
+        // document.getElementById('now_playing_img').src = song_data.album.images[0].url; TODO: Probably will need in the future.
+
         setColorScheme();
 
         // Add the new song to the top of the list.
@@ -529,7 +571,7 @@
         console.log(item);
         console.log(item.uri);
         const request = await fetch(`../spotify/add_to_queue?data=${encodeURIComponent(JSON.stringify(item))}`);
-        if (request.status === 204 || request.status === 200){
+        if (request.status === 204 || request.status === 200) {
             $(`#button_to_add_${i}`).text('Queued ⌛').prop('disabled', true);
             Swal.fire({
                 title: 'Song Queued',
@@ -538,8 +580,7 @@
                 timer: 1900,
                 timerProgressBar: true
             })
-        }
-        else {
+        } else {
             Swal.fire({
                 title: 'Error',
                 text: `Your song was not added. HTTP ${request.status}`,
@@ -556,12 +597,11 @@
         const img = document.getElementById('now_playing_img');
 
         if (img.complete) {
-            let colorPalette;
-            colorPalette = colorThief.getPalette(img);
+            const color = colorThief.getColor(img);
 
-            document.querySelector('main').style.backgroundColor = `rgba(${colorPalette[0].join(', ')}, .5)`;
+            document.querySelector('main').style.backgroundColor = `rgba(${color.toString()}, .5)`;
             let sum = 0;
-            colorPalette[0].forEach(val => sum += val);
+            color.forEach(val => sum += val);
             console.log(sum);
             document.querySelector('main').style.color = (sum / 3.0 > 125 ? 'black' : 'white')
 
@@ -570,6 +610,36 @@
                 setColorScheme();
             });
         }
+    }
+
+    let idleTimeInSeconds = 0;
+    $(document).ready(function () {
+        setInterval(timerIncrement, 1000);
+
+        $(this).mousemove(e => {
+            idleTimeInSeconds = 0;
+        });
+        $(this).keypress(e => {
+            idleTimeInSeconds = 0;
+        });
+    });
+
+    function timerIncrement() {
+        if(idleTimeInSeconds === 0){
+            userIsBack();
+        } else if(idleTimeInSeconds > 10){
+            userIsAway();
+        }
+
+        idleTimeInSeconds++;
+    }
+
+    function userIsAway() {
+        $("#away_screen").fadeIn('slow');
+    }
+
+    function userIsBack() {
+        $("#away_screen").fadeOut('slow');
     }
 </script>
 </body>
